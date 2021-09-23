@@ -5,14 +5,14 @@
 package model;
 
 public class Coordinate {
-	/*
+	/**
 	 * La componente x del tablero.
-	 * */
+	 */
 	private int x;
 	
-	/*
+	/**
 	 * La componente y del tablero.
-	 * */
+	 */
 	private int y;
 	
 	/**
