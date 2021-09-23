@@ -112,5 +112,5 @@ public class Coordinate {
 		Coordinate new_c(this.x+x,this.y+y);
 		
 		return new_c;
-	}
+	} 
 }
