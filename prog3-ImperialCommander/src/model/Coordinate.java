@@ -109,7 +109,7 @@ public class Coordinate {
 	  * @return new_c
 	  */
 	public Coordinate add(Coordinate c) {
-		Coordinate new_c(x+c.x,y+c.y);
+		Coordinate new_c = new Coordinate(x+c.x,y+c.y);
 		
 		return new_c;
 	}
@@ -127,7 +127,7 @@ public class Coordinate {
 	 * @return new_c
 	 */
 	public Coordinate add(int x,int y) {
-		Coordinate new_c(this.x+x,this.y+y);
+		Coordinate new_c = new Coordinate(this.x+x,this.y+y);
 		
 		return new_c;
 	} 
