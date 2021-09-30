@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="prog3-1-15-16" default="checkdoc" basedir=".">
+	<property name="projectname" value="prog3"/>
+
+	<property name="dir.javadoc" value="doc"/> <!-- libraries used -->
+	<property name="src" value="src"/> <!-- Sources -->
+
+	<target name="checkdoc" description="Checks source files for missing documentation.">
+
+		<!-- <echo message="Source exists ${source.exists}" /> -->
+		<taskdef
+			resource="com/puppycrawl/tools/checkstyle/ant/checkstyle-ant-task.properties"
+         	classpath="checkstyle/checkstyle-8.2-all.jar"/>         
+		<checkstyle config="checkstyle/sun_checks.xml">
+  			<fileset dir="${src}" includes="**/*.java"/>
+		</checkstyle>
+		<!-- <fail message="checkdoc failed!"/> -->
+	</target>
+
+</project> 
