@@ -68,8 +68,9 @@ public class CoordinatePreTest {
 		Coordinate c = lcoor.get(2);
 		assertEquals("x==-70", -70, c.getX());
 		assertEquals("y==-2", -2, c.getY());
-
-		fail ("Prueba con otra coordenada y comprueba que los valores de 'x' e 'y' son correctos");
+		Coordinate d = lcoor.get(3);
+		assertEquals("x==-2", -2, d.getX());
+		assertEquals("y==20", 20, d.getY());
 	}
 
 	
@@ -89,9 +90,11 @@ public class CoordinatePreTest {
 		// comprobamos que la coordenada sobre la que se invoca el método no ha cambiado
 		assertEquals("x==-70", -70, c1.getX());
 		assertEquals("y==-2", -2, c1.getY());
-
-		// haz pruebas similares con el otro método .add(x,y)
-		fail("completa el test con pruebas similares para el método .add(x,y)");
+		
+		Coordinate c3 = c2.add(2,2);
+		assertEquals("x==0", 0, c3.getX());
+		assertEquals("y==22", 22, c3.getY());
+		assertNotSame(c3,c1);
 	}
 	
 	/* Se suman las Coordinate creadas en el setUp() y comprueba, conforme se van 
@@ -111,13 +114,17 @@ public class CoordinatePreTest {
 		   caux1 = caux1.add(lcoor.get(i+1));	  
 		   sumx += (vcoor[i+1]);
 		   sumy += (vcoor[i+2]);
+		   
 		   /*Usa aquí los métodos de junit adecuados para comprobar:
 		    * - que sumx y sumy son iguales a los componentes '0' y '1' 
 		    *   respectivamente de caux1.
 		    * - que el Coordinate que devuelve 'add' no es el mismo que
 	        *   el Coordinate que invocó al método.
 		    */
-		   fail ("Realiza las comprobaciones sugeridas anteriormente");
+		   
+		   assertSame(sumx,caux1.getX());
+		   assertSame(sumy,caux1.getY());
+		   assertNotSame(caux1,caux1.add(caux2));
 		}
 	}
 
@@ -150,6 +157,14 @@ public class CoordinatePreTest {
 		 *  3. equals() devuelve true cuando comparo dos objetos Coordinate distintos
 		 *     y los valores de sus componentes respectivos son iguales.
 		 */
-		fail ("Completa el test equals()");
+		
+		Coordinate e = lcoor.get(0);
+		Coordinate f = lcoor.get(1);
+		/*1.*/
+		assertFalse(c.equals(f));
+		/*2.*/
+		assertTrue(c.equals(c));
+		/*3.*/
+		assertTrue(c.equals(e));
 	}
 }

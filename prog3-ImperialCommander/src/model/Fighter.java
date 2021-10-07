@@ -39,7 +39,12 @@ public class Fighter {
 	}
 	
 	public Fighter(Fighter f) {
-		
+		this.velocity = f.getVelocity();
+		this.attack = f.getAttack();
+		this.shield = f.getShield();
+		this.type = f.getType();
+		this.position = f.getPosition();
+		this.motherShip = f.getMotherShip();
 	}
 	
 	public void static resetNextId() {
@@ -114,19 +119,53 @@ public class Fighter {
 			return false;
 	}
 	
+	/**
+	 * 
+	 * @param n
+	 * @param enemy
+	 * @return
+	 */
 	public int getDamage(int n,Fighter enemy) {
 		int damage = (n*this.attack)/300;
 		return damage;
 	}
 	
 	public int fight(Fighter enemy) {
+		do {
+			int n ;
+			RandomNumber rndm;
+			setRandom(n,rndm);
+			
+			int threshold = 100*getVelocity()/(getVelocity()+enemy.getVelocity());
+			
+			if(threshold <= n) {
+				enemy.addShield(-getDamage(n,this));
+			}else {
+				addShield(-getDamage(100-n,enemy));
+			}
+		}while(isDestroyed() == false && enemy.isDestroyed() == false);
 		
+		if(isDestroyed() == true) {
+			return -1;
+		}else {
+			return 1;
+		}	
 	}
 
+	public static void setRandom(int n,RandomNumber rndm) {
+		n = rndm.newRandomNumber(100);
+	}
+	
 	@Override
 	public String toString() {
-		return "(" + type + " " + id + " " + motherShip.side + "" + shield
-				+ ", id=" + id + ", nextId=" + nextId + "]";
+		if(getPosition() != null) {
+			return "(" + type + " " + id + " " + motherShip.side +	"[" + position.getX()
+					+ "," + position.getY() + "] {" + velocity + "," + attack + 
+					"," + shield + "})";
+		}else {
+			return "(" + type + " " + id + " " + motherShip.side +	"null {" 
+					+ velocity + "," + attack + "," + shield + "})";
+		}
 	}
 
 	@Override

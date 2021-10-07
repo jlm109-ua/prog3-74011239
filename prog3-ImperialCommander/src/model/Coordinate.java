@@ -4,7 +4,7 @@
 
 package model;
 
-public class Coordinate implpements Comparable<Coordinate> {
+public class Coordinate implements Comparable<Coordinate> {
 	/**
 	 * La componente x del tablero.
 	 */
