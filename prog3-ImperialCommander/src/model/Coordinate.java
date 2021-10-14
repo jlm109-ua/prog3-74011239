@@ -4,6 +4,8 @@
 
 package model;
 
+import java.util.TreeSet;
+
 public class Coordinate implements Comparable<Coordinate> {
 	/**
 	 * La componente x del tablero.
@@ -141,26 +143,41 @@ public class Coordinate implements Comparable<Coordinate> {
 	}	
 	
 	/**
-	 * Rellenamos el código de compareTo para comparar dos coordenadas.
+	 * Compara dos coordenadas.
 	 * @param otra
-	 * @return
+	 * @return 
+	 * -1: Si la "x" o la "y" es menor que la "x" o la "y" de la coordenada que queremos comparar.
+	 * 0: Si la "x" y la "y" es igual a la "x" y la "y" de la coordenada que queremos comparar.
+	 * 1: Si la "x" o la "y" es mayor que la "x" o la "y" de la coordenada que queremos comparar.
 	 */
 	public int compareTo(Coordinate otra) {
 		if(x<otra.x)
 			return (-1);
 		if(x>otra.x)
 			return 1;
-		if(x=otra.x) {
+		if(x==otra.x) {
 			if(y<otra.y)
 				return (-1);
 			if(y>otra.y)
 				return 1;
-			if(y=otra.y)
+			if(y==otra.y)
 				return 0;
 		}
+		return 0;
 	}
 	
-	public TreeSet<Coordinate> getNeighborhood() { /*completar*/
+	public TreeSet<Coordinate> getNeighborhood() {
+		TreeSet<Coordinate> neighborhood = new HashSet<Coordinate>();
 		
+		neighborhood.add(new Coordinate(this.x-1,this.y));
+		neighborhood.add(new Coordinate(this.x-1,this.y+1));
+		neighborhood.add(new Coordinate(this.x,this.y+1));
+		neighborhood.add(new Coordinate(this.x+1,this.y+1));
+		neighborhood.add(new Coordinate(this.x+1,this.y));
+		neighborhood.add(new Coordinate(this.x+1,this.y-1));
+		neighborhood.add(new Coordinate(this.x,this.y-1));
+		neighborhood.add(new Coordinate(this.x-1,this.y-1));
+		
+		return neighborhood;
 	}
 }

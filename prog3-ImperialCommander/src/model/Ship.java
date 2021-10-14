@@ -7,6 +7,7 @@ public class Ship {
 	
 	/**
 	 * Declaramos sus variables privadas.
+	 * @author Juan Llinares Mauri - 74011239E
 	 */
 	private String name;
 	
@@ -51,7 +52,7 @@ public class Ship {
 		
 		do {
 			for(int j = 0; j < Integer.parseInt(fdv[i]); j++) {
-				Fighter f = new Fighter(fdv[i+1],this);
+				new Fighter(fdv[i+1],this); /*???*/
 			}
 			i++;i++;
 		} while(i<fdv.length);
@@ -65,33 +66,92 @@ public class Ship {
 	}
 	
 	public Fighter getFirstAvailableFighter(String t) {
-		if(fleet.size() == 0)
+		if(fleet.isEmpty())
 			return null;
 		
 		for(int i = 0; i < fleet.size(); i++) {
-			if(fleet[i].isDestroyed() == false && t == null)
-				return fleet[i];
-			if(fleet[i].isDestroyed() == false && fleet[i].getName() == t)
-				return fleet[i];
+			if(fleet.get(i).isDestroyed() == false && t == null)
+				return fleet.get(i);
+			if(fleet.get(i).isDestroyed() == false && fleet.get(i).getType() == t)
+				return fleet.get(i);
 		}
 		return null;
 	}
 	
 	public void purgeFleet() {
-		
+		for(int i = 0;i < fleet.size();i++) {
+			if(fleet.get(i).isDestroyed() == true) {
+				fleet.remove(i);
+			}
+		}
 	}
 	
 	public String showFleet() {
-		
+		String showFleet = null;
+		if(fleet.size() == 0)
+			return("");
+		else {
+			for(int i = 0;i < fleet.size();i++) {
+				if(fleet.get(i).isDestroyed() == true)
+					showFleet = showFleet + fleet.get(i).toString() + "(X)\n";
+				else
+					showFleet = showFleet + fleet.get(i).toString() + "\n";
+				
+			}
+			return showFleet;
+		}
 	}
 	
 	public String myFleet() {
+		if (fleet.isEmpty())
+			return ("");
 		
+		String myFleet = null,name;
+		List<String> shipNames = new ArrayList<String>();
+		for(int i = 0;i < fleet.size();i++) {
+			name = fleet.get(i).getType();
+			if(shipNames.contains(name)) {
+				myFleet = myFleet + checkSameShips(name) + "/" + name;
+				shipNames.add(name);
+			}
+			if(checkOtherShips(name,shipNames)) {
+				myFleet += ":";
+			}
+		}
+		return myFleet;
 	}
-
+	
+	/**
+	 * Devuelve el número de naves iguales.
+	 * @param name
+	 * @return count
+	 */
+	private int checkSameShips(String name) {
+		int count = 0;
+		
+		for(int j = 0;j < fleet.size();j++) {
+			if(name == fleet.get(j).getType())
+				count++;
+		}
+		return count;
+	}
+	
+	/**
+	 * Devuelve True si hay naves diferentes que no hayan sido contadas ya. False si no las hay.
+	 * @param name
+	 * @param shipNames
+	 * @return True o False.
+	 */
+	private boolean checkOtherShips(String name,List<String> shipNames) {
+		for(int l = 0;l < fleet.size();l++) {
+			if(shipNames.contains(fleet.get(l).getType()))
+				return true;
+		}
+		return false;
+	}
+	
 	@Override
 	public String toString() {
-		return "Ship [name=" + name + ", side=" + side + ", wins=" + wins + ", losses=" + losses + ", fleet=" + fleet
-				+ "]";
+		return "Ship [" + name + " " + wins + "/" + losses + "]  " + myFleet();
 	}
 }

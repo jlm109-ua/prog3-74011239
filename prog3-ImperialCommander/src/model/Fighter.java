@@ -7,6 +7,7 @@ package model;
 public class Fighter {
 	/**
 	 * Declaramos todos los atributos privados.
+	 * @author Juan Llinares Mauri - 74011239E
 	 */
 	private String type;
 	
@@ -34,7 +35,7 @@ public class Fighter {
 		this.attack = 80;
 		this.shield = 80;
 		this.type = type;
-		this.position = NULL;
+		this.position = null;
 		this.motherShip = mother;
 	}
 	
@@ -76,15 +77,15 @@ public class Fighter {
 	}
 	
 	public Side getSide() {
-		return motherShip.side; 
+		return motherShip.getSide(); 
 	}
 	
 	public Coordinate getPosition() {
-		return Coordinate;
+		return position;
 	}
 	
 	public Ship getMotherShip() {
-		return mother;
+		return motherShip;
 	}
 	
 	public void setPosition(Coordinate p) {
@@ -159,11 +160,11 @@ public class Fighter {
 	@Override
 	public String toString() {
 		if(getPosition() != null) {
-			return "(" + type + " " + id + " " + motherShip.side +	"[" + position.getX()
+			return "(" + type + " " + id + " " + motherShip.getSide() +	"[" + position.getX()
 					+ "," + position.getY() + "] {" + velocity + "," + attack + 
 					"," + shield + "})";
 		}else {
-			return "(" + type + " " + id + " " + motherShip.side +	"null {" 
+			return "(" + type + " " + id + " " + motherShip.getSide() +	"null {" 
 					+ velocity + "," + attack + "," + shield + "})";
 		}
 	}

@@ -1,11 +1,8 @@
-/**
- * @author Juan Llinares Mauri - 74011239E
- */
-
 package model;
 
 /**
- * Declaramos los tipos de la enumeración Side
+ * Declaramos los tipos de la enumeracion Side
+ * @author Juan Llinares Mauri - 74011239E
  */
 enum Side {
 	IMPERIAL, REBEL;
