@@ -10,25 +10,18 @@ public class Fighter {
 	 * @author Juan Llinares Mauri - 74011239E
 	 */
 	private String type;
-	
 	private int velocity;
-	
 	private int attack;
-	
 	private int shield;
-	
 	private int id;
-	
 	private static int nextId=1;
-	
 	private Coordinate position;
-	
 	private Ship motherShip;
 	
 	/**
-	 * Declaramos todos los mÃ©todos pÃºblicos.
-	 * @param type
-	 * @param mother
+	 * Constructor de Fighter.
+	 * @param type Tipo de Fighter.
+	 * @param mother Nave (Ship) a la que pertenece el Fighter.
 	 */
 	Fighter(String type, Ship mother) {
 		this.velocity = 100;
@@ -37,8 +30,14 @@ public class Fighter {
 		this.type = type;
 		this.position = null;
 		this.motherShip = mother;
+		this.id=nextId;
+		nextId++;
 	}
 	
+	/**
+	 * Constructor de copia de Fighter.
+	 * @param f Fighter
+	 */
 	public Fighter(Fighter f) {
 		this.velocity = f.getVelocity();
 		this.attack = f.getAttack();
@@ -46,52 +45,101 @@ public class Fighter {
 		this.type = f.getType();
 		this.position = f.getPosition();
 		this.motherShip = f.getMotherShip();
+		this.id=nextId;
+		nextId++;
 	}
 	
-	public void static resetNextId() {
-		this.nextId = 1;
+	/**
+	 * Resetea el nextId a 1.
+	 */
+	public static void resetNextId() {
+		nextId = 1;
 	}
-
+	
+	/**
+	 * Getter de type.
+	 * @return type
+	 */
 	public String getType() {
 		return type;
 	}
 
+	/**
+	 * Getter de velocity.
+	 * @return velocity
+	 */
 	public int getVelocity() {
 		return velocity;
 	}
 
+	/**
+	 * Getter de attack.
+	 * @return attack
+	 */
 	public int getAttack() {
 		return attack;
 	}
 
+	/**
+	 * Getter de shield.
+	 * @return shield
+	 */
 	public int getShield() {
 		return shield;
 	}
-
+	
+	/**
+	 * Getter de id.
+	 * @return id
+	 */
 	public int getId() {
 		return id;
 	}
 
+	/**
+	 * Getter de nextId.
+	 * @return nextId
+	 */
 	public int getNextId() {
 		return nextId;
 	}
 	
+	/**
+	 * Getter de side.
+	 * @return side
+	 */
 	public Side getSide() {
 		return motherShip.getSide(); 
 	}
 	
+	/**
+	 * Getter de position.
+	 * @return position
+	 */
 	public Coordinate getPosition() {
 		return position;
 	}
 	
+	/**
+	 * Getter de motherShip.
+	 * @return motherShip
+	 */
 	public Ship getMotherShip() {
 		return motherShip;
 	}
 	
+	/**
+	 * Setter de position.
+	 * @param p Coordenada nueva.
+	 */
 	public void setPosition(Coordinate p) {
-		
+		this.position = p;
 	}
 	
+	/**
+	 * Añade puntos de ataque al Fighter.
+	 * @param attack Puntos de ataque a añadir.
+	 */
 	public void addAttack(int attack) {
 		if(this.attack + attack >= 0)
 			this.attack = this.attack + attack;
@@ -99,6 +147,10 @@ public class Fighter {
 			this.attack = 0;
 	}
 	
+	/**
+	 * Añade puntos de velocidad al Fighter.
+	 * @param velocity Puntos de velocidad a añadir.
+	 */
 	public void addVelocity(int velocity) {
 		if(this.velocity + velocity >= 0)
 			this.velocity  = this.velocity + velocity;
@@ -106,6 +158,10 @@ public class Fighter {
 			this.velocity = 0;
 	}
 
+	/**
+	 * Añade puntos de escudo al Fighter.
+	 * @param shield Puntos de escudo a añadir.
+	 */
 	public void addShield(int shield) {
 		if(this.shield + shield >= 0)
 			this.shield = this.shield + shield;
@@ -113,6 +169,10 @@ public class Fighter {
 			this.shield = 0;
 	}
 
+	/**
+	 * Comprueba si el caza está destruido.
+	 * @return true: Si lo está. false: En cualquier otro caso.
+	 */
 	public boolean isDestroyed() {
 		if(shield <= 0) 
 			return true;
@@ -121,20 +181,25 @@ public class Fighter {
 	}
 	
 	/**
-	 * 
-	 * @param n
-	 * @param enemy
-	 * @return
+	 * Calcula el daño que hace un Fighter.
+	 * @param n Número aleatorio.
+	 * @param enemy Fighter enemigo.
+	 * @return damage Daño hecho.
 	 */
 	public int getDamage(int n,Fighter enemy) {
 		int damage = (n*this.attack)/300;
 		return damage;
 	}
 	
+	/**
+	 * Simula la lucha entre dos Fighters.
+	 * @param enemy Fighter enemigo.
+	 * @return -1: Si el caza amigo ha sido destruido. 1: Si el caza enemigo ha sido destruido.
+	 */
 	public int fight(Fighter enemy) {
 		do {
-			int n ;
-			RandomNumber rndm;
+			int n = 0;
+			RandomNumber rndm = new RandomNumber();
 			setRandom(n,rndm);
 			
 			int threshold = 100*getVelocity()/(getVelocity()+enemy.getVelocity());
@@ -153,6 +218,11 @@ public class Fighter {
 		}	
 	}
 
+	/**
+	 * Setter de un número aleatorio.
+	 * @param n Número aleatorio.
+	 * @param rndm Clase de tipo RandomNumber para establecer el número aleatorio.
+	 */
 	public static void setRandom(int n,RandomNumber rndm) {
 		n = rndm.newRandomNumber(100);
 	}
@@ -160,11 +230,11 @@ public class Fighter {
 	@Override
 	public String toString() {
 		if(getPosition() != null) {
-			return "(" + type + " " + id + " " + motherShip.getSide() +	"[" + position.getX()
+			return "(" + type + " " + id + " " + motherShip.getSide() +	" [" + position.getX()
 					+ "," + position.getY() + "] {" + velocity + "," + attack + 
 					"," + shield + "})";
 		}else {
-			return "(" + type + " " + id + " " + motherShip.getSide() +	"null {" 
+			return "(" + type + " " + id + " " + motherShip.getSide() +	" null {" 
 					+ velocity + "," + attack + "," + shield + "})";
 		}
 	}
@@ -187,7 +257,5 @@ public class Fighter {
 		if (id != other.id)
 			return false;
 		return true;
-	}
-
-	
+	}	
 }

@@ -8,24 +8,16 @@ import java.util.TreeSet;
 
 public class Coordinate implements Comparable<Coordinate> {
 	/**
-	 * La componente x del tablero.
+	 * Declaramos todos los atributos privados.
+	 * @author Juan Llinares Mauri - 74011239E
 	 */
 	private int x;
-	
-	/**
-	 * La componente y del tablero.
-	 */
 	private int y;
 	
 	/**
-	 * Declaramos el constructor. Este hará uso del "this." para
-	 * referirse a sus variables "x" e "y" debido a que le 
-	 * estamos pidiéndo que cree un objeto pasándole unas 
-	 * variables con el mismo nombre. Con este uso del "this." 
-	 * cambiará el valor de sus propias variables "x" e "y" y 
-	 * creará el nuevo objeto Coordinate con esos nuevos valores.
-	 * @param x
-	 * @param y
+	 * Constructor de Coordinate.
+	 * @param x Coordenada x.
+	 * @param y Coordenada y.
 	 */
 	public Coordinate(int x,int y) {
 		this.x=x;
@@ -33,29 +25,23 @@ public class Coordinate implements Comparable<Coordinate> {
 	}
 	
 	/**
-	 * Declaramos un nuevo constructor que creará un objeto
-	 * Coordinate a partir de otro objeto Coordinate c dado. Aquí
-	 * no usamos el "this." ya que las variables del objeto pasado
-	 * se declaran diferente que las del nuevo objeto que 
-	 * queremos crear.
-	 * @param x;
-	 * @param y;
+	 * Constructor de copia.
+	 * @param x Coordenada x.
+	 * @param y Coordenada y.
 	 */
 	public Coordinate(Coordinate c) {
 		x=c.x;
 		y=c.y;
 	}
 	 /**
-	  * Con "getX()" y "getY()" (los getters) conseguimos saber
-	  * el valor de las variables del objeto Coordinate que 
-	  * queremos.
+	  * Getter de x.
 	  * @return x
 	  */
 	public int getX() {
 		return x;
 	}
 	 /**
-	  * 
+	  * Getter de y.
 	  * @return y
 	  */
 	public int getY() {
@@ -80,26 +66,17 @@ public class Coordinate implements Comparable<Coordinate> {
 		return new_c;
 	} 
 	
-	/** Creamos un método que devuelva un objeto Coordinate las
-	  * componentes del cual vienen dadas por:
-	  * - "x + c.x" para la variable x
-	  * - "y + c.y" para la variable y
-	  * Con esto observamos que las nuevas coordenadas son 
-	  * simplemente la suma de las coordenadas "x" e "y" que ya
-	  * tenemos más las del objeto Coordinate c que le hemos 
-	  * pasado al método.
-	  * @param c
-	  * @return new_c
+	/** Suma las coordenadas actual y dada.
+	  * @param c Coordenada dada.
+	  * @return new_c Coordenada resultado.
 	  */
 	public Coordinate add(Coordinate c) {
 		Coordinate new_c = new Coordinate(x+c.x,y+c.y);
-		
 		return new_c;
 	}
 	
 	/**
-	 * Creamos un método String para imprimir por pantalla
-	 * los valores "x" e "y" del objeto Coordinate.
+	 * Imprime las componentes de la coordenada.
 	 * @return [x,y]
 	 */
 	public String toString() {
@@ -116,19 +93,6 @@ public class Coordinate implements Comparable<Coordinate> {
 	}
 
 	@Override
-	/**
-	 * Como en Java la función para igualar dos objetos es
-	 * diferente, hacemos uso de un método del propio objeto
-	 * con el que compararemos este con el otro objeto obj
-	 * y nos devolverá:
-	 * - false si:
-	 *  · El objeto obj está vacío (null).
-	 *  · El objeto obj es diferente en cuanto a valores
-	 *    de sus variables "x" e "y".
-	 * - true si:
-	 * 	· El objeto obj es igual (no tiene porqué ser idéntico)
-	 * 	  al de nuestro método equals.
-	 */
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -166,8 +130,12 @@ public class Coordinate implements Comparable<Coordinate> {
 		return 0;
 	}
 	
+	/**
+	 * Devuelve un TreeSet de todas las coordenadas adyacentes a la coordenada actual.
+	 * @return neighborhood TreeSet de coordenadas vecinas.
+	 */
 	public TreeSet<Coordinate> getNeighborhood() {
-		TreeSet<Coordinate> neighborhood = new HashSet<Coordinate>();
+		TreeSet<Coordinate> neighborhood = new TreeSet<Coordinate>();
 		
 		neighborhood.add(new Coordinate(this.x-1,this.y));
 		neighborhood.add(new Coordinate(this.x-1,this.y+1));
