@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.lang.String;
 
 public class Ship {
 	/**
@@ -104,9 +105,9 @@ public class Ship {
 			return null;
 		
 		for(int i = 0; i < fleet.size(); i++) {
-			if(fleet.get(i).isDestroyed() == false && t == null)
+			if(fleet.get(i).isDestroyed() == false && t.equals(null))
 				return fleet.get(i);
-			if(fleet.get(i).isDestroyed() == false && fleet.get(i).getType() == t)
+			if(fleet.get(i).isDestroyed() == false && t.equals(fleet.get(i).getType()))
 				return fleet.get(i);
 		}
 		return null;

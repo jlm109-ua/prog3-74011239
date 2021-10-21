@@ -109,7 +109,7 @@ public class Board {
 		if(inside(c)) {
 			Fighter f2 = getFighter(c);
 			
-			if(f2.equals(null)) {
+			if(f2 == null) {
 				board.put(c,f);
 				f.setPosition(c);
 				return 0;

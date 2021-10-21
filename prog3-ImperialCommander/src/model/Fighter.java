@@ -4,6 +4,8 @@
 
 package model;
 
+import java.util.Objects;
+
 public class Fighter {
 	/**
 	 * Declaramos todos los atributos privados.
@@ -198,9 +200,7 @@ public class Fighter {
 	 */
 	public int fight(Fighter enemy) {
 		do {
-			int n = 0;
-			RandomNumber rndm = new RandomNumber();
-			setRandom(n,rndm);
+			int n = RandomNumber.newRandomNumber(100);
 			
 			int threshold = 100*getVelocity()/(getVelocity()+enemy.getVelocity());
 			
@@ -217,15 +217,6 @@ public class Fighter {
 			return 1;
 		}	
 	}
-
-	/**
-	 * Setter de un número aleatorio.
-	 * @param n Número aleatorio.
-	 * @param rndm Clase de tipo RandomNumber para establecer el número aleatorio.
-	 */
-	public static void setRandom(int n,RandomNumber rndm) {
-		n = rndm.newRandomNumber(100);
-	}
 	
 	@Override
 	public String toString() {
@@ -241,21 +232,18 @@ public class Fighter {
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + id;
-		return result;
+		return Objects.hash(id);
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (!(obj instanceof Fighter))
+		if(obj == null)
+			return false;
+		if (getClass() != obj.getClass())
 			return false;
 		Fighter other = (Fighter) obj;
-		if (id != other.id)
-			return false;
-		return true;
-	}	
+		return id == other.id;
+	}
 }
