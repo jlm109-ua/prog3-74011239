@@ -47,8 +47,7 @@ public class Fighter {
 		this.type = f.getType();
 		this.position = f.getPosition();
 		this.motherShip = f.getMotherShip();
-		this.id=nextId;
-		nextId++;
+		this.id=f.getId();
 	}
 	
 	/**
@@ -199,6 +198,8 @@ public class Fighter {
 	 * @return -1: Si el caza amigo ha sido destruido. 1: Si el caza enemigo ha sido destruido.
 	 */
 	public int fight(Fighter enemy) {
+		if((enemy.getShield() == 0) || this.getShield() == 0)
+			return 0;
 		do {
 			int n = RandomNumber.newRandomNumber(100);
 			

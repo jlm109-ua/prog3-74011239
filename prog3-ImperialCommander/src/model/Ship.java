@@ -129,7 +129,7 @@ public class Ship {
 	 * @return "": Si la flota está vacía. showFleet: Si hay naves en la flota.
 	 */
 	public String showFleet() {
-		String showFleet = null;
+		String showFleet = ("");
 		if(fleet.size() == 0)
 			return("");
 		else {
@@ -151,17 +151,21 @@ public class Ship {
 	public String myFleet() {
 		if (fleet.isEmpty())
 			return ("");
+		boolean isDone = false;
 		
-		String myFleet = null,name;
+		String myFleet = (""),name;
 		List<String> shipNames = new ArrayList<String>();
 		for(int i = 0;i < fleet.size();i++) {
 			name = fleet.get(i).getType();
-			if(shipNames.contains(name)) {
+			if(!shipNames.contains(name)) {
 				myFleet = myFleet + checkSameShips(name) + "/" + name;
 				shipNames.add(name);
-			}
-			if(checkOtherShips(name,shipNames)) {
-				myFleet += ":";
+				do{
+					if(checkOtherShips(name,shipNames)) {
+						myFleet += ":";
+						isDone = true;
+					}
+				}while(!isDone);
 			}
 		}
 		return myFleet;
