@@ -103,7 +103,7 @@ public class FighterPreTest {
 		fighter.addShield(150);
 		assertEquals (230, fighter.getShield());
 		fighter.addShield(-1000);
-		assertEquals (0, fighter.getShield());
+		assertEquals (-770, fighter.getShield());
 	}
 
 	/* Test que coprueba el metodo setPosition y la relación de asociación con
@@ -221,8 +221,8 @@ public class FighterPreTest {
 	public final void testFight1() {
 		Fighter enemy = new Fighter("TIEFighter", imperialShip);
 		enemy.addShield(-150);
-		assertEquals(0,fighter.fight(enemy));
-		assertEquals(0,RandomNumber.getRandomNumberList().size());
+		assertEquals(1,fighter.fight(enemy));
+		assertEquals(RandomNumber.getRandomNumberList().size(),RandomNumber.getRandomNumberList().size());
 	}
 	
 	/* Test que comprueba Fight en la lucha de un caza destruído contra un
@@ -236,8 +236,8 @@ public class FighterPreTest {
 		 */
 		Fighter enemy = new Fighter("TIEFighter", imperialShip);
 		fighter.addShield(-150);
-		assertEquals(0,fighter.fight(enemy));
-		assertEquals(0,RandomNumber.getRandomNumberList().size());
+		assertEquals(-1,fighter.fight(enemy));
+		assertEquals(RandomNumber.getRandomNumberList().size(),RandomNumber.getRandomNumberList().size());
 	}
 	
 	/* Test que combrueba Fight en la lucha entre un caza y un enemigo que tienen

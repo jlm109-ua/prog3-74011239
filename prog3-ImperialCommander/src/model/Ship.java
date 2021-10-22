@@ -135,7 +135,7 @@ public class Ship {
 		else {
 			for(int i = 0;i < fleet.size();i++) {
 				if(fleet.get(i).isDestroyed() == true)
-					showFleet = showFleet + fleet.get(i).toString() + "(X)\n";
+					showFleet = showFleet + fleet.get(i).toString() + " (X)\n";
 				else
 					showFleet = showFleet + fleet.get(i).toString() + "\n";
 				
@@ -151,21 +151,19 @@ public class Ship {
 	public String myFleet() {
 		if (fleet.isEmpty())
 			return ("");
-		boolean isDone = false;
+		boolean isTheFirst = true;
 		
 		String myFleet = (""),name;
 		List<String> shipNames = new ArrayList<String>();
 		for(int i = 0;i < fleet.size();i++) {
 			name = fleet.get(i).getType();
-			if(!shipNames.contains(name)) {
-				myFleet = myFleet + checkSameShips(name) + "/" + name;
+			if(!shipNames.contains(name) && !fleet.get(i).isDestroyed()) {
+				if(isTheFirst) {
+					myFleet = myFleet + checkSameShips(name) + "/" + name;
+					isTheFirst = false;
+				}else
+					myFleet = myFleet + ":" + checkSameShips(name) + "/" + name;
 				shipNames.add(name);
-				do{
-					if(checkOtherShips(name,shipNames)) {
-						myFleet += ":";
-						isDone = true;
-					}
-				}while(!isDone);
 			}
 		}
 		return myFleet;
@@ -180,28 +178,14 @@ public class Ship {
 		int count = 0;
 		
 		for(int j = 0;j < fleet.size();j++) {
-			if(name == fleet.get(j).getType())
+			if(name.equals(fleet.get(j).getType()) && !fleet.get(j).isDestroyed())
 				count++;
 		}
 		return count;
 	}
 	
-	/**
-	 * Comprueba si hay Fighter diferentes a la pasada por la cadena name.
-	 * @param name Cadena para comprobar si hay Fighter diferentes.
-	 * @param shipNames Lista de Fighter que ya se ha comprobado que están en la flota.
-	 * @return true: Si hay naves diferentes que no hayan sido contadas ya. false: Si no las hay.
-	 */
-	private boolean checkOtherShips(String name,List<String> shipNames) {
-		for(int l = 0;l < fleet.size();l++) {
-			if(shipNames.contains(fleet.get(l).getType()))
-				return true;
-		}
-		return false;
-	}
-	
 	@Override
 	public String toString() {
-		return "Ship [" + name + " " + wins + "/" + losses + "]  " + myFleet();
+		return "Ship [" + name + " " + wins + "/" + losses + "] " + myFleet();
 	}
 }

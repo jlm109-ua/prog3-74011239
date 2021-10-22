@@ -164,10 +164,7 @@ public class Fighter {
 	 * @param shield Puntos de escudo a añadir.
 	 */
 	public void addShield(int shield) {
-		if(this.shield + shield >= 0)
 			this.shield = this.shield + shield;
-		else
-			this.shield = 0;
 	}
 
 	/**

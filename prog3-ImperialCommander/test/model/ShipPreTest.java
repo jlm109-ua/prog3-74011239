@@ -47,7 +47,7 @@ public class ShipPreTest {
 		ship = new Ship("Tydirium", Side.REBEL);
 	}
 
-	
+	/*
 	/* Comprueba los atributos de un Ship creado */
 	@Test
 	public void testShip() {
@@ -236,7 +236,7 @@ public class ShipPreTest {
 		//Comprobamos total Fighters en ship
 		 
 		List<Fighter> auxFleet = ship.getFleetTest();
-		System.out.println(ship.showFleet());
+		System.out.println(ship.myFleet());
 		System.out.println(auxFleet.size());
 		assertEquals(340, auxFleet.size());
 		//Comprobamos que coinciden las cantidades con cada tipo
@@ -287,12 +287,11 @@ public class ShipPreTest {
 	
 	/* Crea cazas en una nave y comprueba que showFleet los muestra todos correctamente.
 	 */
+	
 	@Test
 	public void testMyFleet2() {
 		
 		ship.addFighters(kFleet2);
-		System.out.println(ship.myFleet());
-		System.out.println(kFleet22);
 		assertEquals(kFleet22, ship.myFleet());	
 	}
 
@@ -301,7 +300,11 @@ public class ShipPreTest {
 	 */
 	@Test
 	public void testMyFleet3() {
-		fail("completa el test");
+		ship.addFighters(kFleet1);
+		destroy("XWing",7);
+		destroy("AWing",12);
+		destroy("YWing",3);
+		assertEquals((""),ship.myFleet());
 	}
 	
 	/* Crea cazas en una nave. Destruye muchos y comprueba que showFleet solo devuelve
@@ -309,7 +312,11 @@ public class ShipPreTest {
 	 */
 	@Test
 	public void testMyFleet4() {
-		fail("completa el test");
+		ship.addFighters(kFleet1);
+		destroy("XWing",6);
+		destroy("AWing",11);
+		destroy("YWing",2);
+		assertEquals(("1/AWing:1/YWing:1/XWing"),ship.myFleet());
 	}
 
 	/* Comprueba toString para una nave sin cazas */
@@ -343,7 +350,10 @@ public class ShipPreTest {
 	 */
 	@Test
 	public void testToString4() {
-		fail("completa el test");
+		ship.addFighters(kFleet1);
+		ship.addFighters(kFleet1);
+		ship.addFighters(kFleet1);
+		assertEquals("Ship [Tydirium 0/0] 21/XWing:36/AWing:9/YWing",ship.toString());
 	}
 
 	/*************************************/
