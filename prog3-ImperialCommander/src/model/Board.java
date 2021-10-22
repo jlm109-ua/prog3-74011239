@@ -53,12 +53,15 @@ public class Board {
 		
 		Fighter f2 = board.get(f.getPosition());
 		
-		if(f2.equals(f)) {
-			f2 = board.remove(f.getPosition());
-			return true;
-		}else if(f2.equals(null))
-			return false;
-		else
+		if(f2.getPosition() != null) {
+			if(f2.equals(f)) {
+				f2 = board.remove(f.getPosition());
+				return true;
+			}else if(f2.equals(null))
+				return false;
+			else
+				return false;
+		}else
 			return false;
 	}
 	
@@ -72,7 +75,7 @@ public class Board {
 		
 		if(c.equals(null))
 			return false;
-		else if(c.getX() >= 0 && c.getX() < getSize()-1 && c.getY() >= 0 && c.getY() < getSize()-1 )
+		else if(c.getX() >= 0 && c.getX() <= getSize() && c.getY() >= 0 && c.getY() <= getSize() )
 			return true;
 		else 
 			return false;
@@ -116,15 +119,15 @@ public class Board {
 			}else if(f2.getSide() != f.getSide()) {
 				int combat = f.fight(f2);
 				if(combat == 1) {
-					Ship motherShip = f.getMotherShip();
-					motherShip.updateResults(combat);
+					f.getMotherShip().updateResults(combat);
+					f2.getMotherShip().updateResults(-combat);
 					removeFighter(f2);
 					board.put(c,f);
 					f.setPosition(c);
 					return combat;
-				}else {
-					Ship motherShip = f2.getMotherShip();
-					motherShip.updateResults(combat);
+				}else if(combat == -1){
+					f.getMotherShip().updateResults(-combat);
+					f2.getMotherShip().updateResults(combat);
 					return combat;
 				}
 					
