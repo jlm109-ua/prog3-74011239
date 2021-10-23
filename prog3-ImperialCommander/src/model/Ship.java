@@ -105,7 +105,7 @@ public class Ship {
 			return null;
 		
 		for(int i = 0; i < fleet.size(); i++) {
-			if(fleet.get(i).isDestroyed() == false && t.equals(null))
+			if(fleet.get(i).isDestroyed() == false && (t == ("") || t.equals(null)))
 				return fleet.get(i);
 			if(fleet.get(i).isDestroyed() == false && t.equals(fleet.get(i).getType()))
 				return fleet.get(i);

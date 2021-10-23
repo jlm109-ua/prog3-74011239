@@ -149,15 +149,17 @@ public class Board {
 		for(Coordinate c : f.getPosition().getNeighborhood()) {
 			Fighter f2 = getFighter(c);
 			
-			if(f2.getSide() != f.getSide()) {
-				int combat = f.fight(f2);
-				if(combat == 1) {
-					Ship motherShip = f.getMotherShip();
-					motherShip.updateResults(combat);
-					removeFighter(f2);
-				}else {
-					Ship motherShip = f2.getMotherShip();
-					motherShip.updateResults(combat);
+			if(f2 != null) {
+				if(f2.getSide() != f.getSide()) {
+					int combat = f.fight(f2);
+					if(combat == 1) {
+						Ship motherShip = f.getMotherShip();
+						motherShip.updateResults(combat);
+						removeFighter(f2);
+					}else {
+						Ship motherShip = f2.getMotherShip();
+						motherShip.updateResults(combat);
+					}
 				}
 			}
 		}
