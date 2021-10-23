@@ -30,9 +30,12 @@ public class Board {
 	public Fighter getFighter(Coordinate c) {
 		Objects.requireNonNull(c);
 		
-		Fighter f = board.get(c);
-		
-		return f;
+		if(board.get(c) == null)
+			return null;
+		else {
+			Fighter f = new Fighter(board.get(c));
+			return f;
+		}
 	}
 	 
 	/**
@@ -53,7 +56,7 @@ public class Board {
 		
 		Fighter f2 = board.get(f.getPosition());
 		
-		if(f2.getPosition() != null) {
+		if(f2 != null && f2.getPosition() != null) {
 			if(f2.equals(f)) {
 				f2 = board.remove(f.getPosition());
 				return true;

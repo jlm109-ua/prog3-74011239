@@ -80,7 +80,11 @@ public class BoardPreTest {
 	 */
 	@Test
 	public void testRemoveFighter2() {
-		fail("completa el test");		
+		rebelShip.addFighters("1/XWing");
+		Fighter fighter = rebelShip.getFleetTest().get(0);
+		fighter.setPosition(new Coordinate(2,4));
+		fighter.setPosition(null);
+		assertFalse (board.removeFighter(fighter));			
 	}
 
 
@@ -282,9 +286,12 @@ public class BoardPreTest {
 		for(int i = 0;i < rebelShip.getFleetTest().size();i++) {
 			//flota = rebelShip.getFleetTest();
 			//comprobar lo que dice el test
+			if(i<5)
+				assertTrue(rebelShip.getFleetTest().get(i).isDestroyed());
+			else
+				assertFalse(rebelShip.getFleetTest().get(i).isDestroyed());
 		}
 		
-		fail("completa el test como se indica en el comentario");
 	}
 	
 	
