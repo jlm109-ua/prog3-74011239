@@ -281,7 +281,7 @@ public class BoardPreTest {
 		board.launch(c,rebel); 
 		board.patrol(rebel); 
 		assertTrue(rebelShip.getWins() == 5 && rebelShip.getLosses() == 0);
-		assertTrue(rebelShip.getWins() == 0 && rebelShip.getLosses() == 3);
+		assertTrue(imperialShip.getWins() == 0 && imperialShip.getLosses() == 3);
 		for(int i = 0;i < rebelShip.getFleetTest().size();i++) {
 			//flota = rebelShip.getFleetTest();
 			//comprobar lo que dice el test
