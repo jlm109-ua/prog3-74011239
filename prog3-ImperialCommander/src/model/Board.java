@@ -156,9 +156,12 @@ public class Board {
 						Ship motherShip = f.getMotherShip();
 						motherShip.updateResults(combat);
 						removeFighter(f2);
+						f2.setPosition(null);
 					}else {
 						Ship motherShip = f2.getMotherShip();
 						motherShip.updateResults(combat);
+						removeFighter(f);
+						f.setPosition(null);
 					}
 				}
 			}

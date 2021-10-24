@@ -142,7 +142,6 @@ public class BoardPreTest {
 	@Test
 	public void testGetNeighborhood2() {
 		Set<Coordinate> set = board.getNeighborhood(new Coordinate(10,10));
-		System.out.println(set.size());
 		assertEquals(3, set.size());
 		assertTrue(set.contains(new Coordinate(9, 10)));
 		assertTrue(set.contains(new Coordinate(9, 9)));
