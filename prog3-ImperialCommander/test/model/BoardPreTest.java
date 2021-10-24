@@ -141,7 +141,7 @@ public class BoardPreTest {
 	/* Test getNeighborhood para la esquina inferior derecho de un tablero 10x10*/
 	@Test
 	public void testGetNeighborhood2() {
-		Set<Coordinate> set = board.getNeighborhood(new Coordinate(10,10));
+		Set<Coordinate> set = board.getNeighborhood(new Coordinate(10,10)); 
 		assertEquals(3, set.size());
 		assertTrue(set.contains(new Coordinate(9, 10)));
 		assertTrue(set.contains(new Coordinate(9, 9)));
