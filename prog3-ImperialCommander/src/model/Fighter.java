@@ -194,8 +194,8 @@ public class Fighter {
 	 * @param enemy Fighter enemigo.
 	 * @return -1: Si el caza amigo ha sido destruido. 1: Si el caza enemigo ha sido destruido.
 	 */
-	public int fight(Fighter enemy) {
-		if((enemy.getShield() == 0) || this.getShield() == 0)
+	public int fight(Fighter enemy) { 
+		if((enemy.getShield() == 0) || this.getShield() == 0 || this.isDestroyed() || enemy.isDestroyed())
 			return 0;
 		do {
 			int n = RandomNumber.newRandomNumber(100);
@@ -205,7 +205,7 @@ public class Fighter {
 			if(threshold <= n) {
 				enemy.addShield(-getDamage(n,this));
 			}else {
-				addShield(-getDamage(100-n,enemy));
+				addShield(-enemy.getDamage(100-n,enemy));
 			}
 		}while(isDestroyed() == false && enemy.isDestroyed() == false);
 		

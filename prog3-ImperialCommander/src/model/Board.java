@@ -78,7 +78,7 @@ public class Board {
 		
 		if(c.equals(null))
 			return false;
-		else if(c.getX() >= 0 && c.getX() <= getSize() && c.getY() >= 0 && c.getY() <= getSize() )
+		else if(c.getX() >= 0 && c.getX() <= getSize()-1 && c.getY() >= 0 && c.getY() <= getSize()-1 )
 			return true;
 		else 
 			return false;
@@ -121,6 +121,10 @@ public class Board {
 				return 0;
 			}else if(f2.getSide() != f.getSide()) {
 				int combat = f.fight(f2);
+				for(int i = 0;i < f2.getMotherShip().getFleetTest().size();i++) {
+					if(f2.equals(f2.getMotherShip().getFleetTest().get(i)))
+						f2.getMotherShip().getFleetTest().set(i,f2);
+				}
 				if(combat == 1) {
 					f.getMotherShip().updateResults(combat);
 					f2.getMotherShip().updateResults(-combat);
@@ -153,13 +157,17 @@ public class Board {
 				if(f2.getSide() != f.getSide()) {
 					int combat = f.fight(f2);
 					if(combat == 1) {
-						Ship motherShip = f.getMotherShip();
-						motherShip.updateResults(combat);
+						f.getMotherShip().updateResults(combat);
+						f2.getMotherShip().updateResults(-combat);
+						for(int i = 0;i < f2.getMotherShip().getFleetTest().size();i++) {
+							if(f2.equals(f2.getMotherShip().getFleetTest().get(i)))
+								f2.getMotherShip().getFleetTest().set(i,f2);
+						}
 						removeFighter(f2);
 						f2.setPosition(null);
 					}else {
-						Ship motherShip = f2.getMotherShip();
-						motherShip.updateResults(combat);
+						f.getMotherShip().updateResults(combat);
+						f2.getMotherShip().updateResults(-combat);
 						removeFighter(f);
 						f.setPosition(null);
 					}
