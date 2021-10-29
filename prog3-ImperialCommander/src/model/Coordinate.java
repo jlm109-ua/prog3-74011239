@@ -49,16 +49,10 @@ public class Coordinate implements Comparable<Coordinate> {
 	}
 	
 	/**
-	 * Este método es igual que el anterior pero con la
-	 * diferencia de que le pasamos directamente el valor 
-	 * a sumar. Debemos hacer uso del "this.", al igual que 
-	 * en el primer método, porque las variables del propio
-	 * objeto y las pasadas se declaran de la misma forma. 
-	 * Con el "this." conseguimos que se distingan según 
-	 * de qué objeto son.
-	 * @param x
-	 * @param y
-	 * @return new_c
+	 * Metodo para sumar valores a una coordenada.
+	 * @param x Valor a sumar a la coordenada x.
+	 * @param y Valor a sumar a la coordenada y.
+	 * @return new_c Nueva coordenada.
 	 */
 	public Coordinate add(int x,int y) {
 		Coordinate new_c = new Coordinate(this.x+x,this.y+y);

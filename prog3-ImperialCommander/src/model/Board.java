@@ -15,7 +15,7 @@ public class Board {
 	
 	/**
 	 * Constructor del tablero.
-	 * @param size Tamaño del tablero (size*size).
+	 * @param size Tamanyo del tablero (size*size).
 	 */
 	public Board(int size) {
 		this.size = size;
@@ -40,7 +40,7 @@ public class Board {
 	 
 	/**
 	 * Getter de size.
-	 * @return Tamaño del tablero.
+	 * @return Tamanyo del tablero.
 	 */
 	public int getSize() {
 		return this.size;
@@ -71,7 +71,7 @@ public class Board {
 	/**
 	 * Comprueba si la coordenada pasada se encuentra dentro del tablero.
 	 * @param c Coordenada dada.
-	 * @return true: Si lo está. false: En cualquier otro caso.
+	 * @return true: Si lo esta. false: En cualquier otro caso.
 	 */
 	public boolean inside(Coordinate c) {
 		Objects.requireNonNull(c);
@@ -86,9 +86,9 @@ public class Board {
 	}
 	
 	/**
-	 * Devuelve las coordenadas válidas dentro del tablero.
+	 * Devuelve las coordenadas validas dentro del tablero.
 	 * @param c Coordenada de la nave actual.
-	 * @return valid_pos Coordenadas válidas que puede tomar la nave.
+	 * @return valid_pos Coordenadas validas que puede tomar la nave.
 	 */
 	public TreeSet<Coordinate> getNeighborhood(Coordinate c) {
 		TreeSet<Coordinate> valid_pos = new TreeSet<Coordinate>();
@@ -133,8 +133,8 @@ public class Board {
 					f.setPosition(c);
 					return combat;
 				}else if(combat == -1){
-					f.getMotherShip().updateResults(-combat);
-					f2.getMotherShip().updateResults(combat);
+					f.getMotherShip().updateResults(combat);
+					f2.getMotherShip().updateResults(-combat);
 					return combat;
 				}
 					
@@ -144,7 +144,7 @@ public class Board {
 	}
 	
 	/**
-	 * Recorre las posiciones vecinas válidas y lucha contra los Fighter enemigos que encuentre.
+	 * Recorre las posiciones vecinas validas y lucha contra los Fighter enemigos que encuentre.
 	 * @param f Fighter amigo.
 	 */
 	public void patrol(Fighter f) {

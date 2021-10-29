@@ -138,8 +138,8 @@ public class Fighter {
 	}
 	
 	/**
-	 * Añade puntos de ataque al Fighter.
-	 * @param attack Puntos de ataque a añadir.
+	 * Anyade puntos de ataque al Fighter.
+	 * @param attack Puntos de ataque a anyadir.
 	 */
 	public void addAttack(int attack) {
 		if(this.attack + attack >= 0)
@@ -149,8 +149,8 @@ public class Fighter {
 	}
 	
 	/**
-	 * Añade puntos de velocidad al Fighter.
-	 * @param velocity Puntos de velocidad a añadir.
+	 * Anyade puntos de velocidad al Fighter.
+	 * @param velocity Puntos de velocidad a anyadir.
 	 */
 	public void addVelocity(int velocity) {
 		if(this.velocity + velocity >= 0)
@@ -160,16 +160,16 @@ public class Fighter {
 	}
 
 	/**
-	 * Añade puntos de escudo al Fighter.
-	 * @param shield Puntos de escudo a añadir.
+	 * Anyade puntos de escudo al Fighter.
+	 * @param shield Puntos de escudo a anyadir.
 	 */
 	public void addShield(int shield) {
 			this.shield = this.shield + shield;
 	}
 
 	/**
-	 * Comprueba si el caza está destruido.
-	 * @return true: Si lo está. false: En cualquier otro caso.
+	 * Comprueba si el caza esta destruido.
+	 * @return true: Si lo esta. false: En cualquier otro caso.
 	 */
 	public boolean isDestroyed() {
 		if(shield <= 0) 
@@ -179,10 +179,10 @@ public class Fighter {
 	}
 	
 	/**
-	 * Calcula el daño que hace un Fighter.
-	 * @param n Número aleatorio.
+	 * Calcula el danyo que hace un Fighter.
+	 * @param n Numero aleatorio.
 	 * @param enemy Fighter enemigo.
-	 * @return damage Daño hecho.
+	 * @return damage Danyo hecho.
 	 */
 	public int getDamage(int n,Fighter enemy) {
 		int damage = (n*this.attack)/300;

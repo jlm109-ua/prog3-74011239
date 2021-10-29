@@ -68,7 +68,7 @@ public class Ship {
 	}
 	
 	/**
-	 * Añade Fighter a fleet a partir de una cadena dada.
+	 * Anyade Fighter a fleet a partir de una cadena dada.
 	 * @param fd Cadena dada.
 	 */
 	public void addFighters(String fd) {
@@ -86,7 +86,7 @@ public class Ship {
 	
 	/**
 	 * Actualiza las batallas ganadas y las perdidas a partir de una batalla entre Fighters.
-	 * @param r Parámetro para determinar quién ganó la batalla.
+	 * @param r Parametro para determinar quien gano la batalla.
 	 */
 	public void updateResults(int r) {
 			if(r == 1)
@@ -98,7 +98,7 @@ public class Ship {
 	/**
 	 * Devuelve el primer Fighter disponible que no esté destruido a partir de una cadena dada. Si la cadena tiene valor null devolverá el primer Fighter no destruido que encuentre.
 	 * @param t Cadena dada.
-	 * @return null: Si no hay Fighters no destruidos disponibles. fleet.get(i): Si el Fighter cumple los requisitos de la cadena y no está destruido.
+	 * @return null: Si no hay Fighters no destruidos disponibles. fleet.get(i): Si el Fighter cumple los requisitos de la cadena y no esta destruido.
 	 */
 	public Fighter getFirstAvailableFighter(String t) {
 		if(fleet.isEmpty())
@@ -125,8 +125,8 @@ public class Ship {
 	}
 	
 	/**
-	 * Devuelve una cadena con la información de toda la flota.
-	 * @return "": Si la flota está vacía. showFleet: Si hay naves en la flota.
+	 * Devuelve una cadena con la informacion de toda la flota.
+	 * @return "": Si la flota esta vacia. showFleet: Si hay naves en la flota.
 	 */
 	public String showFleet() {
 		String showFleet = ("");
@@ -145,8 +145,8 @@ public class Ship {
 	}
 	
 	/**
-	 * Devuelve una cadena con toda la información de la flota de forma ordenada con el número de naves iguales.
-	 * @return "": Si la flota está vacía. myFleet: Si hay naves en la flota.
+	 * Devuelve una cadena con toda la informacion de la flota de forma ordenada con el numero de naves iguales.
+	 * @return "": Si la flota esta vacia. myFleet: Si hay naves en la flota.
 	 */
 	public String myFleet() {
 		if (fleet.isEmpty())
@@ -170,9 +170,9 @@ public class Ship {
 	}
 	
 	/**
-	 * Devuelve el número de naves iguales.
+	 * Devuelve el numero de naves iguales.
 	 * @param name Tipo de nave a comprobar.
-	 * @return count Número de naves iguales que hay.
+	 * @return count Numero de naves iguales que hay.
 	 */
 	private int checkSameShips(String name) {
 		int count = 0;
