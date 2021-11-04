@@ -6,12 +6,11 @@ package model;
 
 import java.util.Objects;
 
-public class Fighter {
+public abstract class Fighter {
 	/**
 	 * Declaramos todos los atributos privados.
 	 * @author Juan Llinares Mauri - 74011239E
 	 */
-	private String type;
 	private int velocity;
 	private int attack;
 	private int shield;
@@ -25,11 +24,10 @@ public class Fighter {
 	 * @param type Tipo de Fighter.
 	 * @param mother Nave (Ship) a la que pertenece el Fighter.
 	 */
-	Fighter(String type, Ship mother) {
+	protected Fighter(Ship mother) {
 		this.velocity = 100;
 		this.attack = 80;
 		this.shield = 80;
-		this.type = type;
 		this.position = null;
 		this.motherShip = mother;
 		this.id=nextId;
@@ -40,11 +38,10 @@ public class Fighter {
 	 * Constructor de copia de Fighter.
 	 * @param f Fighter
 	 */
-	public Fighter(Fighter f) {
+	protected Fighter(Fighter f) {
 		this.velocity = f.getVelocity();
 		this.attack = f.getAttack();
 		this.shield = f.getShield();
-		this.type = f.getType();
 		this.position = f.getPosition();
 		this.motherShip = f.getMotherShip();
 		this.id=f.getId();
@@ -62,7 +59,7 @@ public class Fighter {
 	 * @return type
 	 */
 	public String getType() {
-		return type;
+		return getClass().getSimpleName();
 	}
 
 	/**
@@ -128,7 +125,20 @@ public class Fighter {
 	public Ship getMotherShip() {
 		return motherShip;
 	}
-	
+	 /**
+	  * COMPLETAR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11
+	  * @return
+	  */
+	public abstract char getSymbol() {
+		
+	}
+	 /**
+	  * COMPLETAR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11
+	  * @return
+	  */
+	public abstract Fighter copy() {
+		
+	}
 	/**
 	 * Setter de position.
 	 * @param p Coordenada nueva.
@@ -219,11 +229,11 @@ public class Fighter {
 	@Override
 	public String toString() {
 		if(getPosition() != null) {
-			return "(" + type + " " + id + " " + motherShip.getSide() +	" [" + position.getX()
+			return "(" + getType() + " " + id + " " + motherShip.getSide() +	" [" + position.getX()
 					+ "," + position.getY() + "] {" + velocity + "," + attack + 
 					"," + shield + "})";
 		}else {
-			return "(" + type + " " + id + " " + motherShip.getSide() +	" null {" 
+			return "(" + getType() + " " + id + " " + motherShip.getSide() +	" null {" 
 					+ velocity + "," + attack + "," + shield + "})";
 		}
 	}

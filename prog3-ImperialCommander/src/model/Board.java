@@ -135,6 +135,7 @@ public class Board {
 				}else if(combat == -1){
 					f.getMotherShip().updateResults(combat);
 					f2.getMotherShip().updateResults(-combat);
+					
 					return combat;
 				}
 					
