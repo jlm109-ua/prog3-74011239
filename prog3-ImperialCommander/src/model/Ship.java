@@ -117,7 +117,7 @@ public class Ship {
 	 * Limpia la flota de naves destruidas.
 	 */
 	public void purgeFleet() {
-		for(int i = 0;i < fleet.size();i++) {
+		for(int i = fleet.size()-1;i >= 0;i--) { //Fighter f2 : fleet
 			if(fleet.get(i).isDestroyed() == true) {
 				fleet.remove(i);
 			}
