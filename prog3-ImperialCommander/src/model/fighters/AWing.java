@@ -12,7 +12,7 @@ public class AWing extends Fighter {
 	}
 	
 	private AWing(AWing f) {
-		
+		super(f);
 	}
 	 
 	public Fighter copy() {
@@ -23,7 +23,7 @@ public class AWing extends Fighter {
 	public char getSymbol() {
 		return 'A';
 	}
-	
+	 
 	public int getDamage(int n,Fighter enemy) {
 		int dmg = super.getDamage(n, enemy);
 		if(enemy.getType().equals("TIEBomber")) {

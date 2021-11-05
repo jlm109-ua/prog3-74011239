@@ -12,7 +12,7 @@ public class TIEInterceptor extends Fighter {
 	}
 	
 	private TIEInterceptor(TIEInterceptor f) {
-		
+		super(f);
 	}
 	
 	public Fighter copy() {

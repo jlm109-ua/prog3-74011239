@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 import java.lang.String;
+import model.exceptions.*;
 
 public class Ship {
 	/**
@@ -100,9 +101,10 @@ public class Ship {
 	 * @param t Cadena dada.
 	 * @return null: Si no hay Fighters no destruidos disponibles. fleet.get(i): Si el Fighter cumple los requisitos de la cadena y no esta destruido.
 	 */
-	public Fighter getFirstAvailableFighter(String t) {
-		if(fleet.isEmpty())
-			return null;
+	public Fighter getFirstAvailableFighter(String t) throws NoFighterAvailableException {
+		if(fleet.isEmpty()) {
+			throw new NoFighterAvailableException(t); //?
+		}
 		
 		for(int i = 0; i < fleet.size(); i++) {
 			if(fleet.get(i).isDestroyed() == false && (t == ("") || t.equals(null)))
@@ -110,14 +112,14 @@ public class Ship {
 			if(fleet.get(i).isDestroyed() == false && t.equals(fleet.get(i).getType()))
 				return fleet.get(i);
 		}
-		return null;
+		throw new NoFighterAvailableException(t); //??
 	}
 	
 	/**
 	 * Limpia la flota de naves destruidas.
 	 */
 	public void purgeFleet() {
-		for(int i = fleet.size()-1;i >= 0;i--) { //Fighter f2 : fleet
+		for(int i = fleet.size()-1;i >= 0;i--) {
 			if(fleet.get(i).isDestroyed() == true) {
 				fleet.remove(i);
 			}

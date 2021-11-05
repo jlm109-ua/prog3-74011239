@@ -11,7 +11,7 @@ public class XWing extends Fighter {
 	}
 	
 	private XWing(XWing f) {
-		
+		super(f);
 	}
 	
 	public Fighter copy() {

@@ -12,7 +12,7 @@ public class TIEBomber extends Fighter {
 	}
 	
 	private TIEBomber(TIEBomber f) {
-		
+		super(f);
 	}
 	
 	public Fighter copy() {

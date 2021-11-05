@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.TreeSet;
 import java.util.HashMap;
+import model.exceptions.*;
 
 public class Board {
 	/**
@@ -17,9 +18,14 @@ public class Board {
 	 * Constructor del tablero.
 	 * @param size Tamanyo del tablero (size*size).
 	 */
-	public Board(int size) {
-		this.size = size;
-		this.board = new HashMap<Coordinate,Fighter>(); 
+	public Board(int size) throws InvalidSizeException {
+		if(size < 5) {
+			throw new InvalidSizeException(size);
+			// cómo lanzo el mensaje?
+		}else{
+			this.size = size;
+			this.board = new HashMap<Coordinate,Fighter>(); 
+		}
 	}
 	
 	/**
@@ -33,6 +39,7 @@ public class Board {
 		if(board.get(c) == null)
 			return null;
 		else {
+			//Fighter f = createFighter(board.get(c).getType(),board.get(c).getMotherShip()); ?????????????????????????
 			Fighter f = new Fighter(board.get(c));
 			return f;
 		}

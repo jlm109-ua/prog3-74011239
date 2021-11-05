@@ -125,20 +125,19 @@ public abstract class Fighter {
 	public Ship getMotherShip() {
 		return motherShip;
 	}
+	
+	 /**
+	  * Devuelve el simbolo del Fighter dependiendo de su tipo.
+	  * @return
+	  */
+	public abstract char getSymbol();
+	
 	 /**
 	  * COMPLETAR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11
 	  * @return
 	  */
-	public abstract char getSymbol() {
-		
-	}
-	 /**
-	  * COMPLETAR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11
-	  * @return
-	  */
-	public abstract Fighter copy() {
-		
-	}
+	public abstract Fighter copy();
+	
 	/**
 	 * Setter de position.
 	 * @param p Coordenada nueva.

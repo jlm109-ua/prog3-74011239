@@ -12,7 +12,7 @@ public class YWing extends Fighter {
 	}
 	
 	private YWing(YWing f) {
-		
+		super(f);
 	}
 	
 	public Fighter copy() {
