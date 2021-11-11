@@ -1,3 +1,6 @@
+/**
+ * @author Juan Llinares Mauri - 74011239E
+ */
 package model.exceptions;
 
 import model.Fighter;
