@@ -22,12 +22,12 @@ public class Board {
 	 * @param size Tamanyo del tablero (size*size).
 	 */
 	public Board(int size) throws InvalidSizeException {
-		try {
+		if(size < 5)
+			throw new InvalidSizeException(size);
+		else{
 			this.size = size;
 			this.board = new HashMap<Coordinate,Fighter>();
-		}catch(Exception e) {
-			e.getMessage(); //???????????????????????
-		}
+		}		
 	}
 	
 	/**
@@ -59,7 +59,7 @@ public class Board {
 	 * @param f Fighter.
 	 * @return true: Si son iguales. false: En cualquier otro caso.
 	 */
-	public boolean removeFighter(Fighter f) {
+	public boolean removeFighter(Fighter f) throws FighterNotInBoardException {
 		Objects.requireNonNull(f);
 		
 		Fighter f2 = board.get(f.getPosition());
@@ -73,7 +73,7 @@ public class Board {
 			else
 				return false;
 		}else
-			return false;
+			throw new FighterNotInBoardException(f2);
 	}
 	
 	/**
@@ -98,16 +98,20 @@ public class Board {
 	 * @param c Coordenada de la nave actual.
 	 * @return valid_pos Coordenadas validas que puede tomar la nave.
 	 */
-	public TreeSet<Coordinate> getNeighborhood(Coordinate c) {
-		TreeSet<Coordinate> valid_pos = new TreeSet<Coordinate>();
-		
-		for(Coordinate c2 : c.getNeighborhood()) {
-			if(inside(c2)) {
-				valid_pos.add(c2);
+	public TreeSet<Coordinate> getNeighborhood(Coordinate c) throws OutOfBoundsException {
+		if(inside(c)) {
+			TreeSet<Coordinate> valid_pos = new TreeSet<Coordinate>();
+			
+			for(Coordinate c2 : c.getNeighborhood()) {
+				if(inside(c2)) {
+					valid_pos.add(c2);
+				}
 			}
+			
+			return valid_pos;
+		}else {
+			throw new OutOfBoundsException(c);
 		}
-		
-		return valid_pos;
 	}
 	
 	/**
@@ -116,35 +120,50 @@ public class Board {
 	 * @param f Fighter amigo.
 	 * @return combat(-1): Si el enemigo gana. 0: Si no hay enemigo en c. combat(1): Si el amigo gana.
 	 */
-	public int launch(Coordinate c,Fighter f) {
+	public int launch(Coordinate c,Fighter f) throws FighterAlreadyInBoardException, OutOfBoundsException{
 		Objects.requireNonNull(c);
 		Objects.requireNonNull(f);
+		int combat = 0;
 		
-		if(inside(c)) {
-			Fighter f2 = board.get(c);
-			
-			if(f2 == null) {
-				board.put(c,f);
-				f.setPosition(c);
-				return 0;
-			}else if(f2.getSide() != f.getSide()) {
-				int combat = f.fight(f2);
-				if(combat == 1) {
-					f.getMotherShip().updateResults(combat);
-					f2.getMotherShip().updateResults(-combat);
-					removeFighter(f2);
+		if(f.getPosition().equals(null)) {
+			if(inside(c)) {
+				Fighter f2 = board.get(c);
+				
+				if(f2 == null) {
 					board.put(c,f);
 					f.setPosition(c);
-					return combat;
-				}else if(combat == -1){
-					f.getMotherShip().updateResults(combat);
-					f2.getMotherShip().updateResults(-combat);
-					
-					return combat;
+					return 0;
+				}else if(f2.getSide() != f.getSide()) {
+						try {
+							combat = f.fight(f2);
+						} catch (FighterIsDestroyedException e) {
+							e.getMessage();
+						}
+					if(combat == 1) {
+						f.getMotherShip().updateResults(combat);
+						f2.getMotherShip().updateResults(-combat);
+						try {
+							removeFighter(f2);
+						}catch(FighterNotInBoardException e) {
+							e.getMessage();
+						}
+						board.put(c,f);
+						f.setPosition(c);
+						return combat;
+					}else if(combat == -1){
+						f.getMotherShip().updateResults(combat);
+						f2.getMotherShip().updateResults(-combat);
+						
+						return combat;
+					}
 				}
-					
+			}else {
+				throw new OutOfBoundsException(c);
 			}
+		}else {
+			throw new FighterAlreadyInBoardException(f);
 		}
+		
 		return 0;	
 	}
 	
@@ -152,29 +171,46 @@ public class Board {
 	 * Recorre las posiciones vecinas validas y lucha contra los Fighter enemigos que encuentre.
 	 * @param f Fighter amigo.
 	 */
-	public void patrol(Fighter f) {
+	public void patrol(Fighter f) throws FighterNotInBoardException{
 		Objects.requireNonNull(f);
+		int combat = 0;
 		
-		for(Coordinate c : f.getPosition().getNeighborhood()) {
-			Fighter f2 = getFighter(c);
-			
-			if(f2 != null) {
-				if(f2.getSide() != f.getSide()) {
-					int combat = f.fight(f2);
-					if(combat == 1) {
-						f.getMotherShip().updateResults(combat);
-						f2.getMotherShip().updateResults(-combat);
-						for(int i = 0;i < f2.getMotherShip().getFleetTest().size();i++) {
-							if(f2.equals(f2.getMotherShip().getFleetTest().get(i)))
-								f2.getMotherShip().getFleetTest().set(i,f2);
+		if(f.getPosition().equals(null))
+			throw new FighterNotInBoardException(f);
+		else {
+			for(Coordinate c : f.getPosition().getNeighborhood()) {
+				Fighter f2 = getFighter(c);
+				
+				if(f2 != null) {
+					if(f2.getSide() != f.getSide()) {
+						try {
+							combat = f.fight(f2);
+						}catch(FighterIsDestroyedException e){
+							e.getMessage();
 						}
-						removeFighter(f2);
-						f2.setPosition(null);
-					}else {
-						f.getMotherShip().updateResults(combat);
-						f2.getMotherShip().updateResults(-combat);
-						removeFighter(f);
-						f.setPosition(null);
+						if(combat == 1) {
+							f.getMotherShip().updateResults(combat);
+							f2.getMotherShip().updateResults(-combat);
+							for(int i = 0;i < f2.getMotherShip().getFleetTest().size();i++) {
+								if(f2.equals(f2.getMotherShip().getFleetTest().get(i)))
+									f2.getMotherShip().getFleetTest().set(i,f2);
+							}
+							try {
+								removeFighter(f2);
+							}catch(FighterNotInBoardException e) {
+								e.getMessage();
+							}
+							f2.setPosition(null);
+						}else {
+							f.getMotherShip().updateResults(combat);
+							f2.getMotherShip().updateResults(-combat);
+							try {
+								removeFighter(f);
+							}catch(FighterNotInBoardException e) {
+								e.getMessage();
+							}
+							f.setPosition(null);
+						}
 					}
 				}
 			}

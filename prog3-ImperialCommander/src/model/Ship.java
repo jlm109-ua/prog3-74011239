@@ -106,7 +106,7 @@ public class Ship {
 	 */
 	public Fighter getFirstAvailableFighter(String t) throws NoFighterAvailableException {
 		if(fleet.isEmpty()) {
-			throw new NoFighterAvailableException(t); //?
+			throw new NoFighterAvailableException(t);
 		}
 		
 		for(int i = 0; i < fleet.size(); i++) {

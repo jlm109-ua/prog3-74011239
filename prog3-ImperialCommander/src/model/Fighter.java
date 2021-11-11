@@ -5,6 +5,7 @@
 package model;
 
 import java.util.Objects;
+import model.exceptions.*;
 
 public abstract class Fighter {
 	/**
@@ -203,26 +204,28 @@ public abstract class Fighter {
 	 * @param enemy Fighter enemigo.
 	 * @return -1: Si el caza amigo ha sido destruido. 1: Si el caza enemigo ha sido destruido.
 	 */
-	public int fight(Fighter enemy) { 
-		if((enemy.getShield() == 0) || this.getShield() == 0 || this.isDestroyed() || enemy.isDestroyed())
-			return 0;
-		do {
-			int n = RandomNumber.newRandomNumber(100);
-			
-			int threshold = 100*getVelocity()/(getVelocity()+enemy.getVelocity());
-			
-			if(threshold <= n) {
-				enemy.addShield(-getDamage(n,this));
-			}else {
-				addShield(-enemy.getDamage(100-n,enemy));
-			}
-		}while(isDestroyed() == false && enemy.isDestroyed() == false);
-		
-		if(isDestroyed() == true) {
-			return -1;
+	public int fight(Fighter enemy) throws FighterIsDestroyedException { 
+		if((enemy.getShield() == 0) || this.getShield() == 0 || this.isDestroyed() || enemy.isDestroyed()) {
+			throw new FighterIsDestroyedException(enemy);
 		}else {
-			return 1;
-		}	
+			do {
+				int n = RandomNumber.newRandomNumber(100);
+				
+				int threshold = 100*getVelocity()/(getVelocity()+enemy.getVelocity());
+				
+				if(threshold <= n) {
+					enemy.addShield(-getDamage(n,this));
+				}else {
+					addShield(-enemy.getDamage(100-n,enemy));
+				}
+			}while(isDestroyed() == false && enemy.isDestroyed() == false);
+			
+			if(isDestroyed() == true) {
+				return -1;
+			}else {
+				return 1;
+			}
+		}
 	}
 	
 	@Override
