@@ -133,7 +133,7 @@ public abstract class Fighter {
 	public abstract char getSymbol();
 	
 	 /**
-	  * COMPLETAR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11
+	  * 
 	  * @return
 	  */
 	public abstract Fighter copy();

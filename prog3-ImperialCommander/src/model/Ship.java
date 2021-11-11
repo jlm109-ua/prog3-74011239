@@ -1,3 +1,6 @@
+/**
+ * @author Juan Llinares Mauri - 74011239E
+ */
 package model;
 
 import java.util.ArrayList;
@@ -78,7 +81,7 @@ public class Ship {
 		
 		do {
 			for(int j = 0; j < Integer.parseInt(fdv[i]); j++) {
-				Fighter f = new Fighter(fdv[i+1],this);
+				Fighter f = FighterFactory.createFighter(fdv[i+1],this);
 				fleet.add(f);
 			}
 			i++;i++;

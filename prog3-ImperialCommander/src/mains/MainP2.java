@@ -8,10 +8,12 @@ import model.Fighter;
 import model.RandomNumber;
 import model.Ship;
 import model.Side;
+import model.exceptions.InvalidSizeException;
+import model.exceptions.NoFighterAvailableException;
 
 public class MainP2 {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InvalidSizeException, NoFighterAvailableException {
 
 		Board b = new Board(10);  // 10x10
 		

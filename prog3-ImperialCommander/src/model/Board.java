@@ -1,3 +1,6 @@
+/**
+ * @author Juan Llinares Mauri - 74011239E
+ */
 package model;
 
 import java.util.Map;
@@ -19,12 +22,11 @@ public class Board {
 	 * @param size Tamanyo del tablero (size*size).
 	 */
 	public Board(int size) throws InvalidSizeException {
-		if(size < 5) {
-			throw new InvalidSizeException(size);
-			// cómo lanzo el mensaje?
-		}else{
+		try {
 			this.size = size;
-			this.board = new HashMap<Coordinate,Fighter>(); 
+			this.board = new HashMap<Coordinate,Fighter>();
+		}catch(Exception e) {
+			e.getMessage(); //???????????????????????
 		}
 	}
 	
@@ -39,8 +41,7 @@ public class Board {
 		if(board.get(c) == null)
 			return null;
 		else {
-			//Fighter f = createFighter(board.get(c).getType(),board.get(c).getMotherShip()); ?????????????????????????
-			Fighter f = new Fighter(board.get(c));
+			Fighter f = FighterFactory.createFighter(board.get(c).getType(),board.get(c).getMotherShip());
 			return f;
 		}
 	}
@@ -120,7 +121,7 @@ public class Board {
 		Objects.requireNonNull(f);
 		
 		if(inside(c)) {
-			Fighter f2 = getFighter(c);
+			Fighter f2 = board.get(c);
 			
 			if(f2 == null) {
 				board.put(c,f);
@@ -128,10 +129,6 @@ public class Board {
 				return 0;
 			}else if(f2.getSide() != f.getSide()) {
 				int combat = f.fight(f2);
-				for(int i = 0;i < f2.getMotherShip().getFleetTest().size();i++) {
-					if(f2.equals(f2.getMotherShip().getFleetTest().get(i)))
-						f2.getMotherShip().getFleetTest().set(i,f2);
-				}
 				if(combat == 1) {
 					f.getMotherShip().updateResults(combat);
 					f2.getMotherShip().updateResults(-combat);
