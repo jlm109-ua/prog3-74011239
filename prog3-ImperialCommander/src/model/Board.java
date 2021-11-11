@@ -62,18 +62,23 @@ public class Board {
 	public boolean removeFighter(Fighter f) throws FighterNotInBoardException {
 		Objects.requireNonNull(f);
 		
-		Fighter f2 = board.get(f.getPosition());
+		if(f.getPosition() == null) {
+			throw new FighterNotInBoardException(f);
+		}else {
+			Fighter f2 = board.get(f.getPosition());
+			
+			if(f2 != null) {
+				if(f2.equals(f)) {
+					f2 = board.remove(f.getPosition());
+					return true;
+				}else if(f2.equals(null))
+					return false;
+				else
+					return false;
+			}
+		}
 		
-		if(f2 != null && f2.getPosition() != null) {
-			if(f2.equals(f)) {
-				f2 = board.remove(f.getPosition());
-				return true;
-			}else if(f2.equals(null))
-				return false;
-			else
-				return false;
-		}else
-			throw new FighterNotInBoardException(f2);
+		return false;
 	}
 	
 	/**
@@ -125,7 +130,7 @@ public class Board {
 		Objects.requireNonNull(f);
 		int combat = 0;
 		
-		if(f.getPosition().equals(null)) {
+		if(f.getPosition() == null) {
 			if(inside(c)) {
 				Fighter f2 = board.get(c);
 				
