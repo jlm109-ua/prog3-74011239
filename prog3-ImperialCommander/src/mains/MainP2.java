@@ -8,12 +8,15 @@ import model.Fighter;
 import model.RandomNumber;
 import model.Ship;
 import model.Side;
+import model.exceptions.FighterAlreadyInBoardException;
+import model.exceptions.FighterNotInBoardException;
 import model.exceptions.InvalidSizeException;
 import model.exceptions.NoFighterAvailableException;
+import model.exceptions.OutOfBoundsException;
 
 public class MainP2 {
 
-	public static void main(String[] args) throws InvalidSizeException, NoFighterAvailableException {
+	public static void main(String[] args) throws InvalidSizeException, NoFighterAvailableException, OutOfBoundsException, FighterAlreadyInBoardException, FighterNotInBoardException {
 
 		Board b = new Board(10);  // 10x10
 		
