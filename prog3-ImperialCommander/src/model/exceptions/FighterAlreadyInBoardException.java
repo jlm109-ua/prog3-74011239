@@ -9,6 +9,10 @@ import model.Fighter;
 public class FighterAlreadyInBoardException extends Exception{
 	private Fighter f;
 	
+	/**
+	 * Excepción para cuando un Fighter ya se encuentra en el tablero.
+	 * @param f Fighter
+	 */
 	public FighterAlreadyInBoardException(Fighter f){
 		super();
 		this.f = f;

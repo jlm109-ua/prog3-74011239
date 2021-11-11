@@ -7,6 +7,10 @@ package model.exceptions;
 public class NoFighterAvailableException extends Exception{
 	private String type;
 	
+	/**
+	 * Excepción para cuando no se encuentran Fighter disponibles.
+	 * @param type String
+	 */
 	public NoFighterAvailableException(String type){
 		super();
 		this.type = type;

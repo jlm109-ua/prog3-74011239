@@ -9,6 +9,10 @@ import model.Coordinate;
 public class OutOfBoundsException extends Exception{
 	private Coordinate c;
 	
+	/**
+	 * Excepcion para cuando una Coordinate se encuentra fuera de los límites del tablero.
+	 * @param c Coordinate
+	 */
 	public OutOfBoundsException(Coordinate c) {
 		super();
 		this.c = c;

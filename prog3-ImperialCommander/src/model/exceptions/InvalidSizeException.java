@@ -7,6 +7,10 @@ package model.exceptions;
 public class InvalidSizeException extends Exception{
 	private int size;
 	
+	/**
+	 * Excepción para cuando el tamaño del tablero es incorrecto.
+	 * @param size int
+	 */
 	public InvalidSizeException(int size){
 		super();
 		this.size = size;

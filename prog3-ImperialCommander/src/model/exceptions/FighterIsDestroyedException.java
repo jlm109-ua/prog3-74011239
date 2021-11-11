@@ -9,6 +9,10 @@ import model.Fighter;
 public class FighterIsDestroyedException extends Exception{
 	private Fighter f;
 	
+	/**
+	 * Excepción para cuando un Fighter ya está destruido.
+	 * @param f Fighter
+	 */
 	public FighterIsDestroyedException(Fighter f){
 		super();
 		this.f = f;

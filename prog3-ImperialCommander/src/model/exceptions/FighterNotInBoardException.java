@@ -9,6 +9,10 @@ import model.Fighter;
 public class FighterNotInBoardException extends Exception{
 	private Fighter f;
 	
+	/**
+	 * Excepción para cuando un Fighter no se encuentra en el tablero.
+	 * @param f Fighter
+	 */
 	public FighterNotInBoardException(Fighter f){
 		super();
 		this.f = f;
