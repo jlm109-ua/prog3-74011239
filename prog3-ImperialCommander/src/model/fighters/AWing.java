@@ -1,9 +1,16 @@
+/**
+ * @author Juan Llinares Mauri - 74011239E
+ */
 package model.fighters;
 
 import model.Fighter;
 import model.Ship;
 
 public class AWing extends Fighter {
+	/**
+	 * Constructor de AWing.
+	 * @param mother Ship a la que pertenece este tipo de Fighter.
+	 */
 	public AWing(Ship mother) {
 		super(mother);
 		this.addVelocity(40);
@@ -11,12 +18,21 @@ public class AWing extends Fighter {
 		this.addShield(-50);
 	}
 	
+	/**
+	 * Constructor de copia de AWing.
+	 * @param f Fighter a copiar.
+	 */
 	private AWing(AWing f) {
 		super(f);
 	}
 	 
+	/**
+	 * Realiza la copia de un AWing.
+	 */
+	@Override
 	public Fighter copy() {
-		
+		Fighter f = new AWing(this);
+		return f;
 	}
 	
 	@Override
@@ -24,6 +40,7 @@ public class AWing extends Fighter {
 		return 'A';
 	}
 	 
+	@Override
 	public int getDamage(int n,Fighter enemy) {
 		int dmg = super.getDamage(n, enemy);
 		if(enemy.getType().equals("TIEBomber")) {

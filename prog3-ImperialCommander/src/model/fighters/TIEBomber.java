@@ -1,9 +1,16 @@
+/**
+ * @author Juan Llinares Mauri - 74011239E
+ */
 package model.fighters;
 
 import model.Fighter;
 import model.Ship;
 
 public class TIEBomber extends Fighter {
+	/**
+	 * Constructor de TIEBomber.
+	 * @param mother Ship a la que pertenece este tipo de Fighter.
+	 */
 	public TIEBomber(Ship mother) {
 		super(mother);
 		this.addVelocity(-30);
@@ -11,12 +18,21 @@ public class TIEBomber extends Fighter {
 		this.addShield(35);		
 	}
 	
+	/**
+	 * Constructor de copia de TIEBomber.
+	 * @param f Fighter a copiar.
+	 */
 	private TIEBomber(TIEBomber f) {
 		super(f);
 	}
 	
+	/**
+	 * Realiza la copia de un TIEBomber.
+	 */
+	@Override
 	public Fighter copy() {
-		
+		Fighter f = new TIEBomber(this);
+		return(f);
 	}
 	
 	@Override
@@ -24,6 +40,7 @@ public class TIEBomber extends Fighter {
 		return 'b';
 	}
 	
+	@Override
 	public int getDamage(int n,Fighter enemy) {
 		int dmg = super.getDamage(n, enemy);
 		if((enemy.getType().equals("XWing")) || (enemy.getType().equals("YWing"))) {
