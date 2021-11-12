@@ -41,7 +41,7 @@ public class Board {
 		if(board.get(c) == null)
 			return null;
 		else {
-			Fighter f = FighterFactory.createFighter(board.get(c).getType(),board.get(c).getMotherShip());
+			Fighter f = board.get(c);
 			return f;
 		}
 	}
@@ -71,14 +71,11 @@ public class Board {
 				if(f2.equals(f)) {
 					f2 = board.remove(f.getPosition());
 					return true;
-				}else if(f2.equals(null))
-					return false;
-				else
-					return false;
-			}
+				}else
+					throw new FighterNotInBoardException(f);
+			}else
+				throw new FighterNotInBoardException(f);
 		}
-		
-		return false;
 	}
 	
 	/**
