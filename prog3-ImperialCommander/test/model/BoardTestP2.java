@@ -52,14 +52,14 @@ public class BoardTestP2 {
 	public void testGetFighterNotEmpty() {
 		Fighter.resetNextId();
 		addFightersOnBoard();
-		Fighter.resetNextId();
+		//Fighter.resetNextId();
 		
 		Fighter fighter, auxFighter;
 		for (int i=0; i<board.getSize(); i++) {
 			for (int j=0; j<board.getSize(); j++)
 				if (i==j) {
 					fighter = board.getFighter(new Coordinate(i,j));
-					rebelShip.addFighters("1/XWing"+i);
+					//rebelShip.addFighters("1/XWing"+i);
 					auxFighter = rebelShip.getFleetTest().get(i);
 					//auxFighter.setPosition(new Coordinate(i,j));
 					assertNotNull (fighter);
