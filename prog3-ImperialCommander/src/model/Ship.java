@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.lang.String;
 import model.exceptions.*;
+import model.fighters.AWing;
 
 public class Ship {
 	/**
@@ -108,14 +109,15 @@ public class Ship {
 		if(fleet.isEmpty()) {
 			throw new NoFighterAvailableException(t);
 		}
-		
-		for(int i = 0; i < fleet.size(); i++) {
-			if(fleet.get(i).isDestroyed() == false && (t == ("") || t.equals(null)))
-				return fleet.get(i);
-			if(fleet.get(i).isDestroyed() == false && t.equals(fleet.get(i).getType()))
-				return fleet.get(i);
+		if(t.equals("AWing") || t.equals("XWing") || t.equals("YWing") || t.equals("TIEBomber") || t.equals("TIEInterceptor") || t.equals("TIEFighter")) {
+			for(int i = 0; i < fleet.size(); i++) {
+				if(fleet.get(i).isDestroyed() == false && (t == ("") || t.equals(null)))
+					return fleet.get(i);
+				if(fleet.get(i).isDestroyed() == false && t.equals(fleet.get(i).getType()))
+					return fleet.get(i);
+			}
 		}
-		throw new NoFighterAvailableException(t); //??
+		throw new NoFighterAvailableException(t);
 	}
 	
 	/**

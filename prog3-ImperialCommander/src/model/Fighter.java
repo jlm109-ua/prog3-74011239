@@ -205,7 +205,9 @@ public abstract class Fighter {
 	 * @return -1: Si el caza amigo ha sido destruido. 1: Si el caza enemigo ha sido destruido.
 	 */
 	public int fight(Fighter enemy) throws FighterIsDestroyedException { 
-		if((enemy.getShield() == 0) || this.getShield() == 0 || this.isDestroyed() || enemy.isDestroyed()) {
+		if(this.isDestroyed()){
+			throw new FighterIsDestroyedException(this);
+		}else if(enemy.isDestroyed()) {
 			throw new FighterIsDestroyedException(enemy);
 		}else {
 			do {
