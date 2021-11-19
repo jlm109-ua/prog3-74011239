@@ -15,7 +15,7 @@ public class Board {
 	 * @author Juan Llinares Mauri - 74011239E
 	 */
 	private int size;
-	private Map<Coordinate,Fighter> board;
+	protected Map<Coordinate,Fighter> board;
 	
 	/**
 	 * Constructor del tablero.

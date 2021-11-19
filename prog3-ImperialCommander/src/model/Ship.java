@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.lang.String;
 import model.exceptions.*;
-import model.fighters.AWing;
 
 public class Ship {
 	/**
@@ -18,7 +17,7 @@ public class Ship {
 	private Side side;
 	private int wins;
 	private int losses;
-	private List<Fighter> fleet = new ArrayList<Fighter>();
+	protected List<Fighter> fleet = new ArrayList<Fighter>();
 	
 	/**
 	 * Constructor de Ship.
@@ -111,9 +110,9 @@ public class Ship {
 		}
 		if(t.equals("AWing") || t.equals("XWing") || t.equals("YWing") || t.equals("TIEBomber") || t.equals("TIEInterceptor") || t.equals("TIEFighter")) {
 			for(int i = 0; i < fleet.size(); i++) {
-				if(fleet.get(i).isDestroyed() == false && (t == ("") || t.equals(null)))
+				if(!fleet.get(i).isDestroyed() && (t == ("") || t.equals(null)) && fleet.get(i).getPosition() == null)
 					return fleet.get(i);
-				if(fleet.get(i).isDestroyed() == false && t.equals(fleet.get(i).getType()))
+				if(!fleet.get(i).isDestroyed() && t.equals(fleet.get(i).getType()) && fleet.get(i).getPosition() == null)
 					return fleet.get(i);
 			}
 		}
