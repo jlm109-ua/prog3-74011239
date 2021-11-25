@@ -2,6 +2,7 @@ package model.game;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import model.Board;
 import model.Coordinate;
@@ -91,8 +92,11 @@ public class GameShip extends Ship{
 	 * @throws RuntimeException
 	 */
 	public void launch(int id,Coordinate c,Board b) throws WrongFighterIdException, FighterAlreadyInBoardException, OutOfBoundsException, RuntimeException{
+		Objects.requireNonNull(id);
+		Objects.requireNonNull(c);
+		Objects.requireNonNull(b);
 		Fighter f = getFighter(id);
-		b.launch(c, f);	// ESTÁ BIEN?
+		b.launch(c, f);
 	}
 	 /**
 	  * El Fighter con el id id patrulla por el tablero.
@@ -103,8 +107,10 @@ public class GameShip extends Ship{
 	  * @throws RuntimeException
 	  */
 	public void patrol(int id,Board b) throws WrongFighterIdException, FighterNotInBoardException, RuntimeException {
+		Objects.requireNonNull(id);
+		Objects.requireNonNull(b);
 		Fighter f = getFighter(id);
-		b.patrol(f); // ESTÁ BIEN?
+		b.patrol(f);
 	}
 	
 	/**
@@ -115,9 +121,13 @@ public class GameShip extends Ship{
 	 * @throws WrongFighterIdException Excepcion por si no hay Fighter con la id pasada por parametro.
 	 */
 	public void improveFighter(int id,int qty,Board b) throws WrongFighterIdException {
+		Objects.requireNonNull(id);
+		Objects.requireNonNull(qty);
+		Objects.requireNonNull(b);
 		Fighter f = getFighter(id);
 		int plus_attack = 0;
 		int plus_shield = 0;
+		
 		try {
 			b.removeFighter(f);
 			if(qty%2 == 0) {

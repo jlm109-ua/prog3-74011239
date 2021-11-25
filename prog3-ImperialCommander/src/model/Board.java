@@ -100,6 +100,7 @@ public class Board {
 	 * @return valid_pos Coordenadas validas que puede tomar la nave.
 	 */
 	public TreeSet<Coordinate> getNeighborhood(Coordinate c) throws OutOfBoundsException {
+		Objects.requireNonNull(c);
 		if(inside(c)) {
 			TreeSet<Coordinate> valid_pos = new TreeSet<Coordinate>();
 			

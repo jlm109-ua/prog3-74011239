@@ -5,6 +5,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.lang.String;
 import model.exceptions.*;
 
@@ -25,6 +26,8 @@ public class Ship {
 	 * @param side Bando de la nave (IMPERIAL O REBEL).
 	 */
 	public Ship(String name,Side side) {
+		Objects.requireNonNull(name);
+		Objects.requireNonNull(side);
 		this.name = name;
 		this.side = side;
 		this.wins = 0;
@@ -76,6 +79,7 @@ public class Ship {
 	 * @param fd Cadena dada.
 	 */
 	public void addFighters(String fd) {
+		Objects.requireNonNull(fd);
 		int i = 0;
 		String[] fdv = fd.split("[/:]");
 		
@@ -105,12 +109,13 @@ public class Ship {
 	 * @return null: Si no hay Fighters no destruidos disponibles. fleet.get(i): Si el Fighter cumple los requisitos de la cadena y no esta destruido.
 	 */
 	public Fighter getFirstAvailableFighter(String t) throws NoFighterAvailableException {
+		Objects.requireNonNull(t);
 		if(fleet.isEmpty()) {
 			throw new NoFighterAvailableException(t);
 		}
-		if(t.equals("AWing") || t.equals("XWing") || t.equals("YWing") || t.equals("TIEBomber") || t.equals("TIEInterceptor") || t.equals("TIEFighter") || t.equals(null)) {
+		if(t.equals("AWing") || t.equals("XWing") || t.equals("YWing") || t.equals("TIEBomber") || t.equals("TIEInterceptor") || t.equals("TIEFighter") || t.equals("")) {
 			for(int i = 0; i < fleet.size(); i++) {
-				if(!fleet.get(i).isDestroyed() && (t == ("") || t.equals(null)) && fleet.get(i).getPosition() == null)
+				if(!fleet.get(i).isDestroyed() && t == ("") && fleet.get(i).getPosition() == null)
 					return fleet.get(i);
 				if(!fleet.get(i).isDestroyed() && t.equals(fleet.get(i).getType()) && fleet.get(i).getPosition() == null)
 					return fleet.get(i);
