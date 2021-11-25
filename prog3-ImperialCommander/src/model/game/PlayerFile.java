@@ -69,11 +69,11 @@ public class PlayerFile implements IPlayer {
 		try {
 			String move = br.readLine();
 			
-			if(move.contains("exit") || move.contains("improve") || move.contains("patrol") || move.contains("launch")) {
-				if(move.contains("exit")) {
+			if(move.startsWith("exit") || move.startsWith("improve") || move.startsWith("patrol") || move.startsWith("launch")) {
+				if(move.startsWith("exit")) {
 					return false; // REVISAR
 				}
-				if(move.contains("improve")) {
+				if(move.startsWith("improve")) {
 					String[] moveImprove = move.split(" ");
 					
 					if(moveImprove.length == 3) {
@@ -91,7 +91,7 @@ public class PlayerFile implements IPlayer {
 					}else
 						System.out.println("ERROR: No matching moves found.");
 				}
-				if(move.contains("patrol")) {
+				if(move.startsWith("patrol")) {
 					String[] movePatrol = move.split("[ ]");
 					
 					if(movePatrol.length == 2) {
@@ -104,7 +104,7 @@ public class PlayerFile implements IPlayer {
 					}else
 						System.out.println("ERROR: No matching moves found.");
 				}
-				if(move.contains("launch")) {
+				if(move.startsWith("launch")) {
 					try {
 						String[] moveLaunch = move.split("[ ]");
 						
