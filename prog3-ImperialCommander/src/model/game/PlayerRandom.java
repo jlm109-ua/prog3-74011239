@@ -81,7 +81,7 @@ public class PlayerRandom implements IPlayer {
 	
 	public String showShip() {
 		String shipstring = ("");
-			shipstring += ship.getName();
+			shipstring += ship.getName(); // TERMINAR
 		
 		return shipstring;
 	}
