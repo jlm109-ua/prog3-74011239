@@ -108,7 +108,7 @@ public class Ship {
 		if(fleet.isEmpty()) {
 			throw new NoFighterAvailableException(t);
 		}
-		if(t.equals("AWing") || t.equals("XWing") || t.equals("YWing") || t.equals("TIEBomber") || t.equals("TIEInterceptor") || t.equals("TIEFighter")) {
+		if(t.equals("AWing") || t.equals("XWing") || t.equals("YWing") || t.equals("TIEBomber") || t.equals("TIEInterceptor") || t.equals("TIEFighter") || t.equals(null)) {
 			for(int i = 0; i < fleet.size(); i++) {
 				if(!fleet.get(i).isDestroyed() && (t == ("") || t.equals(null)) && fleet.get(i).getPosition() == null)
 					return fleet.get(i);
