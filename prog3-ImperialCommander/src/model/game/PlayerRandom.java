@@ -7,6 +7,7 @@ import model.exceptions.OutOfBoundsException;
 import model.game.exceptions.WrongFighterIdException;
 
 import java.util.List;
+import java.util.Objects;
 
 import model.Board;
 import model.Coordinate;
@@ -23,13 +24,16 @@ public class PlayerRandom implements IPlayer {
 	 * @param side Side, Bando de la nave.
 	 * @param numFighters Int, Número de Fighters.
 	 */
-	public PlayerRandom(Side side,int numFighters) { // ¿?¿?¿?
+	public PlayerRandom(Side side,int numFighters) {
+		Objects.requireNonNull(side);
+		Objects.requireNonNull(numFighters);
 		ship = new GameShip("PlayerRandom " + side + " Ship",side);
 		this.numFighters = numFighters;
 	}
 
 	@Override
 	public void setBoard(GameBoard gb) {
+		Objects.requireNonNull(gb);
 		board = gb;
 	}
 	

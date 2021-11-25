@@ -1,6 +1,8 @@
 package model.game;
 
 import java.io.BufferedReader;
+import java.util.Objects;
+
 import model.Coordinate;
 import model.Side;
 import model.game.exceptions.WrongFighterIdException;
@@ -16,12 +18,15 @@ public class PlayerFile implements IPlayer {
 	 * @param br
 	 */
 	public PlayerFile(Side side,BufferedReader br) {
+		Objects.requireNonNull(side);
+		Objects.requireNonNull(br);
 		ship = new GameShip("PlayerFile " + side + " Ship",side);
 		this.br = br;
 	}
 	
 	@Override
 	public void setBoard(GameBoard g) {
+		Objects.requireNonNull(g);
 		board = g;
 	}
 
@@ -107,7 +112,7 @@ public class PlayerFile implements IPlayer {
 							int x = Integer.parseInt(moveLaunch[1]);
 							int y = Integer.parseInt(moveLaunch[2]);
 							
-							ship.launch(ship.getFirstAvailableFighter(null).getId(),new Coordinate(x,y),board);
+							ship.launch(ship.getFirstAvailableFighter("").getId(),new Coordinate(x,y),board);
 						}else if(moveLaunch.length == 4) {
 							String mL3 = moveLaunch[3];
 							int x = Integer.parseInt(moveLaunch[1]);
