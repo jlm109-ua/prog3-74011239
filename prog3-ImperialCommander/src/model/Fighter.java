@@ -26,6 +26,7 @@ public abstract class Fighter {
 	 * @param mother Nave (Ship) a la que pertenece el Fighter.
 	 */
 	protected Fighter(Ship mother) {
+		Objects.requireNonNull(mother);
 		this.velocity = 100;
 		this.attack = 80;
 		this.shield = 80;
@@ -40,6 +41,7 @@ public abstract class Fighter {
 	 * @param f Fighter
 	 */
 	protected Fighter(Fighter f) {
+		Objects.requireNonNull(f);
 		this.velocity = f.getVelocity();
 		this.attack = f.getAttack();
 		this.shield = f.getShield();
@@ -195,6 +197,8 @@ public abstract class Fighter {
 	 * @return damage Danyo hecho.
 	 */
 	public int getDamage(int n,Fighter enemy) {
+		Objects.requireNonNull(n);
+		Objects.requireNonNull(enemy);
 		int damage = (n*this.attack)/300;
 		return damage;
 	}
@@ -205,6 +209,7 @@ public abstract class Fighter {
 	 * @return -1: Si el caza amigo ha sido destruido. 1: Si el caza enemigo ha sido destruido.
 	 */
 	public int fight(Fighter enemy) throws FighterIsDestroyedException { 
+		Objects.requireNonNull(enemy);
 		if(this.isDestroyed()){
 			throw new FighterIsDestroyedException(this);
 		}else if(enemy.isDestroyed()) {
