@@ -27,25 +27,17 @@ public class PlayerRandom implements IPlayer {
 		ship = new GameShip("PlayerRandom " + side + " Ship",side);
 		this.numFighters = numFighters;
 	}
-	 /**
-	  * Setter del board.
-	  */
+
 	@Override
 	public void setBoard(GameBoard gb) {
 		board = gb;
 	}
 	
-	/**
-	 * Getter de ship.
-	 */
 	@Override
 	public GameShip getGameShip() {
 		return ship;
 	}
 	
-	/**
-	 * Obtiene una cadena de Fighters y los añade a la nave.
-	 */
 	@Override
 	public void initFighters() {
 		String fleetString = ("");
@@ -91,17 +83,11 @@ public class PlayerRandom implements IPlayer {
 		}
 	}
 	
-	/**
-	 * Comprueba si la flota está destruida.
-	 */
 	@Override
 	public boolean isFleetDestroyed() {
 		return ship.isFleetDestroyed();
 	}
 	
-	/**
-	 * Devuelve una cadena con toda la información de la flota.
-	 */
 	@Override
 	public String showShip() {
 		String shipstring = ("");
