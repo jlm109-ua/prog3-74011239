@@ -25,7 +25,7 @@ public class GameShip extends Ship{
 	
 	/**
 	 * Comprueba si la flota esta destruida.
-	 * @return true: Si la flota esta destruida. fals: Si algun caza de la flota no esta destruido.
+	 * @return true: Si la flota esta destruida. false: Si algun caza de la flota no esta destruido.
 	 */
 	public boolean isFleetDestroyed() { // REVISAR
 		if(fleet.equals(null))
