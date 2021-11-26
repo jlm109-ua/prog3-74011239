@@ -47,7 +47,7 @@ public class PlayerRandom implements IPlayer {
 		String fleetString = ("");
 		int n = 0;
 		
-		if(ship.getSide().equals("REBEL")) {
+		if(ship.getSide().equals(Side.REBEL)) {
 			for(int i = 0;i < 3;i++) {
 				switch(i) {
 					case 0:
@@ -64,7 +64,7 @@ public class PlayerRandom implements IPlayer {
 							fleetString += n + "/AWing";
 				}
 			}
-		}else {
+		}else if(ship.getSide().equals(Side.IMPERIAL)){
 			for(int i = 0;i < 3;i++) {
 				switch(i) {
 					case 0:
@@ -112,7 +112,7 @@ public class PlayerRandom implements IPlayer {
 		int pos = 0;
 		
 		if(option == 99) {
-			// ????????
+			// Cómo hago el exit??
 		}else {
 			List<Integer> ids = ship.getFightersId("board");
 			pos = RandomNumber.newRandomNumber(ids.size());
