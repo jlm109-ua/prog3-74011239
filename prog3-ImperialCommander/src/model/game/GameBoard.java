@@ -24,7 +24,7 @@ public class GameBoard extends Board{
 	public int numFighters(Side side) {
 		int count=0;
 		
-		for(Fighter f : board) { // CÓMO LO HAGO?
+		for(Fighter f : board.values()) { // ESTÁ BIEN?
 			if(f.getSide().equals(side))
 				count++;
 		}
@@ -34,29 +34,24 @@ public class GameBoard extends Board{
 	/**
 	 * Devuelve una String del tablero con sus respectivos Fighter.
 	 */
-	public String toString() { // REVISAR
+	public String toString() {
 		String boardString = "  ";
 		
 		for(int i = 0;i < getSize();i++) { 
 			boardString += i;
 		}
-		//"  0123456789"
+
 		boardString += "\n" + "  "; 
-		/*"  0123456789"
-		"  "*/
 		for(int i = 0;i < getSize();i++) {
 			boardString += "-";
 		}
-		/*
-		"  0123456789"
-		"  ----------"
-		*/
+
 		boardString += "\n";
-		for(int i = 0;i < getSize()+2;i++) { // Horizontal
-			if(i < getSize()) {
-				boardString += i + "|";
-				for(int j = 0;j < getSize();i++) { // Vertical
-					if(board.get(new Coordinate(i,j)) != null)
+		for(int i = 2;i < getSize()+2;i++) {
+			if(i-2 < getSize()) {
+				boardString += i-2 + "|";
+				for(int j = 2;j < getSize()+2;j++) {
+					if(board.get(new Coordinate(i-2,j-2)) != null)
 						boardString += board.get(new Coordinate(i,j)).getSymbol();
 					else
 						boardString += " ";
