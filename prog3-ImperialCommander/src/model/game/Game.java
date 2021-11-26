@@ -1,7 +1,7 @@
 package model.game;
 
 import java.util.Objects;
-
+import model.Side;
 import model.exceptions.InvalidSizeException;
 
 public class Game {
@@ -28,14 +28,65 @@ public class Game {
 	
 	public Side play() {
 		boolean endGame = false;
+		String whoWon = null;
 		imperial.initFighters();
 		rebel.initFighters();
 		
 		do {
-			// HACER IFS (if(!endGame)) PARA COMPROBAR QUE NO SE HA TERMINADO EL JUEGO Y NO PEDIR MOVIMIENTOS A LOS JUGADORES
-			// CUANDO SON INNECESARIOS
-			
-			// TERMINAR
-		}while(endGame = true);
+			if(!endGame) {
+				System.out.println("BEFORE IMPERIAL");
+				board.toString();
+				getGameInfo();
+				if(imperial.isFleetDestroyed()) {
+					endGame = true;
+					whoWon = "REBEL";
+				}else if(rebel.isFleetDestroyed()) {
+					endGame = true;
+					whoWon = "IMPERIAL";
+				}
+			}
+			if(!endGame) {
+				System.out.println("IMPERIAL(" + board.numFighters(Side.IMPERIAL) + "): AFTER IMPERIAL, BEFORE REBEL");
+				imperial.nextPlay();
+				board.toString();
+				getGameInfo();
+				if(imperial.isFleetDestroyed()) {
+					endGame = true;
+					whoWon = "REBEL";
+				}else if(rebel.isFleetDestroyed()) {
+					endGame = true;
+					whoWon = "IMPERIAL";
+				}
+			}
+			if(!endGame) {
+				System.out.println("REBEL(" + board.numFighters(Side.REBEL) + "): AFTER REBEL");
+				rebel.nextPlay();
+				board.toString();
+				getGameInfo();
+				if(imperial.isFleetDestroyed()) {
+					endGame = true;
+					whoWon = "REBEL";
+				}else if(rebel.isFleetDestroyed()) {
+					endGame = true;
+					whoWon = "IMPERIAL";
+				}
+			}
+		}while(!endGame);
+		
+		System.out.println("And the winner is " + whoWon);
+		
+		if(whoWon.equals("IMPERIAL"))
+			return Side.IMPERIAL;
+		else
+			return Side.REBEL;
+	}
+	
+	/**
+	 * Muestra toda la información necesaria para cada turno.
+	 */
+	private void getGameInfo() {
+		board.toString();
+		System.out.println(imperial.getGameShip().toString() + "\n" + imperial.getGameShip().showFleet());
+		System.out.println(rebel.getGameShip().toString() + "\n" + rebel.getGameShip().showFleet());
 	}
 }
