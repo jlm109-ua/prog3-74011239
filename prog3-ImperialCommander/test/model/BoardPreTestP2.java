@@ -1,7 +1,6 @@
 package model;
 
 import static org.junit.Assert.assertEquals;
-import model.fighters.*;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNotSame;
@@ -16,15 +15,19 @@ import org.junit.Test;
 
 import model.exceptions.FighterAlreadyInBoardException;
 import model.exceptions.FighterNotInBoardException;
+import model.exceptions.InvalidSizeException;
 import model.exceptions.OutOfBoundsException;
+import model.game.GameBoard;
+import model.game.exceptions.WrongFighterIdException;
 
-public class BoardTestP2 {
+public class BoardPreTestP2 {
 
 	Board board;
 	Ship rebelShip, imperialShip;
 	
 	@Before
 	public void setUp() throws Exception {
+		
 		board = new Board(10);
 		rebelShip = new Ship("Alderaan",Side.REBEL);
 		imperialShip = new Ship("Lanzadera T-4a", Side.IMPERIAL);
@@ -34,7 +37,6 @@ public class BoardTestP2 {
 	@Test
 	public void testBoard() {
 		assertEquals(10, board.getSize());
-		//assertNotNull (board.get)
 	}
 
 	/* Test que comprueba getFighter en un Board vacío */
@@ -52,14 +54,14 @@ public class BoardTestP2 {
 	public void testGetFighterNotEmpty() {
 		Fighter.resetNextId();
 		addFightersOnBoard();
-		//Fighter.resetNextId();
+		Fighter.resetNextId();
 		
 		Fighter fighter, auxFighter;
 		for (int i=0; i<board.getSize(); i++) {
 			for (int j=0; j<board.getSize(); j++)
 				if (i==j) {
 					fighter = board.getFighter(new Coordinate(i,j));
-					//rebelShip.addFighters("1/XWing"+i);
+					rebelShip.addFighters("1/XWing"+i);
 					auxFighter = rebelShip.getFleetTest().get(i);
 					//auxFighter.setPosition(new Coordinate(i,j));
 					assertNotNull (fighter);
@@ -469,6 +471,15 @@ public class BoardTestP2 {
 			 imperial = imperialShip.getFleetTest().get(i); 
 			 assertEquals (shields[i], imperial.getShield());
 		}	
+	}
+	
+	/* Realiza los test de comprobación de los parámetros null en Board para launch,
+	 * patrol, removeFighter, getFighter y getNeigborhood 
+	 */
+	@Test
+	public void testRequireNonNull() throws FighterAlreadyInBoardException, OutOfBoundsException, FighterNotInBoardException  {
+		
+		fail("Realiza las comprobaciones de los métodos");
 	}
 	
 	
