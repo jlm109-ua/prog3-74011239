@@ -177,6 +177,7 @@ public class Ship {
 				shipNames.add(name);
 			}
 		}
+		
 		return myFleet;
 	}
 	
