@@ -25,6 +25,7 @@ public class FighterFactory {
 			case "TIEFighter": return new TIEFighter(mother);
 			case "TIEInterceptor": return new TIEInterceptor(mother);
 		}
+		
 		return null;
 	}
 }
