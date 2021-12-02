@@ -200,6 +200,7 @@ public abstract class Fighter {
 		Objects.requireNonNull(n);
 		Objects.requireNonNull(enemy);
 		int damage = (n*this.attack)/300;
+		
 		return damage;
 	}
 	
@@ -261,6 +262,7 @@ public abstract class Fighter {
 		if (getClass() != obj.getClass())
 			return false;
 		Fighter other = (Fighter) obj;
+		
 		return id == other.id;
 	}
 }
