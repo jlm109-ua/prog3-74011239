@@ -5,14 +5,10 @@ import model.exceptions.FighterAlreadyInBoardException;
 import model.exceptions.FighterNotInBoardException;
 import model.exceptions.OutOfBoundsException;
 import model.game.exceptions.WrongFighterIdException;
-
 import java.util.List;
 import java.util.Objects;
-
-import model.Board;
 import model.Coordinate;
 import model.RandomNumber;
-import model.Ship;
 
 public class PlayerRandom implements IPlayer {
 	private int numFighters;
@@ -112,7 +108,7 @@ public class PlayerRandom implements IPlayer {
 		int pos = 0;
 		
 		if(option == 99) {
-			// Cómo hago el exit??
+			return false;
 		}else {
 			List<Integer> ids = ship.getFightersId("board");
 			pos = RandomNumber.newRandomNumber(ids.size());
@@ -120,7 +116,9 @@ public class PlayerRandom implements IPlayer {
 			
 			if(!ids.equals(null)) {
 				if(option >= 85 && option <= 98) {
-					ship.improveFighter(id,option,board); //?????
+					try {
+						ship.improveFighter(id,option,board);
+					} catch (WrongFighterIdException e) {}
 				}else if(option >= 25 && option <= 84) {
 					Coordinate c = new Coordinate(RandomNumber.newRandomNumber(board.getSize()),RandomNumber.newRandomNumber(board.getSize()));
 					try {
@@ -150,5 +148,7 @@ public class PlayerRandom implements IPlayer {
 				System.err.println("ERROR: No Fighters found.");
 			}
 		}
+		
+		return true;
 	}
 }

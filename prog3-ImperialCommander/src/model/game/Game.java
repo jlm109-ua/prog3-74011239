@@ -60,7 +60,8 @@ public class Game {
 			}
 			if(!endGame) {
 				System.out.println("IMPERIAL(" + board.numFighters(Side.IMPERIAL) + "): AFTER IMPERIAL, BEFORE REBEL");
-				imperial.nextPlay();
+				if(!imperial.nextPlay())
+					endGame = true;
 				board.toString();
 				getGameInfo();
 				if(imperial.isFleetDestroyed()) {
@@ -73,9 +74,12 @@ public class Game {
 			}
 			if(!endGame) {
 				System.out.println("REBEL(" + board.numFighters(Side.REBEL) + "): AFTER REBEL");
-				rebel.nextPlay();
+				if(!rebel.nextPlay())
+					endGame = true;
 				board.toString();
 				getGameInfo();
+				imperial.purgeFleet();
+				rebel.purgeFleet();
 				if(imperial.isFleetDestroyed()) {
 					endGame = true;
 					whoWon = "REBEL";
@@ -85,6 +89,9 @@ public class Game {
 				}
 			}
 		}while(!endGame);
+		
+		imperial.purgeFleet();
+		rebel.purgeFleet();
 		
 		System.out.println("And the winner is " + whoWon);
 		

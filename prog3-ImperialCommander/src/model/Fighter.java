@@ -7,7 +7,7 @@ package model;
 import java.util.Objects;
 import model.exceptions.*;
 
-public abstract class Fighter {
+public abstract class Fighter implements Comparable<Integer>{
 	/**
 	 * Declaramos todos los atributos privados.
 	 * @author Juan Llinares Mauri - 74011239E
@@ -252,7 +252,7 @@ public abstract class Fighter {
 	public int hashCode() {
 		return Objects.hash(id);
 	}
-
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -264,5 +264,9 @@ public abstract class Fighter {
 		Fighter other = (Fighter) obj;
 		
 		return id == other.id;
+	}
+	
+	public int compareTo(Fighter other) {
+		return Integer.compare(this.id, other.id);
 	}
 }

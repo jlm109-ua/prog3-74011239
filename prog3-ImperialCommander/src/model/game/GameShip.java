@@ -1,6 +1,7 @@
 package model.game;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -28,7 +29,7 @@ public class GameShip extends Ship{
 	 * Comprueba si la flota esta destruida.
 	 * @return true: Si la flota esta destruida. false: Si algun caza de la flota no esta destruido.
 	 */
-	public boolean isFleetDestroyed() { // REVISAR
+	public boolean isFleetDestroyed() {
 		if(fleet.equals(null))
 			return true;
 		for(Fighter f : fleet)
@@ -65,19 +66,21 @@ public class GameShip extends Ship{
 					ids.add(f.getId());
 				}
 			}
-			return ids;
 		}else if(where.equals("ship")) {
 			for(Fighter f : fleet2) {
 				if(f.getPosition() == null && !f.isDestroyed()) {
 					ids.add(f.getId());
 				}
 			}
-			return ids;
+
+		}else {
+			for(Fighter f : fleet2) {
+				if(!f.isDestroyed())
+					ids.add(f.getId());
+			}
 		}
-		for(Fighter f : fleet2) {
-			if(!f.isDestroyed())
-				ids.add(f.getId());
-		}
+		Collections.sort(ids);
+		
 		return ids;
 	}
 	
@@ -128,8 +131,13 @@ public class GameShip extends Ship{
 		int plus_attack = 0;
 		int plus_shield = 0;
 		
-		try {
-			b.removeFighter(f);
+		if(f.getPosition().equals(null)) {
+			try {
+				b.removeFighter(f);
+			} catch (FighterNotInBoardException e) {
+				System.out.println(e.getMessage());
+			}
+		}else {
 			if(qty%2 == 0) {
 				plus_attack = qty/2;
 				plus_shield = qty/2;
@@ -139,8 +147,6 @@ public class GameShip extends Ship{
 			}
 			f.addAttack(plus_attack);
 			f.addShield(plus_shield);
-		}catch(FighterNotInBoardException e) {
-			e.getMessage();
 		}
 	}
 }

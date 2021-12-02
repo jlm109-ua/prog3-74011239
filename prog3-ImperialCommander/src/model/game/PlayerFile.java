@@ -71,7 +71,7 @@ public class PlayerFile implements IPlayer {
 			
 			if(move.startsWith("exit") || move.startsWith("improve") || move.startsWith("patrol") || move.startsWith("launch")) {
 				if(move.startsWith("exit")) {
-					return false; // REVISAR
+					return false;
 				}
 				if(move.startsWith("improve")) {
 					String[] moveImprove = move.split(" ");
