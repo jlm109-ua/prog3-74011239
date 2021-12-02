@@ -478,8 +478,28 @@ public class BoardPreTestP2 {
 	 */
 	@Test
 	public void testRequireNonNull() throws FighterAlreadyInBoardException, OutOfBoundsException, FighterNotInBoardException  {
-		
-		fail("Realiza las comprobaciones de los métodos");
+		Coordinate cNull = null;
+		Fighter fNull = null;
+		try {
+			board.launch(cNull, fNull);
+			fail("No funciona.");
+		} catch (NullPointerException e) {}
+		try {
+			board.patrol(fNull);
+			fail("No funciona.");
+		} catch (NullPointerException e) {}
+		try {
+			board.removeFighter(fNull);;
+			fail("No funciona.");
+		} catch (NullPointerException e) {}
+		try {
+			board.getFighter(cNull);
+			fail("No funciona.");
+		} catch (NullPointerException e) {}
+		try {
+			board.getNeighborhood(cNull);
+			fail("No funciona.");
+		} catch (NullPointerException e) {}
 	}
 	
 	
