@@ -32,6 +32,7 @@ public class TIEFighter extends Fighter {
 	@Override
 	public Fighter copy() {
 		Fighter f = new TIEFighter(this);
+		
 		return f;
 	}
 	

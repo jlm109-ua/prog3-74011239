@@ -32,6 +32,7 @@ public class AWing extends Fighter {
 	@Override
 	public Fighter copy() {
 		Fighter f = new AWing(this);
+		
 		return f;
 	}
 	
@@ -46,6 +47,7 @@ public class AWing extends Fighter {
 		if(enemy.getType().equals("TIEBomber")) {
 			dmg = dmg * 2;
 		}
+		
 		return dmg;
 	}
 }

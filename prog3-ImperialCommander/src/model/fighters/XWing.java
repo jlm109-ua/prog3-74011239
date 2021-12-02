@@ -31,6 +31,7 @@ public class XWing extends Fighter {
 	@Override
 	public Fighter copy() {
 		Fighter f = new XWing(this);
+		
 		return f;
 	}
 	

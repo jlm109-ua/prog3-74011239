@@ -32,6 +32,7 @@ public class TIEInterceptor extends Fighter {
 	@Override
 	public Fighter copy() {
 		Fighter f = new TIEInterceptor(this);
+		
 		return f;
 	}
 	
@@ -48,6 +49,7 @@ public class TIEInterceptor extends Fighter {
 		}else if(enemy.getType().equals("AWing")) {
 			dmg = dmg / 2;
 		}
+		
 		return dmg;
 	}
 }
