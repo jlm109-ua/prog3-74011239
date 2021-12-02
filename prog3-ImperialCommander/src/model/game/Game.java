@@ -10,6 +10,11 @@ public class Game {
 	private IPlayer imperial;
 	private IPlayer rebel;
 	
+	/**
+	 * Constructor de Game.
+	 * @param imperial IPlayer Jugador imperial.
+	 * @param rebel IPlayer Jugador rebelde.
+	 */
 	public Game(IPlayer imperial,IPlayer rebel) {
 		Objects.requireNonNull(imperial);
 		Objects.requireNonNull(rebel);
@@ -22,10 +27,18 @@ public class Game {
 		}
 	}
 	
+	/**
+	 * Devuelve el tablero.
+	 * @return board.
+	 */
 	public GameBoard getGameBoard() {
 		return board;
 	}
 	
+	/**
+	 * Controla el juego.
+	 * @return Side IMPERIAL: Si gana el jugador imperial, REBEL: Si gana el rebelde.
+	 */
 	public Side play() {
 		boolean endGame = false;
 		String whoWon = null;
