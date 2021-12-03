@@ -25,7 +25,7 @@ public class FighterPreTestP2 {
 		Fighter.resetNextId();
 		fighter = FighterFactory.createFighter("XWing", rebelShip);
 		RandomNumber.resetRandomCounter();
-	}
+	} 
 	
 	/* Test que comprueba el constructor copia. Se cambia valores iniciales de un fighter
 	 * Se crea una copia y se comprueba que los valores de ambos fighters son iguales */
