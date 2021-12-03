@@ -489,8 +489,22 @@ public class ShipPreTestP2 {
 	 */
 	@Test
 	public void testRequireNonNull() throws NoFighterAvailableException {
+		String sStringNull = null;
+		Ship sPrueba = new Ship("Prueba",Side.IMPERIAL);
 		
-		fail("Realiza las comprobaciones de los métodos");
+		try {
+			@SuppressWarnings("unused")
+			Ship sNull = new Ship(null,null);
+			fail("No funciona.");
+		} catch (NullPointerException e) {}
+		try {
+			sPrueba.addFighters(sStringNull);
+			fail("No funciona.");
+		} catch (NullPointerException e) {}
+		try {
+			sPrueba.getFirstAvailableFighter(sStringNull);
+			fail("No funciona.");
+		} catch (NullPointerException e) {}
 	}
 
 	/*************************************/
