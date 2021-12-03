@@ -1,5 +1,5 @@
 package model.exceptions;
-
+ 
 import static org.junit.Assert.*;
 
 import org.junit.Before;

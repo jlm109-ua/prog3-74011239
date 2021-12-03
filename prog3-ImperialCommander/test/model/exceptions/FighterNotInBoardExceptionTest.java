@@ -11,7 +11,7 @@ import model.Fighter;
 import model.FighterFactory;
 import model.Ship;
 import model.Side;
-
+ 
 public class FighterNotInBoardExceptionTest {
 
 	Fighter rebel, imperial;

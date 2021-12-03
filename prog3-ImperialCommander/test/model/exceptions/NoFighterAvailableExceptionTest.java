@@ -69,7 +69,7 @@ public class NoFighterAvailableExceptionTest {
 		
 	/* Se intenta buscar un caza que está en una nave con figthers. Se comprueba que 
 	 * NO se lanza la excepción NoFighterAvailableException. Este mismo caza se destruye.
-	 * Se vuelve a buscar y se comprueba que ahora SÍ lanza la excepción NoFighterAvailableException */
+	 * Se vuelve a buscar y se comprueba que ahora se lanza la excepción NoFighterAvailableException */
 	@Test
 	public void getFirstAvailableFighterExistDestroyedInNotEmptyShipTest1() {
 		rebelShip.addFighters("1/XWing:3/AWing:3/YWing:1/TIEBomber:45/TIEInterceptor");

@@ -14,7 +14,7 @@ import model.Side;
 
 public class ImperialComanderExceptionsTest {
 
-	Fighter rebel, imperial;
+	Fighter rebel, imperial; 
 	Ship rebelShip, imperialShip;
 	Board board;
 	Coordinate c, c1, c2;
