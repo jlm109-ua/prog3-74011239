@@ -24,7 +24,7 @@ public class FighterFactoryPreTest {
 		assertTrue(fighter instanceof XWing);
 		fighter=FighterFactory.createFighter("YWing", ship);
 		assertTrue(fighter instanceof YWing);
-		fighter=FighterFactory.createFighter("TIEFighter", ship);
+		fighter=FighterFactory.createFighter("TIEFighter", ship); 
 		assertTrue(fighter instanceof TIEFighter);
 		fighter=FighterFactory.createFighter("TIEBomber", ship);
 		assertTrue(fighter instanceof TIEBomber);
