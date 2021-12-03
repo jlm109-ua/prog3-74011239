@@ -57,7 +57,8 @@ public class GameBoard extends Board{
 					else
 						boardString += " ";
 				}
-				boardString += "\n";
+				if(i<getSize()+1)
+					boardString += "\n";
 			}
 		}
 		
