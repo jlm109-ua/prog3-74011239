@@ -2,6 +2,7 @@ package model.game;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -18,6 +19,7 @@ import model.Side;
 import model.exceptions.FighterAlreadyInBoardException;
 import model.exceptions.InvalidSizeException;
 import model.exceptions.OutOfBoundsException;
+import model.game.exceptions.WrongFighterIdException;
 
 public class GameBoardPreTest {
 
@@ -106,7 +108,21 @@ public class GameBoardPreTest {
 		gameShip.addFighters("7/AWing:6/XWing:2/YWing");
 		GameShip gameImperialShip = new GameShip("Lanzadera T-4a", Side.IMPERIAL);
 		gameImperialShip.addFighters("3/TIEBomber:9/TIEInterceptor:2/TIEFighter");
-		fail("Termina el test");
+		try {
+			GameBoard b = new GameBoard(10);
+			String where = "ship";
+			List<Integer> imperialIds = new ArrayList<Integer>();
+			imperialIds = gameImperialShip.getFightersId(where);
+			List<Integer> rebelIds = new ArrayList<Integer>();
+			rebelIds = gameShip.getFightersId(where);
+			gameImperialShip.launch(imperialIds.get(2), new Coordinate(0,2), b);
+			gameImperialShip.launch(imperialIds.get(4), new Coordinate(1,2), b);
+			gameImperialShip.launch(imperialIds.get(1), new Coordinate(6,9), b);
+			gameShip.launch(rebelIds.get(2), new Coordinate(7,7), b);
+			assertEquals(b.numFighters(Side.IMPERIAL),3);
+			assertEquals(b.numFighters(Side.REBEL),1);
+		} catch (InvalidSizeException e) {	
+		} catch (WrongFighterIdException e) {}
 	}
 	
 	/* Se prueba toString para un tablero de 15x15 vacío
@@ -128,8 +144,32 @@ public class GameBoardPreTest {
 	//TODO
 	@Test
 	public void testToStringExample() throws FighterAlreadyInBoardException, OutOfBoundsException, InvalidSizeException {
-		
-		fail("Termina de realizar el test");
+		GameShip imperialGS = new GameShip("IGS-09",Side.IMPERIAL);
+		GameShip rebelGS = new GameShip("Kong II RGS",Side.REBEL);
+		GameBoard gb = new GameBoard(10);
+		imperialGS.addFighters("1/TIEBomber:1/TIEInterceptor");
+		rebelGS.addFighters("4/AWing:3/XWing:2/YWing");
+		List<Integer> IGSIds = new ArrayList<Integer>();
+		IGSIds = imperialGS.getFightersId("ship");
+		List<Integer> RGSIds = new ArrayList<Integer>();
+		RGSIds = rebelGS.getFightersId("ship");
+		try {
+			imperialGS.launch(IGSIds.get(1), new Coordinate(1,6), gb);
+			imperialGS.launch(IGSIds.get(0), new Coordinate(6,7), gb);
+			rebelGS.launch(RGSIds.get(8), new Coordinate(4,7), gb);
+			rebelGS.launch(RGSIds.get(7), new Coordinate(3,6), gb);
+			rebelGS.launch(RGSIds.get(6), new Coordinate(8,7), gb);
+			rebelGS.launch(RGSIds.get(5), new Coordinate(4,2), gb);
+			rebelGS.launch(RGSIds.get(4), new Coordinate(9,0), gb);
+			rebelGS.launch(RGSIds.get(3), new Coordinate(8,0), gb);
+			rebelGS.launch(RGSIds.get(2), new Coordinate(7,3), gb);
+			rebelGS.launch(RGSIds.get(1), new Coordinate(3,0), gb);
+			rebelGS.launch(RGSIds.get(0), new Coordinate(3,5), gb);
+			assertEquals(gb.toString(),kEXAMPLEBOARD);
+		} catch (WrongFighterIdException | FighterAlreadyInBoardException | OutOfBoundsException | RuntimeException e) {
+			System.out.println(e.getMessage());
+			fail("No funciona.");
+		}
 	}
 
 	/*************************
