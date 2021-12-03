@@ -29,7 +29,7 @@ public class MethodsVisibilityTest {
 	
 	@Test
 	public final void testBoard() throws ClassNotFoundException {
-		Class c = Class.forName("model.Board");
+		Class c = Class.forName("model.Board"); 
 		
 		HashMap<String,String> methodVisibility = new HashMap<>();
 		methodVisibility.put("getSize","public");
