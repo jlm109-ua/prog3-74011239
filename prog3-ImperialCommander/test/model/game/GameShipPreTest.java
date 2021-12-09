@@ -64,7 +64,13 @@ public class GameShipPreTest {
 	//TODO
 	@Test
 	public void testIsFleetDestroyedAllDestroyed() {
-		fail("Realiza el test");
+		GameShip gs = new GameShip("RGS-07",Side.REBEL);
+		gs.addFighters("4/AWing:7/YWing");
+		for(Fighter f : gs.getFleetTest())
+			f.addShield(-99999);
+		if(!gs.isFleetDestroyed()) {
+			fail("ERROR: No funciona bien.");
+		}
 	}
 	
 	
@@ -74,7 +80,13 @@ public class GameShipPreTest {
 	//TODO
 	@Test
 	public void testIsFleetDestroyedNotAllDestroyed() {
-		fail ("Realiza el test");
+		GameShip gs = new GameShip("RGS-07",Side.REBEL);
+		gs.addFighters("4/AWing:7/YWing");
+		for(int i = 0; i < gs.getFleetTest().size() - 2; i++)
+			gs.getFleetTest().get(i).addShield(-99999);
+		if(gs.isFleetDestroyed()) {
+			fail("ERROR: No funciona bien.");
+		}
 	}
 	
 	/* Se comprueba que se obtiene una lista vacía de una nave sin cazas. Luego se
@@ -104,7 +116,11 @@ public class GameShipPreTest {
 		gameShip.addFighters("10/TIEFighter:35/TIEInterceptor:5/TIEBomber");	
 		
 		List<Integer> l = gameShip.getFightersId("ship");
-		fail("Termina el test");
+		for(Fighter f : gameShip.getFleetTest())
+			assertTrue(l.contains(f.getId()));
+		
+		List<Integer> lb = gameShip.getFightersId("board");
+		assertTrue(lb.isEmpty());
 		
 	}
 	
@@ -118,7 +134,27 @@ public class GameShipPreTest {
 		gameShip.addFighters("10/TIEFighter:35/TIEInterceptor:5/TIEBomber");	
 		fleet = gameShip.getFleetTest();
 		gameBoard = new GameBoard(fleet.size());
-		fail("Termina el test");
+		
+		List<Integer> l = gameShip.getFightersId("ship");
+		int k = 0;
+		for(int i = 0; i < gameBoard.getSize(); i++) {
+			try {
+				gameShip.launch(gameShip.getFleetTest().get(k).getId(), new Coordinate(i,0), gameBoard);
+				k++;
+			} catch (WrongFighterIdException | FighterAlreadyInBoardException | OutOfBoundsException
+					| RuntimeException e) {
+				e.printStackTrace();
+				fail("ERROR: Algo falla");
+			}
+		}
+		
+		List<Integer> lb = gameShip.getFightersId("board");
+		
+		for(Integer i : l)
+			assertTrue(lb.contains(i));
+		
+		List<Integer> ls = gameShip.getFightersId("ship");
+		assertTrue(ls.isEmpty());
 	}
 	
 	/* Añade cazas a un Ship. Añade algunos a un tablero. Destruye otros. 
@@ -131,7 +167,44 @@ public class GameShipPreTest {
 	//TODO
 	@Test
 	public void testGetFightersIdListNotEmpty3() throws InvalidSizeException, FighterAlreadyInBoardException, OutOfBoundsException  {
-		fail("Realiza el test");
+		GameShip gs = new GameShip("IGS-4",Side.IMPERIAL);
+		gs.addFighters("6/XWing:7/AWing");
+		GameBoard gameBoard = new GameBoard(20);
+		try {
+			gs.launch(gs.getFleetTest().get(0).getId(), new Coordinate (0,0), gameBoard);
+			gs.launch(gs.getFleetTest().get(1).getId(), new Coordinate (1,1), gameBoard);
+			gs.launch(gs.getFleetTest().get(2).getId(), new Coordinate (2,2), gameBoard);
+			gs.launch(gs.getFleetTest().get(3).getId(), new Coordinate (3,3), gameBoard);
+			gs.launch(gs.getFleetTest().get(4).getId(), new Coordinate (4,4), gameBoard);
+			gs.launch(gs.getFleetTest().get(5).getId(), new Coordinate (5,5), gameBoard);
+			gs.launch(gs.getFleetTest().get(6).getId(), new Coordinate (6,6), gameBoard);
+			gs.launch(gs.getFleetTest().get(7).getId(), new Coordinate (7,7), gameBoard);
+		} catch (WrongFighterIdException | FighterAlreadyInBoardException | OutOfBoundsException | RuntimeException e) {
+			e.printStackTrace();
+			fail("ERROR: Algo falla");
+		}
+		
+		gameBoard.getFighter(new Coordinate(0,0)).addShield(-99999);
+		gameBoard.getFighter(new Coordinate(2,2)).addShield(-99999);
+		gameBoard.getFighter(new Coordinate(4,4)).addShield(-99999);
+		gameBoard.getFighter(new Coordinate(7,7)).addShield(-99999);
+		
+		List<Integer> ls = gs.getFightersId("ship");
+		List<Integer> lb = gs.getFightersId("board");
+		List<Integer> ld = gs.getFightersId("");
+		
+		for(Fighter f : gameShip.getFleetTest())
+			assertTrue(ls.contains(f.getId()));
+		
+		assertTrue(lb.contains(gameBoard.getFighter(new Coordinate(1,1)).getId()));
+		assertTrue(lb.contains(gameBoard.getFighter(new Coordinate(3,3)).getId()));
+		assertTrue(lb.contains(gameBoard.getFighter(new Coordinate(5,5)).getId()));
+		assertTrue(lb.contains(gameBoard.getFighter(new Coordinate(6,6)).getId()));
+		
+		assertTrue(ld.contains(gameBoard.getFighter(new Coordinate(0,0)).getId()));
+		assertTrue(ld.contains(gameBoard.getFighter(new Coordinate(2,2)).getId()));
+		assertTrue(ld.contains(gameBoard.getFighter(new Coordinate(4,4)).getId()));
+		assertTrue(ld.contains(gameBoard.getFighter(new Coordinate(7,7)).getId()));
 	}
 	
 	/* Añade cazas a un GameShip e intenta poner uno, con launch, con una id que no existe. 
@@ -155,7 +228,16 @@ public class GameShipPreTest {
 		} catch (Exception e2) {
 			fail("ERROR: No debió lanzar la excepción "+e2.getClass().getSimpleName());
 		}	
-		fail ("Realiza la segunda parte del test");
+		try {
+			gameShip.getFleetTest().get(3).addShield(-9999);
+			gameShip.launch(gameShip.getFleetTest().get(3).getId(), c, gameBoard);
+			fail("ERROR: Deberia lanzar la excepion WrongFighterIdException");
+		} catch (WrongFighterIdException e2) {
+			assertTrue(e2.getMessage().startsWith("ERROR:"));
+			assertNull(gameBoard.getFighter(c));
+		} catch (Exception e2) {
+			fail("ERROR: No debió lanzar la excepción "+e2.getClass().getSimpleName());
+		}
 	}
 	
 	
@@ -166,7 +248,21 @@ public class GameShipPreTest {
 	//TODO
 	@Test
 	public void testLaunchOutOfBoundsException() throws InvalidSizeException {
-		fail("Realiza el test");
+		GameShip gs = new GameShip("IMPERIAL STOMPER",Side.IMPERIAL);
+		gs.addFighters("4/XWing");
+		try {
+			gs.launch(gs.getFleetTest().get(0).getId(), new Coordinate(99,99), new GameBoard(10));
+		} catch (WrongFighterIdException e) {
+			fail("ERROR: Deberia lanzar OutOfBoundsException");
+		} catch (FighterAlreadyInBoardException e) {
+			fail("ERROR: Deberia lanzar OutOfBoundsException");
+		} catch (OutOfBoundsException e) {
+			System.out.println(e.getMessage());
+		} catch (RuntimeException e) {
+			fail("ERROR: Deberia lanzar OutOfBoundsException");
+		} catch (InvalidSizeException e) {
+			fail("ERROR: Deberia lanzar OutOfBoundsException");
+		}
 	}
 	
 	/* Se añaden cazas a un GameShip y se pone a patrullar a uno de ellos en un
@@ -196,7 +292,14 @@ public class GameShipPreTest {
 	//TODO
 	@Test
 	public void testPatrolWrongFighterIdException() throws InvalidSizeException {
-		fail("Realiza el test");
+		GameShip gs = new GameShip("REBEL RAM",Side.REBEL);
+		gs.addFighters("2/AWing");
+		try {
+			gs.patrol(9, gameBoard);
+			fail("ERROR: No funciona bien.");
+		} catch (WrongFighterIdException | FighterNotInBoardException | RuntimeException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	/* Añade cazas a un GameShip y pon un TIEInterceptor en un tablero.
@@ -209,7 +312,11 @@ public class GameShipPreTest {
 		fleet = gameShip.getFleetTest();
 		gameBoard = new GameBoard(fleet.size());
 		
-		fail("Termina el test");
+		gameShip.launch(gameShip.getFleetTest().get(5).getId(), new Coordinate(3,3), gameBoard);
+		gameShip.improveFighter(gameShip.getFleetTest().get(5).getId(), 97, gameBoard);
+		assertNull(gameBoard.getFighter(new Coordinate(3,3)));
+		assertEquals(gameShip.getFleetTest().get(5).getAttack(),133);
+		assertEquals(gameShip.getFleetTest().get(5).getShield(),109);
 	}
 	
 	/* Se añaden cazas a un GameShip. Se intenta mejorar uno de los cazas del GameShip que
@@ -229,7 +336,12 @@ public class GameShipPreTest {
 			fail("ERROR: No debió lanzar la excepción "+e.getClass().getSimpleName());
 		}
 		Fighter f=gameShip.getFleetTest().get(5);
-		fail("Termina de realizar el test");
+		try {
+			gameShip.improveFighter(90, 97, gameBoard);
+			fail("ERROR: Algo no funciona");
+		} catch(WrongFighterIdException e) {
+			assertTrue(e.getMessage().startsWith("ERROR:"));
+		}
 	}
 	
 	/* Realiza las comprobaciones de los parámetros null en launch, patrol e improveFighter
@@ -246,7 +358,13 @@ public class GameShipPreTest {
 			gameShip.launch(2, new Coordinate(3,2), null);
 			fail("ERROR: Debió lanzar NullPointerException");
 		}catch (NullPointerException e) {}
-		fail("Termina de realizar las comprobaciones en patrol e improveFighter");
+		try {
+			gameShip.patrol(2, null);
+			fail("ERROR: Debia lanzar NullPointerException");
+		}catch (NullPointerException e) {}
+		try {
+			gameShip.improveFighter(2, 50, null);
+			fail("ERROR: Debia lanzar NullPointerException");
+		} catch	(NullPointerException e) {}
 	}
-
 }
