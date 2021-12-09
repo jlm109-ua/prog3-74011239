@@ -99,7 +99,11 @@ public class GameShip extends Ship{
 		Objects.requireNonNull(c);
 		Objects.requireNonNull(b);
 		Fighter f = getFighter(id);
-		b.launch(c, f);
+		
+		if(!f.isDestroyed())
+			b.launch(c, f);
+		else
+			throw new WrongFighterIdException(f.getId());
 	}
 	 /**
 	  * El Fighter con el id id patrulla por el tablero.
@@ -131,22 +135,24 @@ public class GameShip extends Ship{
 		int plus_attack = 0;
 		int plus_shield = 0;
 		
-		if(f.getPosition().equals(null)) {
+		if(f.equals(null)){
+			throw new WrongFighterIdException(id);
+		} else {
 			try {
-				b.removeFighter(f);
+				if(f.getPosition() != null)
+					b.removeFighter(f);
+				if(qty%2 == 0) {
+					plus_attack = qty/2;
+					plus_shield = qty/2;
+				}else {
+					plus_attack = qty/2;
+					plus_shield = qty/2+1;
+				}
+				f.addAttack(plus_attack);
+				f.addShield(plus_shield);
 			} catch (FighterNotInBoardException e) {
 				System.out.println(e.getMessage());
 			}
-		}else {
-			if(qty%2 == 0) {
-				plus_attack = qty/2;
-				plus_shield = qty/2;
-			}else {
-				plus_attack = qty/2;
-				plus_shield = qty/2+1;
-			}
-			f.addAttack(plus_attack);
-			f.addShield(plus_shield);
 		}
 	}
 }
