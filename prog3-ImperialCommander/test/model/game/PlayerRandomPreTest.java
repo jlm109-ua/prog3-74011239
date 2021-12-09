@@ -2,6 +2,9 @@ package model.game;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -136,7 +139,28 @@ public class PlayerRandomPreTest {
 	public void testPurgeFleet() {
 		playerRandom.initFighters();
 		assertEquals(20,playerRandom.getGameShip().getFleetTest().size());
-		fail("Termina el test");
+		List<Integer> ids = new ArrayList<Integer>();
+		ids = playerRandom.getGameShip().getFightersId("ship");
+		GameShip gs = new GameShip("Not today",Side.REBEL);
+		gs.addFighters("1:XWing");
+		gs.getFleetTest().get(0).addAttack(99999999);
+		gs.getFleetTest().get(0).addVelocity(999999999);
+		gs.getFleetTest().get(0).addShield(99999999);
+		List<Integer> bossId = gs.getFightersId("ship");
+		try {
+			gs.launch(bossId.get(0), new Coordinate(6,9), gb);
+		} catch (WrongFighterIdException | FighterAlreadyInBoardException | OutOfBoundsException
+				| RuntimeException e1) {
+			System.out.println(e1.getMessage());
+		}
+		try {
+			for(int id : ids)
+				playerRandom.getGameShip().launch(id, new Coordinate(6,9), gb);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		playerRandom.purgeFleet();
+		assertEquals(playerRandom.showShip(),(""));
 	}
 
 	/* Se inicia playerRandom con cazas en su nave. Se le añade un tablero. 

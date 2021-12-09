@@ -50,14 +50,17 @@ public class PlayerRandom implements IPlayer {
 						n = RandomNumber.newRandomNumber(numFighters);
 						if(n != 0)
 							fleetString += n + "/XWing:";
+						break;
 					case 1:
 						n = RandomNumber.newRandomNumber(numFighters);
 						if(n != 0)
 							fleetString += n + "/YWing:";
+						break;
 					case 2:
 						n = RandomNumber.newRandomNumber(numFighters);
 						if(n != 0)
 							fleetString += n + "/AWing";
+						break;
 				}
 			}
 		}else if(ship.getSide().equals(Side.IMPERIAL)){
@@ -67,14 +70,17 @@ public class PlayerRandom implements IPlayer {
 						n = RandomNumber.newRandomNumber(numFighters);
 						if(n != 0)
 							fleetString += n + "/TIEFighter:";
+						break;
 					case 1:
 						n = RandomNumber.newRandomNumber(numFighters);
 						if(n != 0)
 							fleetString += n + "/TIEBomber:";
+						break;
 					case 2:
 						n = RandomNumber.newRandomNumber(numFighters);
 						if(n != 0)
 							fleetString += n + "/TIEInterceptor";
+						break;
 				}
 			}
 		}
@@ -91,7 +97,7 @@ public class PlayerRandom implements IPlayer {
 	@Override
 	public String showShip() {
 		String shipString = ("");
-			shipString += ship.getName() + "\n";
+			shipString += ship.toString() + "\n";
 			shipString += ship.showFleet();
 		
 		return shipString;
