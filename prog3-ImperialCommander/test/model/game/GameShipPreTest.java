@@ -46,7 +46,7 @@ public class GameShipPreTest {
 		assertEquals (0,  gameShip.getLosses());
 		fleet = (List<Fighter>) gameShip.getFleetTest();
 		assertNotNull (fleet);
-		fail("Añade la instrucción que comprueba que GameShip es una clase derivada de Ship");
+		assertTrue((gameShip instanceof Ship));
 	}
 
 	/* Se comprueba que isFleetDestroyed devuelve true si no hay cazas en
