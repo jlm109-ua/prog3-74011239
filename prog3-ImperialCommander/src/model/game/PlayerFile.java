@@ -53,10 +53,12 @@ public class PlayerFile implements IPlayer {
 	@Override
 	public String showShip() {
 		String shipString = ("");
-		shipString += ship.getName() + "\n";
-		shipString += ship.showFleet();
+		shipString += ship.toString();
+		
+		if(ship.getFleetTest().size() != 0)
+			shipString += "\n" + ship.showFleet();
 	
-	return shipString;
+		return shipString;
 	}
 
 	@Override
@@ -69,11 +71,11 @@ public class PlayerFile implements IPlayer {
 		try {
 			String move = br.readLine();
 			
-			if(move.startsWith("exit") || move.startsWith("improve") || move.startsWith("patrol") || move.startsWith("launch")) {
+			if(move.startsWith("exit") || move.startsWith("improve ") || move.startsWith("patrol ") || move.startsWith("launch ")) {
 				if(move.startsWith("exit")) {
 					return false;
 				}
-				if(move.startsWith("improve")) {
+				if(move.startsWith("improve ")) {
 					String[] moveImprove = move.split(" ");
 					
 					if(moveImprove.length == 3) {
@@ -84,14 +86,14 @@ public class PlayerFile implements IPlayer {
 							try {
 								ship.improveFighter(id, qty, board);
 							}catch(WrongFighterIdException e){
-								System.out.println(e.getMessage());
+								System.out.println("ERROR: " + e.getMessage());
 							}
 						}else
 							System.out.println("ERROR: Quantity value too high.");
 					}else
 						System.out.println("ERROR: No matching moves found.");
 				}
-				if(move.startsWith("patrol")) {
+				if(move.startsWith("patrol ")) {
 					String[] movePatrol = move.split("[ ]");
 					
 					if(movePatrol.length == 2) {
@@ -104,7 +106,7 @@ public class PlayerFile implements IPlayer {
 					}else
 						System.out.println("ERROR: No matching moves found.");
 				}
-				if(move.startsWith("launch")) {
+				if(move.startsWith("launch ")) {
 					try {
 						String[] moveLaunch = move.split("[ ]");
 						
