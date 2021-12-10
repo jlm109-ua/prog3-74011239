@@ -186,7 +186,8 @@ public class Board {
 		}else{
 			for(Coordinate c : f.getPosition().getNeighborhood()) {
 				Fighter f2 = board.get(c);
-				
+				if(f.isDestroyed())
+					throw new RuntimeException();
 				if(f2 != null && !f.isDestroyed()) {
 					if(f2.getSide() != f.getSide()) {
 						try {

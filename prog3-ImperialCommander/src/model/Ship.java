@@ -86,7 +86,8 @@ public class Ship {
 		do {
 			for(int j = 0; j < Integer.parseInt(fdv[i]); j++) {
 				Fighter f = FighterFactory.createFighter(fdv[i+1],this);
-				fleet.add(f);
+				if(f != null)
+						fleet.add(f);
 			}
 			i++;i++;
 		} while(i<fdv.length);
