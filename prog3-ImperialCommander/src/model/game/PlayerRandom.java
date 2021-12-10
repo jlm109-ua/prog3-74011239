@@ -5,6 +5,9 @@ import model.exceptions.FighterAlreadyInBoardException;
 import model.exceptions.FighterNotInBoardException;
 import model.exceptions.OutOfBoundsException;
 import model.game.exceptions.WrongFighterIdException;
+
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import model.Coordinate;
@@ -118,7 +121,9 @@ public class PlayerRandom implements IPlayer {
 		if(option == 99) {
 			return false;
 		}else {
-			List<Integer> ids = ship.getFightersId("");
+			List<Integer> ids = ship.getFightersId("ship");
+			ids.addAll(ship.getFightersId("board"));
+			Collections.sort(ids);
 			pos = RandomNumber.newRandomNumber(ids.size());
 			int id = ids.get(pos);
 			
@@ -132,23 +137,23 @@ public class PlayerRandom implements IPlayer {
 					try {
 						ship.launch(id, c, board);
 					} catch (WrongFighterIdException e) {
-						e.getMessage();
+						System.out.print(e.getMessage());
 						throw new RuntimeException(e);
 					} catch (FighterAlreadyInBoardException e) {
-						e.getMessage();
+						System.out.print(e.getMessage());
 						throw new RuntimeException(e);
 					} catch (OutOfBoundsException e) {
-						e.getMessage();
+						System.out.print(e.getMessage());
 						throw new RuntimeException(e);
 					}
 				}else if(option >= 0 && option <= 24) {
 					try {
 						ship.patrol(id, board);
 					}catch(WrongFighterIdException e) {
-						e.getMessage();
+						System.out.print(e.getMessage());
 						throw new RuntimeException(e);
 					}catch(FighterNotInBoardException e) {
-						e.getMessage();
+						System.out.print(e.getMessage());
 						throw new RuntimeException(e);
 					}
 				}
