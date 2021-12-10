@@ -1,3 +1,6 @@
+/**
+ * @author Juan Llinares Mauri - 74011239E
+ */
 package model.game;
 
 import java.util.Objects;
@@ -21,7 +24,9 @@ public class Game {
 		try {
 			board = new GameBoard(BOARD_SIZE);
 			this.imperial = imperial;
+			imperial.setBoard(board);
 			this.rebel = rebel;
+			rebel.setBoard(board);
 		}catch(InvalidSizeException e) {
 			throw new RuntimeException();
 		}
@@ -42,13 +47,27 @@ public class Game {
 	public Side play() {
 		boolean endGame = false;
 		String whoWon = null;
+		int count = 0;
 		imperial.initFighters();
 		rebel.initFighters();
 		
 		do {
+			if(!endGame && count == 0) {
+				System.out.print("BEFORE IMPERIAL");
+				getGameInfo();
+			}
+			if(!endGame && count != 0) {
+				System.out.print("\nBEFORE IMPERIAL");
+				getGameInfo();
+			}
 			if(!endGame) {
-				System.out.println("BEFORE IMPERIAL");
-				board.toString();
+				System.out.print("\nIMPERIAL(" + board.numFighters(Side.IMPERIAL) + "):");
+				if(!imperial.nextPlay()) {
+					endGame = true;
+					whoWon = "REBEL";
+					break;
+				}
+				System.out.print("AFTER IMPERIAL, BEFORE REBEL");
 				getGameInfo();
 				if(imperial.isFleetDestroyed()) {
 					endGame = true;
@@ -59,24 +78,13 @@ public class Game {
 				}
 			}
 			if(!endGame) {
-				System.out.println("IMPERIAL(" + board.numFighters(Side.IMPERIAL) + "): AFTER IMPERIAL, BEFORE REBEL");
-				if(!imperial.nextPlay())
-					endGame = true;
-				board.toString();
-				getGameInfo();
-				if(imperial.isFleetDestroyed()) {
-					endGame = true;
-					whoWon = "REBEL";
-				}else if(rebel.isFleetDestroyed()) {
+				System.out.print("\nREBEL(" + board.numFighters(Side.REBEL) + "):");
+				if(!rebel.nextPlay()) {
 					endGame = true;
 					whoWon = "IMPERIAL";
+					break;
 				}
-			}
-			if(!endGame) {
-				System.out.println("REBEL(" + board.numFighters(Side.REBEL) + "): AFTER REBEL");
-				if(!rebel.nextPlay())
-					endGame = true;
-				board.toString();
+				System.out.print("AFTER REBEL");
 				getGameInfo();
 				imperial.purgeFleet();
 				rebel.purgeFleet();
@@ -88,12 +96,11 @@ public class Game {
 					whoWon = "IMPERIAL";
 				}
 			}
+			count++;
 		}while(!endGame);
 		
 		imperial.purgeFleet();
 		rebel.purgeFleet();
-		
-		System.out.println("And the winner is " + whoWon);
 		
 		if(whoWon.equals("IMPERIAL"))
 			return Side.IMPERIAL;
@@ -105,8 +112,10 @@ public class Game {
 	 * Muestra toda la información necesaria para cada turno.
 	 */
 	private void getGameInfo() {
-		board.toString();
+		System.out.println("\n" + board.toString() + "\n");
 		System.out.println(imperial.getGameShip().toString() + "\n" + imperial.getGameShip().showFleet());
-		System.out.println(rebel.getGameShip().toString() + "\n" + rebel.getGameShip().showFleet());
+		System.out.println(rebel.getGameShip().toString());
+		if(rebel.getGameShip().getFleetTest().size() != 0)
+			System.out.print(rebel.getGameShip().showFleet());
 	}
 }

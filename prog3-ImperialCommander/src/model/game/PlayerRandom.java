@@ -118,7 +118,7 @@ public class PlayerRandom implements IPlayer {
 		if(option == 99) {
 			return false;
 		}else {
-			List<Integer> ids = ship.getFightersId("board");
+			List<Integer> ids = ship.getFightersId("");
 			pos = RandomNumber.newRandomNumber(ids.size());
 			int id = ids.get(pos);
 			

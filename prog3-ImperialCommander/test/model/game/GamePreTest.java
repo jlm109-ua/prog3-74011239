@@ -1,3 +1,6 @@
+/**
+ * @author Juan Llinares Mauri - 74011239E
+ */
 package model.game;
 
 import static org.junit.Assert.*;
@@ -112,7 +115,18 @@ public class GamePreTest {
 		BufferedReader br = new BufferedReader(stringReader);
 		plfImperial = new PlayerFile(Side.IMPERIAL, br);
 		
-		fail("Termina el test");
+		String inputReb = "\n";
+		stringReader = new StringReader(inputReb);
+		br = new BufferedReader(stringReader);
+		plfRebel = new PlayerFile(Side.REBEL,br);
+		
+		game = new Game(plfImperial,plfRebel);
+		standardIO2Stream();
+		Side winner = game.play();
+		String sout = Stream2StandardIO();
+		assertEquals(Side.IMPERIAL,winner);
+		String solution = readSolutionFromFile("files/testPlayEmptyRebelShip.out");
+		compareLines(solution,sout,false);
 	}
 	
 	/* Game del MainP4min.
@@ -139,7 +153,19 @@ public class GamePreTest {
 	//TODO
 	@Test
 	public void testPlayMain2() {
-		fail("Realiza el test del MainP4");
+		/*String inputImp = "1/TIEBomber:1/TIEInterceptor\nlaunch 8 8\nlaunch 2 2";
+		stringReader = new StringReader(inputImp);
+		BufferedReader br = new BufferedReader(stringReader);
+		PlayerFile plimperial = new PlayerFile(Side.IMPERIAL,br);
+		String inputReb = "2/YWing:1/AWing\nlaunch 7 3\nimprove 5 96";
+		stringReader = new StringReader(inputReb);
+		br = new BufferedReader(stringReader);  
+		PlayerFile plrebel = new PlayerFile(Side.REBEL,br);	
+				
+		Game g = new Game(plimperial,plrebel);
+
+		Side winner = g.play();
+		*/fail("Realiza el test del MainP4");
 	}
 	
 	/*Test como MainP4min, IMPERIAL hace exit 
