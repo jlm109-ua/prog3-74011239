@@ -97,8 +97,10 @@ public class PlayerRandom implements IPlayer {
 	@Override
 	public String showShip() {
 		String shipString = ("");
-			shipString += ship.toString() + "\n";
-			shipString += ship.showFleet();
+		shipString += ship.toString();
+		
+		if(ship.getFleetTest().size() != 0)
+			shipString += "\n" + ship.showFleet();
 		
 		return shipString;
 	}

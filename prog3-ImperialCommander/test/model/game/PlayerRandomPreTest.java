@@ -79,7 +79,7 @@ public class PlayerRandomPreTest {
 		gs = playerRandom.getGameShip();
 		assertEquals(Side.REBEL,gs.getSide());
 		assertEquals("PlayerRandom REBEL Ship", gs.getName());
-		fail("Comprueba que el objeto playerRandom es una instancia de IPlayer");
+		assertTrue(playerRandom instanceof IPlayer);
 	}
 
 
@@ -101,7 +101,10 @@ public class PlayerRandomPreTest {
 	//TODO
 	@Test
 	public void testInitFightersImperial() {
-		fail("Realiza el test");
+		PlayerRandom prI = new PlayerRandom(Side.IMPERIAL,500);
+		prI.initFighters();
+		assertEquals(920,prI.getGameShip().getFleetTest().size());
+		assertEquals(kIMPERIALGAMESHIP,prI.getGameShip().toString());
 	}
 
 	/* Para un PlayerRandom sin iniciar (sin cazas en la nave) se comprueba que isFleetDestroyed es true
@@ -139,28 +142,10 @@ public class PlayerRandomPreTest {
 	public void testPurgeFleet() {
 		playerRandom.initFighters();
 		assertEquals(20,playerRandom.getGameShip().getFleetTest().size());
-		List<Integer> ids = new ArrayList<Integer>();
-		ids = playerRandom.getGameShip().getFightersId("ship");
-		GameShip gs = new GameShip("Not today",Side.REBEL);
-		gs.addFighters("1:XWing");
-		gs.getFleetTest().get(0).addAttack(99999999);
-		gs.getFleetTest().get(0).addVelocity(999999999);
-		gs.getFleetTest().get(0).addShield(99999999);
-		List<Integer> bossId = gs.getFightersId("ship");
-		try {
-			gs.launch(bossId.get(0), new Coordinate(6,9), gb);
-		} catch (WrongFighterIdException | FighterAlreadyInBoardException | OutOfBoundsException
-				| RuntimeException e1) {
-			System.out.println(e1.getMessage());
-		}
-		try {
-			for(int id : ids)
-				playerRandom.getGameShip().launch(id, new Coordinate(6,9), gb);
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
+		for(Fighter f : playerRandom.getGameShip().getFleetTest())
+			f.addShield(-99999);
 		playerRandom.purgeFleet();
-		assertEquals(playerRandom.showShip(),(""));
+		assertEquals(0,playerRandom.getGameShip().getFleetTest().size());
 	}
 
 	/* Se inicia playerRandom con cazas en su nave. Se le añade un tablero. 
@@ -206,7 +191,15 @@ public class PlayerRandomPreTest {
 	@Test
 	public void testRequireNonNull()  {
 		
-		fail("Realiza el test");
+		try {
+			PlayerRandom pr = new PlayerRandom(null,2);
+			fail("ERROR: Algo no funciona.");
+		} catch (NullPointerException e) {}
+		try {
+			PlayerRandom pr = new PlayerRandom(Side.IMPERIAL,2);
+			pr.setBoard(null);
+			fail("ERROR: Algo no funciona.");
+		} catch (NullPointerException e) {}
 	}
 
 	/***************************
