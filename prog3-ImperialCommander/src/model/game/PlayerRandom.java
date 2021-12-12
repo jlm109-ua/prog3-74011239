@@ -121,13 +121,11 @@ public class PlayerRandom implements IPlayer {
 		if(option == 99) {
 			return false;
 		}else {
-			List<Integer> ids = ship.getFightersId("ship");
-			ids.addAll(ship.getFightersId("board"));
-			Collections.sort(ids);
-			pos = RandomNumber.newRandomNumber(ids.size());
-			int id = ids.get(pos);
+			List<Integer> ids = ship.getFightersId("");
 			
-			if(!ids.equals(null)) {
+			if(ids.size() != 0) {
+				pos = RandomNumber.newRandomNumber(ids.size());
+				int id = ids.get(pos);
 				if(option >= 85 && option <= 98) {
 					try {
 						ship.improveFighter(id,option,board);
