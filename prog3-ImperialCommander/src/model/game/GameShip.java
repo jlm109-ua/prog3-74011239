@@ -103,10 +103,7 @@ public class GameShip extends Ship{
 		Objects.requireNonNull(b);
 		Fighter f = getFighter(id);
 		
-		if(!f.isDestroyed() && f.getPosition() == null)
-			b.launch(c, f);
-		else
-			throw new WrongFighterIdException(f.getId());
+		b.launch(c, f);
 	}
 	 /**
 	  * El Fighter con el id id patrulla por el tablero.
@@ -121,8 +118,7 @@ public class GameShip extends Ship{
 		Objects.requireNonNull(b);
 		Fighter f = getFighter(id);
 		
-		if(f.getPosition() != null)
-			b.patrol(f);
+		b.patrol(f);
 	}
 	
 	/**

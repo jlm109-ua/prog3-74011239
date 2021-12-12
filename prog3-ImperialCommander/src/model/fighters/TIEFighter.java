@@ -40,4 +40,9 @@ public class TIEFighter extends Fighter {
 	public char getSymbol() {
 		return 'f';
 	}
+
+	@Override
+	public int compareTo(Integer o) {
+		return 0;
+	}
 }

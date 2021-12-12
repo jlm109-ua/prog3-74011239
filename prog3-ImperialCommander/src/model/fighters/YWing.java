@@ -52,4 +52,9 @@ public class YWing extends Fighter {
 		
 		return dmg;
 	}
+
+	@Override
+	public int compareTo(Integer o) {
+		return 0;
+	}
 }
