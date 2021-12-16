@@ -87,7 +87,7 @@ public class PlayerRandom implements IPlayer {
 				}
 			}
 		}
-		if(!fleetString.equals(null)) {
+		if(!fleetString.equals("")) {
 			ship.addFighters(fleetString);
 		}
 	}
@@ -120,46 +120,56 @@ public class PlayerRandom implements IPlayer {
 		
 		if(option == 99) {
 			return false;
-		}else {
-			List<Integer> ids = ship.getFightersId("");
-			
-			if(ids.size() != 0) {
-				pos = RandomNumber.newRandomNumber(ids.size());
-				int id = ids.get(pos);
-				if(option >= 85 && option <= 98) {
-					try {
+		}else {	
+			if(option >= 85 && option <= 98) {
+				try {
+					List<Integer> ids = ship.getFightersId("");
+					if(ids.size() != 0) {
+						pos = RandomNumber.newRandomNumber(ids.size());
+						int id = ids.get(pos);
 						ship.improveFighter(id,option,board);
-					} catch (WrongFighterIdException e) {}
-				}else if(option >= 25 && option <= 84) {
-					Coordinate c = new Coordinate(RandomNumber.newRandomNumber(board.getSize()),RandomNumber.newRandomNumber(board.getSize()));
-					try {
+					}else
+						System.out.println("ERROR: No Fighters found.");
+				} catch (WrongFighterIdException e) {}
+			}else if(option >= 25 && option <= 84) {
+				try {
+					List<Integer> ids = ship.getFightersId("ship");
+					if(ids.size() != 0) {
+						pos = RandomNumber.newRandomNumber(ids.size());
+						int id = ids.get(pos);
+						Coordinate c = new Coordinate(RandomNumber.newRandomNumber(board.getSize()),RandomNumber.newRandomNumber(board.getSize()));
 						ship.launch(id, c, board);
-					} catch (WrongFighterIdException e) {
-						System.out.print(e.getMessage());
-						throw new RuntimeException(e);
-					} catch (FighterAlreadyInBoardException e) {
-						System.out.print(e.getMessage());
-						throw new RuntimeException(e);
-					} catch (OutOfBoundsException e) {
-						System.out.print(e.getMessage());
-						throw new RuntimeException(e);
-					}
-				}else if(option >= 0 && option <= 24) {
-					try {
-						ship.patrol(id, board);
-					}catch(WrongFighterIdException e) {
-						System.out.print(e.getMessage());
-						throw new RuntimeException(e);
-					}catch(FighterNotInBoardException e) {
-						System.out.print(e.getMessage());
-						throw new RuntimeException(e);
-					}
+					}else
+						System.out.println("ERROR: No Fighters found.");
+				} catch (WrongFighterIdException e) {
+					System.out.print(e.getMessage());
+					throw new RuntimeException(e);
+				} catch (FighterAlreadyInBoardException e) {
+					System.out.print(e.getMessage());
+					throw new RuntimeException(e);
+				} catch (OutOfBoundsException e) {
+					System.out.print(e.getMessage());
+					throw new RuntimeException(e);
 				}
-			}else {
-				System.err.println("ERROR: No Fighters found.");
+			}else if(option >= 0 && option <= 24) {
+				try {
+					List<Integer> ids = ship.getFightersId("board");
+					if(ids.size() != 0) {
+						pos = RandomNumber.newRandomNumber(ids.size());
+						int id = ids.get(pos);
+						ship.patrol(id, board);
+					}else
+						System.out.println("ERROR: No Fighters found.");
+				}catch(WrongFighterIdException e) {
+					System.out.print(e.getMessage());
+					throw new RuntimeException(e);
+				}catch(FighterNotInBoardException e) {
+					System.out.print(e.getMessage());
+					throw new RuntimeException(e);
+				}
 			}
 		}
-		
+	
 		return true;
 	}
 }
