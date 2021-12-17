@@ -143,8 +143,8 @@ public class Board {
 							throw new RuntimeException();
 						}
 					if(combat == 1) {
-						f.getMotherShip().updateResults(combat);
-						f2.getMotherShip().updateResults(-combat);
+						f.getMotherShip().updateResults(combat,f2);
+						f2.getMotherShip().updateResults(-combat,f2); //???
 						try {
 							removeFighter(f2);
 						}catch(FighterNotInBoardException e) {
@@ -155,8 +155,8 @@ public class Board {
 						f.setPosition(c);
 						return combat;
 					}else if(combat == -1){
-						f.getMotherShip().updateResults(combat);
-						f2.getMotherShip().updateResults(-combat);
+						f.getMotherShip().updateResults(combat,f);
+						f2.getMotherShip().updateResults(-combat,f); //?????
 						
 						return combat;
 					}
@@ -195,8 +195,8 @@ public class Board {
 							throw new RuntimeException();
 						}
 						if(combat == 1) {
-							f.getMotherShip().updateResults(combat);
-							f2.getMotherShip().updateResults(-combat);
+							f.getMotherShip().updateResults(combat,f2);
+							f2.getMotherShip().updateResults(-combat,f2); //???????
 							try {
 								removeFighter(f2);
 							}catch(FighterNotInBoardException e) {
@@ -204,8 +204,8 @@ public class Board {
 							}
 							f2.setPosition(null);
 						}else {
-							f.getMotherShip().updateResults(combat);
-							f2.getMotherShip().updateResults(-combat);
+							f.getMotherShip().updateResults(combat,f2);
+							f2.getMotherShip().updateResults(-combat,f2); //?????
 							try {
 								removeFighter(f);
 							}catch(FighterNotInBoardException e) {
