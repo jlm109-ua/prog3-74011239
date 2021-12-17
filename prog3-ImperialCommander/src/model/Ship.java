@@ -97,7 +97,7 @@ public class Ship {
 	 * Actualiza las batallas ganadas y las perdidas a partir de una batalla entre Fighters.
 	 * @param r Parametro para determinar quien gano la batalla.
 	 */
-	public void updateResults(int r) {
+	public void updateResults(int r,Fighter f) {
 			if(r == 1)
 				this.wins++;
 			if(r == -1)
