@@ -6,6 +6,8 @@ import java.util.Objects;
 import model.Coordinate;
 import model.Side;
 import model.game.exceptions.WrongFighterIdException;
+import model.game.score.DestroyedFightersScore;
+import model.game.score.WinsScore;
 
 public class PlayerFile implements IPlayer {
 	private BufferedReader br;
@@ -141,5 +143,15 @@ public class PlayerFile implements IPlayer {
 		}catch(Exception e) {
 			throw new RuntimeException();
 		}
+	}
+
+	@Override
+	public WinsScore getWinsScore() {
+		return null;
+	}
+
+	@Override
+	public DestroyedFightersScore getDestroyedFightersScore() {
+		return null;
 	}
 }

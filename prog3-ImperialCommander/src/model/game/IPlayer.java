@@ -3,6 +3,9 @@
  */
 package model.game;
 
+import model.game.score.DestroyedFightersScore;
+import model.game.score.WinsScore;
+
 public interface IPlayer {
 	/**
 	 * Asigna el tablero pasado como parametro.
@@ -14,6 +17,16 @@ public interface IPlayer {
 	 * @return GameShip.
 	 */
 	public GameShip getGameShip();
+	/**
+	 * Devuelve las victorias de la nave.
+	 * @return WinsScore
+	 */
+	public WinsScore getWinsScore();
+	/**
+	 * Devuelve la puntuación de los Fighter destruidos por la nave.
+	 * @return DestroyedFightersScore
+	 */
+	public DestroyedFightersScore getDestroyedFightersScore();
 	/**
 	 * Obtiene una cadena de Fighter y los inicializa.
 	 */

@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-
 import model.Board;
 import model.Coordinate;
 import model.Fighter;
@@ -17,8 +16,12 @@ import model.exceptions.FighterAlreadyInBoardException;
 import model.exceptions.FighterNotInBoardException;
 import model.exceptions.OutOfBoundsException;
 import model.game.exceptions.WrongFighterIdException;
+import model.game.score.DestroyedFightersScore;
+import model.game.score.WinsScore;
 
 public class GameShip extends Ship{
+	private WinsScore<Integer> winsScore;
+	private DestroyedFightersScore<Fighter> destroyedFightersScore;
 	/**
 	 * Constructor de GameShip
 	 * @param name Nombre de la nave.
@@ -88,6 +91,18 @@ public class GameShip extends Ship{
 	}
 	
 	/**
+	 * Getter de winsScore.
+	 * @return WinsScore
+	 */
+	public WinsScore<Integer> getWinsScore() {
+		return winsScore;
+	}
+	
+	public DestroyedFightersScore<Fighter> getDestroyedFightersScore() {
+		return destroyedFightersScore;
+	}
+	
+	/**
 	 * Lanza el Fighter con id id al tablero.
 	 * @param id id del Fighter a lanzar.
 	 * @param c Coordenada del tablero para el Fighter.
@@ -154,6 +169,15 @@ public class GameShip extends Ship{
 			} catch (FighterNotInBoardException e) {
 				System.out.println(e.getMessage());
 			}
+		}
+	}
+	
+	@Override
+	public void updateResults(int r,Fighter f){
+		super.updateResults(r, f);
+		if(r == 1) {
+			winsScore.score(r);
+			destroyedFightersScore.score(f);
 		}
 	}
 }

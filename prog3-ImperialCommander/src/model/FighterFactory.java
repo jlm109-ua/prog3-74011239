@@ -5,8 +5,6 @@ package model;
 
 import java.util.Objects;
 
-import model.fighters.*;
-
 public class FighterFactory {
 	/**
 	 * Crea subclases de Fighter.
@@ -17,13 +15,18 @@ public class FighterFactory {
 	public static Fighter createFighter(String type,Ship mother) {
 		Objects.requireNonNull(type);
 		Objects.requireNonNull(mother);
-		switch(type) {
+		/*switch(type) {
 			case "AWing" : return new AWing(mother);
 			case "YWing": return new YWing(mother);
 			case "XWing": return new XWing(mother);
 			case "TIEBomber": return new TIEBomber(mother);
 			case "TIEFighter": return new TIEFighter(mother);
-			case "TIEInterceptor": return new TIEInterceptor(mother);
+			case "TIEInterceptor": return new TIEInterceptor(mother);*/
+		try {
+			Class<?> newFighter = Class.forName("model.fighters." + type);
+			Fighter f = (Fighter) newFighter.newInstance(); //?
+			return f;
+		} catch (ClassNotFoundException | SecurityException | InstantiationException | IllegalAccessException e) {
 		}
 		
 		return null;
