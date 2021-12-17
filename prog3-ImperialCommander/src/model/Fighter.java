@@ -113,6 +113,9 @@ public abstract class Fighter implements Comparable<Integer>{
 		return motherShip.getSide(); 
 	}
 	
+	public int getValue() {
+		return attack + velocity;
+	}
 	/**
 	 * Getter de position.
 	 * @return position
