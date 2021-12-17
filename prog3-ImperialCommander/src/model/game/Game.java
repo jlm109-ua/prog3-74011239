@@ -53,11 +53,11 @@ public class Game {
 		
 		do {
 			if(!endGame && count == 0) {
-				System.out.print("BEFORE IMPERIAL");
+				System.out.print(" BEFORE IMPERIAL");
 				getGameInfo();
 			}
 			if(!endGame && count != 0) {
-				System.out.print("\nBEFORE IMPERIAL");
+				System.out.print("\n BEFORE IMPERIAL");
 				getGameInfo();
 			}
 			if(!endGame) {
@@ -67,7 +67,7 @@ public class Game {
 					whoWon = "REBEL";
 					break;
 				}
-				System.out.print("AFTER IMPERIAL, BEFORE REBEL");
+				System.out.print(" AFTER IMPERIAL, BEFORE REBEL");
 				getGameInfo();
 				if(imperial.isFleetDestroyed()) {
 					endGame = true;
@@ -84,7 +84,7 @@ public class Game {
 					whoWon = "IMPERIAL";
 					break;
 				}
-				System.out.print("AFTER REBEL");
+				System.out.print(" AFTER REBEL");
 				getGameInfo();
 				imperial.purgeFleet();
 				rebel.purgeFleet();
