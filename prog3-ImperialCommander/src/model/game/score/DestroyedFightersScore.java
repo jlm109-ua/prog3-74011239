@@ -3,7 +3,7 @@ package model.game.score;
 import model.Fighter;
 import model.Side;
 
-public class DestroyedFightersScore<Fighter> extends Score{
+public class DestroyedFightersScore extends Score<Fighter>{
 	/**
 	 * Constructor de DestroyedFightersScore
 	 * @param side

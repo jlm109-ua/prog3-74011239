@@ -2,7 +2,7 @@ package model.game.score;
 
 import model.Side;
 
-public class WinsScore<Integer> extends Score{
+public class WinsScore extends Score<Integer>{
 	/**
 	 * Constructor de WinsScore.
 	 * @param side
