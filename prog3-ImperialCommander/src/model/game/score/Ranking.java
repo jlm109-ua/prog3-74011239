@@ -42,6 +42,13 @@ public class Ranking<ScoreType extends Score<?>> {
 	 * Devuelve una cadena con las puntuaciones de los jugadores.
 	 */
 	public String toString() {
-		return "| " +  + " | " + scoreSet.last() + " |"; //???????????
+		String scoreToString = "";
+		
+		for(Score<?> s : scoreSet) {
+			scoreToString += "| " + s.toString() + " ";
+		}
+		scoreToString += "|";
+		
+		return scoreToString;
 	}
 }
