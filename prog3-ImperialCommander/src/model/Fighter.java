@@ -7,7 +7,7 @@ package model;
 import java.util.Objects;
 import model.exceptions.*;
 
-public abstract class Fighter implements Comparable<Integer>{
+public abstract class Fighter{
 	/**
 	 * Declaramos todos los atributos privados.
 	 * @author Juan Llinares Mauri - 74011239E

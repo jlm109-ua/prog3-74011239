@@ -20,8 +20,8 @@ import model.game.score.DestroyedFightersScore;
 import model.game.score.WinsScore;
 
 public class GameShip extends Ship{
-	private WinsScore<Integer> winsScore;
-	private DestroyedFightersScore<Fighter> destroyedFightersScore;
+	private WinsScore winsScore;
+	private DestroyedFightersScore destroyedFightersScore;
 	/**
 	 * Constructor de GameShip
 	 * @param name Nombre de la nave.
@@ -94,11 +94,11 @@ public class GameShip extends Ship{
 	 * Getter de winsScore.
 	 * @return WinsScore
 	 */
-	public WinsScore<Integer> getWinsScore() {
+	public WinsScore getWinsScore() {
 		return winsScore;
 	}
 	
-	public DestroyedFightersScore<Fighter> getDestroyedFightersScore() {
+	public DestroyedFightersScore getDestroyedFightersScore() {
 		return destroyedFightersScore;
 	}
 	

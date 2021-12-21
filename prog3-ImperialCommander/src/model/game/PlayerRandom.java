@@ -7,13 +7,9 @@ import model.exceptions.OutOfBoundsException;
 import model.game.exceptions.WrongFighterIdException;
 import model.game.score.DestroyedFightersScore;
 import model.game.score.WinsScore;
-
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import model.Coordinate;
-import model.Fighter;
 import model.RandomNumber;
 
 public class PlayerRandom implements IPlayer {
@@ -177,12 +173,12 @@ public class PlayerRandom implements IPlayer {
 	}
 
 	@Override
-	public WinsScore<Integer> getWinsScore() {
+	public WinsScore getWinsScore() {
 		return ship.getWinsScore();
 	}
 
 	@Override
-	public DestroyedFightersScore<Fighter> getDestroyedFightersScore() {
+	public DestroyedFightersScore getDestroyedFightersScore() {
 		return ship.getDestroyedFightersScore();
 	}
 }

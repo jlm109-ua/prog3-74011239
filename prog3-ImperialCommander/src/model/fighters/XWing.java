@@ -39,9 +39,4 @@ public class XWing extends Fighter {
 	public char getSymbol() {
 		return 'X';
 	}
-
-	@Override
-	public int compareTo(Integer o) {
-		return 0;
-	}
 }

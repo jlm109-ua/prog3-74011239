@@ -6,12 +6,17 @@ package model.game;
 import java.util.Objects;
 import model.Side;
 import model.exceptions.InvalidSizeException;
+import model.game.score.DestroyedFightersScore;
+import model.game.score.Ranking;
+import model.game.score.WinsScore;
 
 public class Game {
 	private final int BOARD_SIZE = 10;
 	private GameBoard board;
 	private IPlayer imperial;
 	private IPlayer rebel;
+	private Ranking<WinsScore> rw = new Ranking<>();
+	private Ranking<DestroyedFightersScore> rd = new Ranking<>();
 	
 	/**
 	 * Constructor de Game.
@@ -50,14 +55,18 @@ public class Game {
 		int count = 0;
 		imperial.initFighters();
 		rebel.initFighters();
+		setRankings();
 		
 		do {
 			if(!endGame && count == 0) {
+				printRankings();
 				System.out.print(" BEFORE IMPERIAL");
 				getGameInfo();
 			}
 			if(!endGame && count != 0) {
-				System.out.print("\n BEFORE IMPERIAL");
+				System.out.print("\n");
+				printRankings();
+				System.out.print("BEFORE IMPERIAL");
 				getGameInfo();
 			}
 			if(!endGame) {
@@ -101,7 +110,8 @@ public class Game {
 		
 		imperial.purgeFleet();
 		rebel.purgeFleet();
-		
+		System.out.print("\n");
+		printRankings();
 		if(whoWon.equals("IMPERIAL"))
 			return Side.IMPERIAL;
 		else
@@ -117,5 +127,22 @@ public class Game {
 		System.out.println(rebel.getGameShip().toString());
 		if(rebel.getGameShip().getFleetTest().size() != 0)
 			System.out.print(rebel.getGameShip().showFleet());
+	}
+	
+	private void setRankings() {
+		WinsScore wsi = new WinsScore(Side.IMPERIAL);
+		WinsScore wsr = new WinsScore(Side.REBEL);
+		DestroyedFightersScore dfsi = new DestroyedFightersScore(Side.IMPERIAL);
+		DestroyedFightersScore dfsr = new DestroyedFightersScore(Side.REBEL);
+		
+		rw.addScore(wsi);
+		rw.addScore(wsr);
+		rd.addScore(dfsi);
+		rd.addScore(dfsr);
+	}
+	
+	private void printRankings() {
+		System.out.println("RANKING WINS: " + rw.toString());
+		System.out.println("RANKING DESTROYED: " + rd.toString());
 	}
 }
