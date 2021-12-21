@@ -3,6 +3,8 @@
  */
 package model;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Objects;
 
 public class FighterFactory {
@@ -24,9 +26,9 @@ public class FighterFactory {
 			case "TIEInterceptor": return new TIEInterceptor(mother);*/
 		try {
 			Class<?> newFighter = Class.forName("model.fighters." + type);
-			Fighter f = (Fighter) newFighter.newInstance(); //?
+			Fighter f = (Fighter) newFighter.newInstance();
 			return f;
-		} catch (ClassNotFoundException | SecurityException | InstantiationException | IllegalAccessException e) {
+		} catch (ClassNotFoundException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException e) {
 		}
 		
 		return null;
