@@ -12,23 +12,17 @@ public class FighterFactory {
 	 * Crea subclases de Fighter.
 	 * @param type Tipo de Fighter
 	 * @param mother Ship a la que pertenece el Fighter
-	 * @return A: AWing, Y: YWing, X: XWing, b: TIEBomber, f: TIEFighter, i: TIEInterceptor, null: cualquier otro caso.
+	 * @return f: Fighter creado a partir del parametro type, null: Si no encuentra Fighter con nombre de type o ha ocurrido algun otro error en la creacion del Fighter.
 	 */
 	public static Fighter createFighter(String type,Ship mother) {
 		Objects.requireNonNull(type);
 		Objects.requireNonNull(mother);
-		/*switch(type) {
-			case "AWing" : return new AWing(mother);
-			case "YWing": return new YWing(mother);
-			case "XWing": return new XWing(mother);
-			case "TIEBomber": return new TIEBomber(mother);
-			case "TIEFighter": return new TIEFighter(mother);
-			case "TIEInterceptor": return new TIEInterceptor(mother);*/
 		try {
 			Class<?> newFighter = Class.forName("model.fighters." + type);
-			Fighter f = (Fighter) newFighter.newInstance();
+			Constructor c = newFighter.getDeclaredConstructor(Ship.class);
+			Fighter f = (Fighter) c.newInstance(mother);
 			return f;
-		} catch (ClassNotFoundException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException e) {
+		} catch (ClassNotFoundException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException e) {
 		}
 		
 		return null;
