@@ -32,7 +32,7 @@ public class Ranking<ScoreType extends Score<?>> {
 	
 	/**
 	 * Devuelve el primer objeto del conjunto scoreSet. Si el conjunto esta vacio lanzara una RuntimeException.
-	 * @return Primer objeto de scoreSet
+	 * @return Score
 	 */
 	public ScoreType getWinner() {
 		if(!scoreSet.isEmpty())
