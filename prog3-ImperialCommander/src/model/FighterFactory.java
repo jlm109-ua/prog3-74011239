@@ -22,7 +22,7 @@ public class FighterFactory {
 			Constructor c = newFighter.getDeclaredConstructor(Ship.class);
 			Fighter f = (Fighter) c.newInstance(mother);
 			return f;
-		} catch (ClassNotFoundException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException e) {
+		} catch (NoClassDefFoundError | ClassNotFoundException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException e) {
 		}
 		
 		return null;
