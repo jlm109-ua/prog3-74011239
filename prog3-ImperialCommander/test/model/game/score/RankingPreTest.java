@@ -75,8 +75,20 @@ public class RankingPreTest {
 		}
 		destroyedRanking.addScore(destroyedScore);
 		winsRanking.addScore(winsScore);
-		fail ("Continúa con el test ahora para Rebel y haz la comprobación");
 		
+		winsScore = new WinsScore(Side.REBEL);
+		destroyedScore = new DestroyedFightersScore(Side.REBEL);
+
+		destroyedRanking.addScore(destroyedScore);
+		winsRanking.addScore(winsScore);
+		compareLines(SRANKING2, rankingsToString());
+				
+		for (int i=0; i<10; i++) {
+				winsScore.score(1);
+				destroyedScore.score(FighterFactory.createFighter(kIMPERIAL_FIGHTERS[i%3], imperialShip));
+		}
+		destroyedRanking.addScore(destroyedScore);
+		winsRanking.addScore(winsScore);		
 	}
 	
 	/* GetWinner debe lanzar RuntimeException cuando el ranking está vacío.
@@ -108,7 +120,17 @@ public class RankingPreTest {
 		destroyedRanking.addScore(destroyedScore);
 		winsRanking.addScore(winsScore);
 		
-		fail("Realiza algo parecido para REBEL y luego haz las comprobaciones finales con getWinner");
+		WinsScore winsScoreR = new WinsScore(Side.REBEL);
+		DestroyedFightersScore destroyedScoreR = new DestroyedFightersScore(Side.REBEL);
+		
+		winsScoreR.score(1);
+		destroyedScoreR.score(FighterFactory.createFighter("AWing", rebelShip));
+		
+		winsRanking.addScore(winsScoreR);
+		destroyedRanking.addScore(destroyedScoreR);
+		
+		assertEquals(winsScore,winsRanking.getWinner());
+		assertEquals(destroyedScore,destroyedRanking.getWinner());
 	}
 
 	
