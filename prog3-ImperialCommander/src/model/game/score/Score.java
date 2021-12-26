@@ -29,14 +29,16 @@ public abstract class Score<T> implements Comparable<Score<T>>{
 	/**
 	 * Compara dos Score y devuelve 1 o -1 si el valor del Score pasado como parámetro es menor o mayor, respectivamente.
 	 * Si resultan ser iguales acude al compareTo de los side para detereminar si devolver 1 o -1 (IMPERIAL > REBEL). 
+	 * @param other Score<T>
+	 * @return 1: this > other, -1: other > this.
 	 */
 	public int compareTo(Score<T> other) {
 		if(this.score == other.score)
 			return side.compareTo(other.side);
 		else if(this.score > other.score)
-			return 1;
-		else
 			return -1;
+		else
+			return 1;
 	}
 	
 	/**

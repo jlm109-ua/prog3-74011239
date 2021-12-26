@@ -21,7 +21,7 @@ public class DestroyedFightersScore extends Score<Fighter>{
 	 */
 	@Override
 	public void score(Fighter f) {
-		if(!f.equals(null)) {
+		if(f != null) {
 			score += f.getValue();
 		}
 	}

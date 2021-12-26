@@ -15,13 +15,15 @@ public class WinsScore extends Score<Integer>{
 	}
 	
 	/**
-	 * Augmenta el atributo score de la superclase.
+	 * Aumenta el atributo score de la superclase.
 	 * @param w
 	 */
 	@Override
 	public void score(Integer w) {
-		if(w.equals(1)) {
-			score += 1;
+		if(w != null) {
+			if(w.equals(1)) {
+				score += 1;
+			}
 		}
 	}
 }

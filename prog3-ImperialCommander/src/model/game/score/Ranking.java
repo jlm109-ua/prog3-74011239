@@ -20,6 +20,7 @@ public class Ranking<ScoreType extends Score<?>> {
 	  */
 	public void addScore(ScoreType st) {
 		scoreSet.add(st);
+		
 	}
 	
 	/**
