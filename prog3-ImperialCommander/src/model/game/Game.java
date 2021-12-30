@@ -55,12 +55,19 @@ public class Game {
 		int count = 0;
 		imperial.initFighters();
 		rebel.initFighters();
-		setRankings();
+		WinsScore wsi = new WinsScore(Side.IMPERIAL);
+		WinsScore wsr = new WinsScore(Side.REBEL);
+		DestroyedFightersScore dfsi = new DestroyedFightersScore(Side.IMPERIAL);
+		DestroyedFightersScore dfsr = new DestroyedFightersScore(Side.REBEL);
+		rw.addScore(wsi);
+		rw.addScore(wsr);
+		rd.addScore(dfsi);
+		rd.addScore(dfsr);
 		
 		do {
 			if(!endGame && count == 0) {
 				printRankings();
-				System.out.print(" BEFORE IMPERIAL");
+				System.out.print("BEFORE IMPERIAL");
 				getGameInfo();
 			}
 			if(!endGame && count != 0) {
@@ -76,7 +83,7 @@ public class Game {
 					whoWon = "REBEL";
 					break;
 				}
-				System.out.print(" AFTER IMPERIAL, BEFORE REBEL");
+				System.out.print("AFTER IMPERIAL, BEFORE REBEL");
 				getGameInfo();
 				if(imperial.isFleetDestroyed()) {
 					endGame = true;
@@ -93,7 +100,7 @@ public class Game {
 					whoWon = "IMPERIAL";
 					break;
 				}
-				System.out.print(" AFTER REBEL");
+				System.out.print("AFTER REBEL");
 				getGameInfo();
 				imperial.purgeFleet();
 				rebel.purgeFleet();
@@ -119,7 +126,7 @@ public class Game {
 	}
 	
 	/**
-	 * Muestra toda la información necesaria para cada turno.
+	 * Muestra toda la informacion necesaria para cada turno.
 	 */
 	private void getGameInfo() {
 		System.out.println("\n" + board.toString() + "\n");
@@ -127,18 +134,6 @@ public class Game {
 		System.out.println(rebel.getGameShip().toString());
 		if(rebel.getGameShip().getFleetTest().size() != 0)
 			System.out.print(rebel.getGameShip().showFleet());
-	}
-	
-	private void setRankings() {
-		WinsScore wsi = new WinsScore(Side.IMPERIAL);
-		WinsScore wsr = new WinsScore(Side.REBEL);
-		DestroyedFightersScore dfsi = new DestroyedFightersScore(Side.IMPERIAL);
-		DestroyedFightersScore dfsr = new DestroyedFightersScore(Side.REBEL);
-		
-		rw.addScore(wsi);
-		rw.addScore(wsr);
-		rd.addScore(dfsi);
-		rd.addScore(dfsr);
 	}
 	
 	private void printRankings() {
