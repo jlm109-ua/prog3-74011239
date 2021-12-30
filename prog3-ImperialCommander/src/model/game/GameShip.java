@@ -29,6 +29,8 @@ public class GameShip extends Ship{
 	 */
 	public GameShip(String name,Side side) {
 		super(name,side);
+		winsScore = new WinsScore(side);
+		destroyedFightersScore = new DestroyedFightersScore(side);
 	}
 	
 	/**

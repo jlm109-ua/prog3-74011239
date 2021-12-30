@@ -49,7 +49,7 @@ public class Ranking<ScoreType extends Score<?>> {
 		String scoreToString = "";
 		
 		for(Score<?> s : scoreSet) {
-			scoreToString += "| " + s.toString() + " ";
+			scoreToString += "|" + s.toString();
 		}
 		scoreToString += "|";
 		
