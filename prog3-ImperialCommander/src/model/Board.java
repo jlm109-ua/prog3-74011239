@@ -70,6 +70,7 @@ public class Board {
 			if(f2 != null) {
 				if(f2.equals(f)) {
 					f2 = board.remove(f.getPosition());
+					f.setPosition(null);
 				}else
 					throw new FighterNotInBoardException(f);
 			}else
