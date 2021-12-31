@@ -137,6 +137,10 @@ public class Game {
 	}
 	
 	private void printRankings() {
+		rw.addScore(imperial.getGameShip().getWinsScore());
+		rw.addScore(rebel.getGameShip().getWinsScore());
+		rd.addScore(imperial.getGameShip().getDestroyedFightersScore());
+		rd.addScore(rebel.getGameShip().getDestroyedFightersScore());
 		System.out.println("RANKING WINS: " + rw.toString());
 		System.out.println("RANKING DESTROYED: " + rd.toString());
 	}
