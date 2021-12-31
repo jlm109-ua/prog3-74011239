@@ -47,7 +47,7 @@ public interface IPlayer {
 	public void purgeFleet();
 	/**
 	 * Realiza la siguiente jugada del jugador.
-	 * @return 
+	 * @return false: Si el jugador abandona el juego. true: Si sigue jugando
 	 */
 	public boolean nextPlay();
 }
