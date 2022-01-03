@@ -230,9 +230,9 @@ public abstract class Fighter{
 				int threshold = 100*getVelocity()/(getVelocity()+enemy.getVelocity());
 				
 				if(threshold <= n) {
-					enemy.addShield(-getDamage(n,this));
+					enemy.addShield(-getDamage(n,enemy));
 				}else {
-					addShield(-enemy.getDamage(100-n,enemy));
+					addShield(-enemy.getDamage(100-n,this));
 				}
 			}while(isDestroyed() == false && enemy.isDestroyed() == false);
 			
