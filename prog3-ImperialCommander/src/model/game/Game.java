@@ -55,14 +55,6 @@ public class Game {
 		int count = 0;
 		imperial.initFighters();
 		rebel.initFighters();
-		WinsScore wsi = new WinsScore(Side.IMPERIAL);
-		WinsScore wsr = new WinsScore(Side.REBEL);
-		DestroyedFightersScore dfsi = new DestroyedFightersScore(Side.IMPERIAL);
-		DestroyedFightersScore dfsr = new DestroyedFightersScore(Side.REBEL);
-		rw.addScore(wsi);
-		rw.addScore(wsr);
-		rd.addScore(dfsi);
-		rd.addScore(dfsr);
 		
 		do {
 			if(!endGame && count == 0) {
@@ -137,6 +129,9 @@ public class Game {
 	}
 	
 	private void printRankings() {
+		Ranking<WinsScore> rw = new Ranking<>();
+		Ranking<DestroyedFightersScore> rd = new Ranking<>();
+		
 		rw.addScore(imperial.getGameShip().getWinsScore());
 		rw.addScore(rebel.getGameShip().getWinsScore());
 		rd.addScore(imperial.getGameShip().getDestroyedFightersScore());
