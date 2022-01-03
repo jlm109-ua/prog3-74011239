@@ -15,8 +15,6 @@ public class Game {
 	private GameBoard board;
 	private IPlayer imperial;
 	private IPlayer rebel;
-	private Ranking<WinsScore> rw = new Ranking<>();
-	private Ranking<DestroyedFightersScore> rd = new Ranking<>();
 	
 	/**
 	 * Constructor de Game.
@@ -109,7 +107,6 @@ public class Game {
 		
 		imperial.purgeFleet();
 		rebel.purgeFleet();
-		System.out.print("\n");
 		printRankings();
 		if(whoWon.equals("IMPERIAL"))
 			return Side.IMPERIAL;
