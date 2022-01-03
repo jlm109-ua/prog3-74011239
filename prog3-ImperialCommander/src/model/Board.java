@@ -145,7 +145,7 @@ public class Board {
 						}
 					if(combat == 1) {
 						f.getMotherShip().updateResults(combat,f2);
-						f2.getMotherShip().updateResults(-combat,f2); //???
+						f2.getMotherShip().updateResults(-combat,f2);
 						try {
 							removeFighter(f2);
 						}catch(FighterNotInBoardException e) {
@@ -157,7 +157,7 @@ public class Board {
 						return combat;
 					}else if(combat == -1){
 						f.getMotherShip().updateResults(combat,f);
-						f2.getMotherShip().updateResults(-combat,f); //?????
+						f2.getMotherShip().updateResults(-combat,f);
 						
 						return combat;
 					}
@@ -197,7 +197,7 @@ public class Board {
 						}
 						if(combat == 1) {
 							f.getMotherShip().updateResults(combat,f2);
-							f2.getMotherShip().updateResults(-combat,f2); //???????
+							f2.getMotherShip().updateResults(-combat,f2);
 							try {
 								removeFighter(f2);
 							}catch(FighterNotInBoardException e) {
@@ -205,8 +205,8 @@ public class Board {
 							}
 							f2.setPosition(null);
 						}else {
-							f.getMotherShip().updateResults(combat,f2);
-							f2.getMotherShip().updateResults(-combat,f2); //?????
+							f.getMotherShip().updateResults(combat,f);
+							f2.getMotherShip().updateResults(-combat,f);
 							try {
 								removeFighter(f);
 							}catch(FighterNotInBoardException e) {
