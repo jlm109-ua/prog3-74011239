@@ -4,11 +4,13 @@
 package model.game.score;
 
 import model.Side;
-
+/**
+ * Clase destinada a ser un marcador de victorias.
+ */
 public class WinsScore extends Score<Integer>{
 	/**
 	 * Constructor de WinsScore.
-	 * @param side
+	 * @param side Side.
 	 */
 	public WinsScore(Side side) {
 		super(side);

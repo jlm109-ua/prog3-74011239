@@ -4,11 +4,14 @@
 package model.exceptions;
 
 @SuppressWarnings("serial")
+/**
+ * Excepcion para cuando no se encuentran Fighter disponibles.
+ */
 public class NoFighterAvailableException extends Exception{
 	private String type;
 	
 	/**
-	 * Excepción para cuando no se encuentran Fighter disponibles.
+	 * Excepcion para cuando no se encuentran Fighter disponibles.
 	 * @param type String
 	 */
 	public NoFighterAvailableException(String type){
@@ -16,6 +19,9 @@ public class NoFighterAvailableException extends Exception{
 		this.type = type;
 	}
 	
+	/**
+	 * Obtiene el mensaje de la excepcion.
+	 */
 	public String getMessage() {
 		return "ERROR: No " + type + "Fighter available.";
 	}

@@ -5,11 +5,13 @@ package model.game.score;
 
 import model.Fighter;
 import model.Side;
-
+/**
+ * Clase destinada a ser un marcador de luchadores destruidos.
+ */
 public class DestroyedFightersScore extends Score<Fighter>{
 	/**
 	 * Constructor de DestroyedFightersScore
-	 * @param side
+	 * @param side Side.
 	 */
 	public DestroyedFightersScore(Side side) {
 		super(side);

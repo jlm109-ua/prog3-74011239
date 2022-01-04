@@ -9,7 +9,9 @@ import model.exceptions.InvalidSizeException;
 import model.game.score.DestroyedFightersScore;
 import model.game.score.Ranking;
 import model.game.score.WinsScore;
-
+/**
+ * Clase destinada a ser la que controla el juego. 
+ */
 public class Game {
 	private final int BOARD_SIZE = 10;
 	private GameBoard board;

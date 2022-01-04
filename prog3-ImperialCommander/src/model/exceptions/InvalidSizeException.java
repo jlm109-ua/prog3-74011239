@@ -4,11 +4,14 @@
 package model.exceptions;
 
 @SuppressWarnings("serial")
+/**
+ * Excepcion para cuando el tamanyo del tablero es incorrecto.
+ */
 public class InvalidSizeException extends Exception{
 	private int size;
 	
 	/**
-	 * Excepción para cuando el tamaño del tablero es incorrecto.
+	 * Excepcion para cuando el tamanyo del tablero es incorrecto.
 	 * @param size int
 	 */
 	public InvalidSizeException(int size){
@@ -16,6 +19,9 @@ public class InvalidSizeException extends Exception{
 		this.size = size;
 	}
 	
+	/**
+	 * Obtiene el mensaje de la excepcion.
+	 */
 	public String getMessage() {
 		return "ERROR: Invalid size " + size;
 	}

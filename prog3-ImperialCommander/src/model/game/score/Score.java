@@ -4,14 +4,17 @@
 package model.game.score;
 
 import model.Side;
-
+/**
+ * Clase destinada a ser un marcador.
+ * @param <T> Implementa Comparable consigo mismo.
+ */
 public abstract class Score<T> implements Comparable<Score<T>>{
 	int score;
 	private Side side;
 	
 	/**
 	 * Constructor de Score.
-	 * @param side
+	 * @param side Side.
 	 */
 	public Score(Side side) {
 		this.score = 0;
@@ -20,14 +23,14 @@ public abstract class Score<T> implements Comparable<Score<T>>{
 	
 	/**
 	 * Getter de Score.
-	 * @return score
+	 * @return score 
 	 */
 	public int getScore() {
 		return score;
 	}
 	
 	/**
-	 * Compara dos Score y devuelve 1 o -1 si el valor del Score pasado como parámetro es menor o mayor, respectivamente.
+	 * Compara dos Score y devuelve 1 o -1 si el valor del Score pasado como parï¿½metro es menor o mayor, respectivamente.
 	 * Si resultan ser iguales acude al compareTo de los side para detereminar si devolver 1 o -1 (IMPERIAL > REBEL). 
 	 * @param other Score<T>
 	 * @return 1: this > other, -1: other > this.
@@ -43,10 +46,15 @@ public abstract class Score<T> implements Comparable<Score<T>>{
 	
 	/**
 	 * Devuelve la cadena ""Player " + side + ": " + score".
+	 * @return String Contenido del marcador.
 	 */
 	public String toString() {
 		return "Player " + side + ": " + score;
 	}
 	
+	/**
+	 * AÃ±ade puntuaciones.
+	 * @param sc Tipo de marcador.
+	 */
 	public abstract void score(T sc);
 }

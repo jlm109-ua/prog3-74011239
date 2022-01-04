@@ -8,13 +8,15 @@ import model.Coordinate;
 import model.Fighter;
 import model.Side;
 import model.exceptions.InvalidSizeException;
-
+/**
+ * Clase destinada a ser la que controle el tablero.
+ */
 public class GameBoard extends Board{
 	
 	/**
 	 * Constructor de GameBoard.
 	 * @param size Tamanyo del tablero.
-	 * @throws InvalidSizeException
+	 * @throws InvalidSizeException.
 	 */
 	public GameBoard(int size) throws InvalidSizeException {
 		super(size);
@@ -37,6 +39,7 @@ public class GameBoard extends Board{
 	
 	/**
 	 * Devuelve una String del tablero con sus respectivos Fighter.
+	 * @return String Cadena que muestra el tablero de forma gráfica.
 	 */
 	public String toString() { // REVISAR X = COLUMNA & Y = FILA
 		String boardString = "  ";

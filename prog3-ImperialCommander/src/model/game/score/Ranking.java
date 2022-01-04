@@ -5,7 +5,10 @@ package model.game.score;
 
 import java.util.SortedSet;
 import java.util.TreeSet;
-
+/**
+ * Clase destindada a ser un marcador de WinsScore o DestroyedFightersScore.
+ * @param <ScoreType> Tipo de marcador.
+ */
 public class Ranking<ScoreType extends Score<?>> {
 	private SortedSet<ScoreType> scoreSet;
 	/**
@@ -44,6 +47,7 @@ public class Ranking<ScoreType extends Score<?>> {
 	
 	/**
 	 * Devuelve una cadena con las puntuaciones de los jugadores.
+	 * @return String Contenido del marcador.
 	 */
 	public String toString() {
 		String scoreToString = "";

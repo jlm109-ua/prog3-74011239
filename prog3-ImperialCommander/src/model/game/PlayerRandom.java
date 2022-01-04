@@ -11,7 +11,9 @@ import java.util.List;
 import java.util.Objects;
 import model.Coordinate;
 import model.RandomNumber;
-
+/**
+ * Clase destinada a ser un jugador que juega mediante posibilidades.
+ */
 public class PlayerRandom implements IPlayer {
 	private int numFighters;
 	private GameShip ship;
@@ -20,7 +22,7 @@ public class PlayerRandom implements IPlayer {
 	/**
 	 * Constructor de PlayerRandom.
 	 * @param side Side, Bando de la nave.
-	 * @param numFighters Int, Número de Fighters.
+	 * @param numFighters Int, Numero de Fighters.
 	 */
 	public PlayerRandom(Side side,int numFighters) {
 		Objects.requireNonNull(side);

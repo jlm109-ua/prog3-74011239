@@ -4,11 +4,14 @@
 package model.game.exceptions;
 
 @SuppressWarnings("serial")
+/**
+ * Excepcion para cuando un Fighter contiene una Id erronea.
+ */
 public class WrongFighterIdException extends Exception{
 	private int id;
 	
 	/**
-	 * Excepcion para cuando un Fighter contiene una Id errónea.
+	 * Excepcion para cuando un Fighter contiene una Id erronea.
 	 * @param id int
 	 */
 	public WrongFighterIdException(int id) {
@@ -16,6 +19,9 @@ public class WrongFighterIdException extends Exception{
 		this.id = id;
 	}
 	
+	/**
+	 * Obtiene el mensaje de la excepcion.
+	 */
 	public String getMessage() {
 		return "ERROR: The id (" + id + ") of the Fighter is wrong.";
 	}

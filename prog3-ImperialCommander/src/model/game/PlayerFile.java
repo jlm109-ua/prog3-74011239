@@ -8,7 +8,9 @@ import model.Side;
 import model.game.exceptions.WrongFighterIdException;
 import model.game.score.DestroyedFightersScore;
 import model.game.score.WinsScore;
-
+/**
+ * Clase destinada a ser un jugador que juega mediante ficheros.
+ */
 public class PlayerFile implements IPlayer {
 	private BufferedReader br;
 	private GameShip ship;
@@ -16,8 +18,8 @@ public class PlayerFile implements IPlayer {
 	
 	/**
 	 * Constructor de PlayerFile.
-	 * @param side
-	 * @param br
+	 * @param side Side.
+	 * @param br BufferedReader.
 	 */
 	public PlayerFile(Side side,BufferedReader br) {
 		Objects.requireNonNull(side);

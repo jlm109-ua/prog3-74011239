@@ -6,11 +6,14 @@ package model.exceptions;
 import model.Fighter;
 
 @SuppressWarnings("serial")
+/**
+ * Excepcion para cuando un Fighter ya esta destruido.
+ */
 public class FighterIsDestroyedException extends Exception{
 	private Fighter f;
 	
 	/**
-	 * Excepción para cuando un Fighter ya está destruido.
+	 * Excepcion para cuando un Fighter ya esta destruido.
 	 * @param f Fighter
 	 */
 	public FighterIsDestroyedException(Fighter f){
@@ -18,6 +21,9 @@ public class FighterIsDestroyedException extends Exception{
 		this.f = f;
 	}
 	
+	/**
+	 * Obtiene el mensaje de la excepcion.
+	 */
 	public String getMessage() {
 		return "ERROR: Fighter " + f.toString() + " is destroyed.";
 	}

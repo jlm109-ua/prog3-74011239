@@ -5,7 +5,9 @@ package model.game;
 
 import model.game.score.DestroyedFightersScore;
 import model.game.score.WinsScore;
-
+/**
+ * Interfaz de los jugadores.
+ */
 public interface IPlayer {
 	/**
 	 * Asigna el tablero pasado como parametro.
@@ -23,7 +25,7 @@ public interface IPlayer {
 	 */
 	public WinsScore getWinsScore();
 	/**
-	 * Devuelve la puntuación de los Fighter destruidos por la nave.
+	 * Devuelve la puntuaciï¿½n de los Fighter destruidos por la nave.
 	 * @return DestroyedFightersScore
 	 */
 	public DestroyedFightersScore getDestroyedFightersScore();
@@ -33,7 +35,7 @@ public interface IPlayer {
 	public void initFighters();
 	/**
 	 * Comprueba si la flota esta destruida.
-	 * @return true: Si la flota esta destruida. false: Si hay algun caza que no esté destruido en la flota.
+	 * @return true: Si la flota esta destruida. false: Si hay algun caza que no estï¿½ destruido en la flota.
 	 */
 	public boolean isFleetDestroyed();
 	/**

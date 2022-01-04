@@ -6,11 +6,14 @@ package model.exceptions;
 import model.Fighter;
 
 @SuppressWarnings("serial")
+/**
+ * Excepcion para cuando un Fighter ya se encuentra en el tablero.
+ */
 public class FighterAlreadyInBoardException extends Exception{
 	private Fighter f;
 	
 	/**
-	 * Excepción para cuando un Fighter ya se encuentra en el tablero.
+	 * Excepcion para cuando un Fighter ya se encuentra en el tablero.
 	 * @param f Fighter
 	 */
 	public FighterAlreadyInBoardException(Fighter f){
@@ -18,6 +21,9 @@ public class FighterAlreadyInBoardException extends Exception{
 		this.f = f;
 	}
 	
+	/**
+	 * Obtiene el mensaje de la excepcion.
+	 */
 	public String getMessage() {
 		return "ERROR: Fighter " + f.toString() + " is already in Board.";
 	}

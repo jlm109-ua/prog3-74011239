@@ -18,7 +18,9 @@ import model.exceptions.OutOfBoundsException;
 import model.game.exceptions.WrongFighterIdException;
 import model.game.score.DestroyedFightersScore;
 import model.game.score.WinsScore;
-
+/**
+ * Clase destinada a controlar una nave.
+ */
 public class GameShip extends Ship{
 	private WinsScore winsScore;
 	private DestroyedFightersScore destroyedFightersScore;
@@ -47,7 +49,7 @@ public class GameShip extends Ship{
 	}
 	
 	/**
-	 * Devuelve el Fighter con el mismo id pasado por parámetro.
+	 * Devuelve el Fighter con el mismo id pasado por parï¿½metro.
 	 * @param id Id del Fighter.
 	 * @return Fighter con el id id.
 	 * @throws WrongFighterIdException Excepcion que se lanza por si no hay Fighter con un id pasado por parametro.
@@ -60,7 +62,7 @@ public class GameShip extends Ship{
 	}
 	
 	/**
-	 * Devuelve una lista de ids de Fighters según la condicion pasada por parametro.
+	 * Devuelve una lista de ids de Fighters segï¿½n la condicion pasada por parametro.
 	 * @param where String de condicion.
 	 * @return List<Integer> ids Lista de ids.
 	 */
@@ -94,12 +96,16 @@ public class GameShip extends Ship{
 	
 	/**
 	 * Getter de winsScore.
-	 * @return WinsScore
+	 * @return WinsScore.
 	 */
 	public WinsScore getWinsScore() {
 		return winsScore;
 	}
 	
+	/**
+	 * Getter de destroyedFightersScore.
+	 * @return DestroyedFightersScore.
+	 */
 	public DestroyedFightersScore getDestroyedFightersScore() {
 		return destroyedFightersScore;
 	}
@@ -112,7 +118,7 @@ public class GameShip extends Ship{
 	 * @throws WrongFighterIdException Excepcion por si no hay Fighter con la id pasada por parametro.
 	 * @throws FighterAlreadyInBoardException Excepcion por si el Fighter ya se encuentra en el tablero.
 	 * @throws OutOfBoundsException Excepcion por si la coordenada no se encuentra en el tablero.
-	 * @throws RuntimeException
+	 * @throws RuntimeException.
 	 */
 	public void launch(int id,Coordinate c,Board b) throws WrongFighterIdException, FighterAlreadyInBoardException, OutOfBoundsException, RuntimeException{
 		Objects.requireNonNull(id);
@@ -128,7 +134,7 @@ public class GameShip extends Ship{
 	  * @param b Tablero.
 	  * @throws WrongFighterIdException Excepcion por si no hay Fighter con la id pasada por parametro.
 	  * @throws FighterNotInBoardException Excepcion por si no se encuentra el Fighter en el tablero.
-	  * @throws RuntimeException
+	  * @throws RuntimeException.
 	  */
 	public void patrol(int id,Board b) throws WrongFighterIdException, FighterNotInBoardException, RuntimeException {
 		Objects.requireNonNull(id);
@@ -141,7 +147,7 @@ public class GameShip extends Ship{
 	/**
 	 * Mejora el Fighter con id id.
 	 * @param id id del Fighter.
-	 * @param qty Cantidad de ataque (attack) y escudo (shield) a añadir.
+	 * @param qty Cantidad de ataque (attack) y escudo (shield) a aï¿½adir.
 	 * @param b Tablero.
 	 * @throws WrongFighterIdException Excepcion por si no hay Fighter con la id pasada por parametro.
 	 */

@@ -5,7 +5,9 @@ package model.fighters;
 
 import model.Fighter;
 import model.Ship;
-
+/**
+ * Tipo de luchador.
+ */
 public class TIEInterceptor extends Fighter {
 	/**
 	 * Constructor de TIEInterceptor.
