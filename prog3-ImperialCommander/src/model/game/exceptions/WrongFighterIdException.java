@@ -3,10 +3,10 @@
  */
 package model.game.exceptions;
 
-@SuppressWarnings("serial")
 /**
  * Excepcion para cuando un Fighter contiene una Id erronea.
  */
+@SuppressWarnings("serial")
 public class WrongFighterIdException extends Exception{
 	private int id;
 	

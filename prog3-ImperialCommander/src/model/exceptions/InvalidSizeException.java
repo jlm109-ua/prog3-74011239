@@ -3,10 +3,10 @@
  */
 package model.exceptions;
 
-@SuppressWarnings("serial")
 /**
  * Excepcion para cuando el tamanyo del tablero es incorrecto.
  */
+@SuppressWarnings("serial")
 public class InvalidSizeException extends Exception{
 	private int size;
 	

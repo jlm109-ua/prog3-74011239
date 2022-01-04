@@ -5,10 +5,10 @@ package model.exceptions;
 
 import model.Fighter;
 
-@SuppressWarnings("serial")
 /**
  * Excepcion para cuando un Fighter ya esta destruido.
  */
+@SuppressWarnings("serial")
 public class FighterIsDestroyedException extends Exception{
 	private Fighter f;
 	

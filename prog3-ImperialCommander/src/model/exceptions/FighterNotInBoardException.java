@@ -5,10 +5,10 @@ package model.exceptions;
 
 import model.Fighter;
 
-@SuppressWarnings("serial")
 /**
  * Excepcion para cuando un Fighter no se encuentra en el tablero.
  */
+@SuppressWarnings("serial")
 public class FighterNotInBoardException extends Exception{
 	private Fighter f;
 	

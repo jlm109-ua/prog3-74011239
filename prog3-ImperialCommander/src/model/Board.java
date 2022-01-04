@@ -127,7 +127,7 @@ public class Board {
 	 * @param f Fighter amigo.
 	 * @throws FighterAlreadyInBoardException Excepcion que se lanza cuando el Fighter ya esta en el tablero.
 	 * @throws OutOfBoundsException Excepcion que se lanza cuando la coordenada no es correcta.
-	 * @throws RuntimeException Excepcion que se lanza cuadno hay un error de programacion.
+	 * @throws RuntimeException Excepcion que se lanza cuando hay un error de programacion.
 	 * @return combat(-1): Si el enemigo gana. 0: Si no hay enemigo en c. combat(1): Si el amigo gana.
 	 */
 	public int launch(Coordinate c,Fighter f) throws FighterAlreadyInBoardException, OutOfBoundsException, RuntimeException{
@@ -182,7 +182,8 @@ public class Board {
 	/**
 	 * Recorre las posiciones vecinas validas y lucha contra los Fighter enemigos que encuentre.
 	 * @param f Fighter amigo.
-	 * @throws FighterNotInBoardException y RuntimeException
+	 * @throws FighterNotInBoardException Excepcion que se lanza cuando el Fighter no esta en el tablero.
+	 * @throws RuntimeException Excepcion que se lanza cuando hay un error de programacion.
 	 */
 	public void patrol(Fighter f) throws FighterNotInBoardException, RuntimeException{
 		Objects.requireNonNull(f);

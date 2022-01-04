@@ -3,10 +3,10 @@
  */
 package model.exceptions;
 
-@SuppressWarnings("serial")
 /**
  * Excepcion para cuando no se encuentran Fighter disponibles.
  */
+@SuppressWarnings("serial")
 public class NoFighterAvailableException extends Exception{
 	private String type;
 	

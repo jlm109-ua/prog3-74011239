@@ -5,10 +5,10 @@ package model.exceptions;
 
 import model.Coordinate;
 
-@SuppressWarnings("serial")
 /**
  * Excepcion para cuando una Coordinate se encuentra fuera de los limites del tablero.
  */
+@SuppressWarnings("serial")
 public class OutOfBoundsException extends Exception{
 	private Coordinate c;
 	
