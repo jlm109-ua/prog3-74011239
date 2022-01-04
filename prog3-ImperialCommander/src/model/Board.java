@@ -22,7 +22,7 @@ public class Board {
 	/**
 	 * Constructor del tablero.
 	 * @param size Tamanyo del tablero (size*size).
-	 * @throws InvalidSizeException.
+	 * @throws InvalidSizeException Excepcion que se lanza cuando el tamanyo no es correcto.
 	 */
 	public Board(int size) throws InvalidSizeException {
 		if(size < 5)
@@ -60,8 +60,7 @@ public class Board {
 	/**
 	 * Borra Fighters del tablero en caso de que sean iguales.
 	 * @param f Fighter.
-	 * @throws FighterNotInBoardException.
-	 * @return true: Si son iguales. false: En cualquier otro caso.
+	 * @throws FighterNotInBoardException Excepcion que se lanza cuando el Fighter no esta en el tablero.
 	 */
 	public void removeFighter(Fighter f) throws FighterNotInBoardException {
 		Objects.requireNonNull(f);
@@ -102,7 +101,7 @@ public class Board {
 	/**
 	 * Devuelve las coordenadas validas dentro del tablero.
 	 * @param c Coordenada de la nave actual.
-	 * @throws OutOfBoundsException.
+	 * @throws OutOfBoundsException Excepcion que se lanza caudno la coordenada no es correcta.
 	 * @return valid_pos Coordenadas validas que puede tomar la nave.
 	 */
 	public TreeSet<Coordinate> getNeighborhood(Coordinate c) throws OutOfBoundsException {
@@ -126,7 +125,9 @@ public class Board {
 	 * Comprueba si en la coordenada dada hay un enemigo y mueve a los Fighters que luchan.
 	 * @param c Coordenada dada.
 	 * @param f Fighter amigo.
-	 * @throws FighterAlreadyInBoardException, OutOfBoundsException y RuntimeException.
+	 * @throws FighterAlreadyInBoardException Excepcion que se lanza cuando el Fighter ya esta en el tablero.
+	 * @throws OutOfBoundsException Excepcion que se lanza cuando la coordenada no es correcta.
+	 * @throws RuntimeException Excepcion que se lanza cuadno hay un error de programacion.
 	 * @return combat(-1): Si el enemigo gana. 0: Si no hay enemigo en c. combat(1): Si el amigo gana.
 	 */
 	public int launch(Coordinate c,Fighter f) throws FighterAlreadyInBoardException, OutOfBoundsException, RuntimeException{

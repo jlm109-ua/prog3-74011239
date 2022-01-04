@@ -218,7 +218,7 @@ public abstract class Fighter{
 	/**
 	 * Simula la lucha entre dos Fighters.
 	 * @param enemy Fighter enemigo.
-	 * @throws FighterIsDestroyedException.
+	 * @throws FighterIsDestroyedException Excepcion que se lanza cuando el Fighter ya esta destruido.
 	 * @return -1: Si el caza amigo ha sido destruido. 1: Si el caza enemigo ha sido destruido.
 	 */
 	public int fight(Fighter enemy) throws FighterIsDestroyedException { 

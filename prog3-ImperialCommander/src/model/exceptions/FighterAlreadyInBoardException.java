@@ -23,6 +23,7 @@ public class FighterAlreadyInBoardException extends Exception{
 	
 	/**
 	 * Obtiene el mensaje de la excepcion.
+	 * @return String Error por el que ha sido causada la excepcion.
 	 */
 	public String getMessage() {
 		return "ERROR: Fighter " + f.toString() + " is already in Board.";

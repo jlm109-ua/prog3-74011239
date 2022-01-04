@@ -111,7 +111,7 @@ public class Ship {
 	/**
 	 * Devuelve el primer Fighter disponible que no est� destruido a partir de una cadena dada. Si la cadena tiene valor null devolver� el primer Fighter no destruido que encuentre.
 	 * @param t Cadena dada.
-	 * @throws NoFighterAvailableException.
+	 * @throws NoFighterAvailableException Excepcion que se lanza cuando no hay ningun Fighter disponible.
 	 * @return null: Si no hay Fighters no destruidos disponibles. fleet.get(i): Si el Fighter cumple los requisitos de la cadena y no esta destruido.
 	 */
 	public Fighter getFirstAvailableFighter(String t) throws NoFighterAvailableException {

@@ -5,5 +5,9 @@ package model;
  * @author Juan Llinares Mauri - 74011239E
  */
 public enum Side {
+	/**
+	 * IMPERIAL: Bando imperial.
+	 * REBEL: Bando rebelde.
+	 */
 	IMPERIAL, REBEL;
 }

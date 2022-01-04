@@ -16,7 +16,7 @@ public class GameBoard extends Board{
 	/**
 	 * Constructor de GameBoard.
 	 * @param size Tamanyo del tablero.
-	 * @throws InvalidSizeException.
+	 * @throws InvalidSizeException Excepcion que se lanza cuando el tamanyo del tablero no es correcto.
 	 */
 	public GameBoard(int size) throws InvalidSizeException {
 		super(size);

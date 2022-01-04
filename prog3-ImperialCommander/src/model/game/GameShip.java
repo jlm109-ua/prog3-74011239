@@ -118,7 +118,7 @@ public class GameShip extends Ship{
 	 * @throws WrongFighterIdException Excepcion por si no hay Fighter con la id pasada por parametro.
 	 * @throws FighterAlreadyInBoardException Excepcion por si el Fighter ya se encuentra en el tablero.
 	 * @throws OutOfBoundsException Excepcion por si la coordenada no se encuentra en el tablero.
-	 * @throws RuntimeException.
+	 * @throws RuntimeException Excepcion que se lanza cuando hay un error de programación.
 	 */
 	public void launch(int id,Coordinate c,Board b) throws WrongFighterIdException, FighterAlreadyInBoardException, OutOfBoundsException, RuntimeException{
 		Objects.requireNonNull(id);
@@ -134,7 +134,7 @@ public class GameShip extends Ship{
 	  * @param b Tablero.
 	  * @throws WrongFighterIdException Excepcion por si no hay Fighter con la id pasada por parametro.
 	  * @throws FighterNotInBoardException Excepcion por si no se encuentra el Fighter en el tablero.
-	  * @throws RuntimeException.
+	  * @throws RuntimeException Excepcion que se lanza cuando hay un error de programación.
 	  */
 	public void patrol(int id,Board b) throws WrongFighterIdException, FighterNotInBoardException, RuntimeException {
 		Objects.requireNonNull(id);

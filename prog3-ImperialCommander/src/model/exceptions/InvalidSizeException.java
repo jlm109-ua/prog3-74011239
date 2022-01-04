@@ -21,6 +21,7 @@ public class InvalidSizeException extends Exception{
 	
 	/**
 	 * Obtiene el mensaje de la excepcion.
+	 * @return String Error por el que ha sido causada la excepcion.
 	 */
 	public String getMessage() {
 		return "ERROR: Invalid size " + size;
