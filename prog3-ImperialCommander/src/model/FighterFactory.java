@@ -7,6 +7,9 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Objects;
 
+/**
+ * Clase destinada a ser una fabrica de luchadores.
+ */
 public class FighterFactory {
 	/**
 	 * Crea subclases de Fighter.

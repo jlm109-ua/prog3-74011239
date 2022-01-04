@@ -9,6 +9,9 @@ import java.util.Objects;
 import java.lang.String;
 import model.exceptions.*;
 
+/**
+ * Clase destinada a ser una nave de luchadores.
+ */
 public class Ship {
 	/**
 	 * Declaramos todos los atributos privados.
@@ -96,6 +99,7 @@ public class Ship {
 	/**
 	 * Actualiza las batallas ganadas y las perdidas a partir de una batalla entre Fighters.
 	 * @param r Parametro para determinar quien gano la batalla.
+	 * @param f Fighter.
 	 */
 	public void updateResults(int r,Fighter f) {
 			if(r == 1)
@@ -105,8 +109,9 @@ public class Ship {
 	}
 	
 	/**
-	 * Devuelve el primer Fighter disponible que no esté destruido a partir de una cadena dada. Si la cadena tiene valor null devolverá el primer Fighter no destruido que encuentre.
+	 * Devuelve el primer Fighter disponible que no estï¿½ destruido a partir de una cadena dada. Si la cadena tiene valor null devolverï¿½ el primer Fighter no destruido que encuentre.
 	 * @param t Cadena dada.
+	 * @throws NoFighterAvailableException.
 	 * @return null: Si no hay Fighters no destruidos disponibles. fleet.get(i): Si el Fighter cumple los requisitos de la cadena y no esta destruido.
 	 */
 	public Fighter getFirstAvailableFighter(String t) throws NoFighterAvailableException {

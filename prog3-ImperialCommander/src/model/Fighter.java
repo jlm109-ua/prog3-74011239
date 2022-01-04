@@ -7,6 +7,9 @@ package model;
 import java.util.Objects;
 import model.exceptions.*;
 
+/**
+ * Clase destinada a ser un luchador.
+ */
 public abstract class Fighter{
 	/**
 	 * Declaramos todos los atributos privados.
@@ -139,13 +142,13 @@ public abstract class Fighter{
 	
 	 /**
 	  * Devuelve el simbolo del Fighter dependiendo de su tipo.
-	  * @return
+	  * @return Simbolo del Fighter.
 	  */
 	public abstract char getSymbol();
 	
 	 /**
-	  * 
-	  * @return
+	  * Devuelve una copia del Fighter.
+	  * @return Copia del Fighter.
 	  */
 	public abstract Fighter copy();
 	
@@ -215,6 +218,7 @@ public abstract class Fighter{
 	/**
 	 * Simula la lucha entre dos Fighters.
 	 * @param enemy Fighter enemigo.
+	 * @throws FighterIsDestroyedException.
 	 * @return -1: Si el caza amigo ha sido destruido. 1: Si el caza enemigo ha sido destruido.
 	 */
 	public int fight(Fighter enemy) throws FighterIsDestroyedException { 
@@ -274,6 +278,11 @@ public abstract class Fighter{
 		return id == other.id;
 	}
 	
+	/**
+	 * Compara dos Fighter.
+	 * @param other Fighter.
+	 * @return Integer.
+	 */
 	public int compareTo(Fighter other) {
 		return Integer.compare(this.id, other.id);
 	}

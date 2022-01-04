@@ -6,6 +6,9 @@ package model;
 
 import java.util.TreeSet;
 
+/**
+ * Clase destinada a ser una coordenada del tablero.
+ */
 public class Coordinate implements Comparable<Coordinate> {
 	/**
 	 * Declaramos todos los atributos privados.
@@ -26,8 +29,7 @@ public class Coordinate implements Comparable<Coordinate> {
 	
 	/**
 	 * Constructor de copia.
-	 * @param x Coordenada x.
-	 * @param y Coordenada y.
+	 * @param c Coordinate.
 	 */
 	public Coordinate(Coordinate c) {
 		x=c.x;
@@ -102,7 +104,7 @@ public class Coordinate implements Comparable<Coordinate> {
 	
 	/**
 	 * Compara dos coordenadas.
-	 * @param otra
+	 * @param otra Coordinate.
 	 * @return 
 	 * -1: Si la "x" o la "y" es menor que la "x" o la "y" de la coordenada que queremos comparar.
 	 * 0: Si la "x" y la "y" es igual a la "x" y la "y" de la coordenada que queremos comparar.

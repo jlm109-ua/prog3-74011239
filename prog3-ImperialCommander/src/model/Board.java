@@ -8,7 +8,9 @@ import java.util.Objects;
 import java.util.TreeSet;
 import java.util.HashMap;
 import model.exceptions.*;
-
+/**
+ * Clase destinada a ser el tablero del juego.
+ */
 public class Board {
 	/**
 	 * Declaramos todos los atributos privados.
@@ -20,6 +22,7 @@ public class Board {
 	/**
 	 * Constructor del tablero.
 	 * @param size Tamanyo del tablero (size*size).
+	 * @throws InvalidSizeException.
 	 */
 	public Board(int size) throws InvalidSizeException {
 		if(size < 5)
@@ -32,7 +35,7 @@ public class Board {
 	
 	/**
 	 * Metodo para obtener el Fighter que se encuentra en la coordenada dada.
-	 * @param Coordenada dada.
+	 * @param c Coodrinate..
 	 * @return Fighter.
 	 */
 	public Fighter getFighter(Coordinate c) {
@@ -57,6 +60,7 @@ public class Board {
 	/**
 	 * Borra Fighters del tablero en caso de que sean iguales.
 	 * @param f Fighter.
+	 * @throws FighterNotInBoardException.
 	 * @return true: Si son iguales. false: En cualquier otro caso.
 	 */
 	public void removeFighter(Fighter f) throws FighterNotInBoardException {
@@ -98,6 +102,7 @@ public class Board {
 	/**
 	 * Devuelve las coordenadas validas dentro del tablero.
 	 * @param c Coordenada de la nave actual.
+	 * @throws OutOfBoundsException.
 	 * @return valid_pos Coordenadas validas que puede tomar la nave.
 	 */
 	public TreeSet<Coordinate> getNeighborhood(Coordinate c) throws OutOfBoundsException {
@@ -121,6 +126,7 @@ public class Board {
 	 * Comprueba si en la coordenada dada hay un enemigo y mueve a los Fighters que luchan.
 	 * @param c Coordenada dada.
 	 * @param f Fighter amigo.
+	 * @throws FighterAlreadyInBoardException, OutOfBoundsException y RuntimeException.
 	 * @return combat(-1): Si el enemigo gana. 0: Si no hay enemigo en c. combat(1): Si el amigo gana.
 	 */
 	public int launch(Coordinate c,Fighter f) throws FighterAlreadyInBoardException, OutOfBoundsException, RuntimeException{
@@ -175,6 +181,7 @@ public class Board {
 	/**
 	 * Recorre las posiciones vecinas validas y lucha contra los Fighter enemigos que encuentre.
 	 * @param f Fighter amigo.
+	 * @throws FighterNotInBoardException y RuntimeException
 	 */
 	public void patrol(Fighter f) throws FighterNotInBoardException, RuntimeException{
 		Objects.requireNonNull(f);
